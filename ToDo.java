@@ -9,11 +9,11 @@ public class ToDo {
   private String demarkation;
 
   public ToDo(String toDoName, int priority, String demarkation) {
-    
+    // TODO
   }
 
   public void changeCompletion() {
-    // TODO
+    completion = !completion;
   }
 
   public void editToDo(String newToDo) {
