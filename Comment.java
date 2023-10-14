@@ -1,20 +1,35 @@
 import java.util.ArrayList;
 import java.time.ZonedDateTime;
 
+/**
+ * @author jonesnt
+ */
 public class Comment {
     private ArrayList<Comment> commentList;
-    private Comment prevComment;
     private String commentData;
     private ZonedDateTime commentDate;
     private User author;
-    private Comment headComment;
 
-    public Comment(String commentData, User user) {
-        // TODO
+    public Comment(String commentData, User author) {
+        // start by storing comment data (the important part)
+        commentData = commentData;
+        // next, store the username of the person
+        // who is making said comment
+        author = author;
+        // then, find out what time they made the comment
+        // and then store it for posterity
+        commentDate = ZonedDateTime.now();
+        // initialize the array list of 'threads'
+        // a nullptr signifies that the comment
+        // has no children
+        commentList = null;
     }
 
-    public addReply(String replyData, User user) {
-        // TODO
+    public void addReply(String replyData, User user) {
+        // Construct a new Comment object
+        Comment reply = new Comment(replyData, user);
+        // this Comment will be placed in the thread list
+        commentList.add(reply);
     }
 
     public String getComment() {
@@ -25,25 +40,48 @@ public class Comment {
         return commentList;
     }
 
-    public changeThread(int selection) {
-        // TODO rely on implementing class to recognize a null
-        // pass as a comment without a thread (this will cause
-        // a nullptr exception otherwise :))
-    }
-
-    private setPreviousComment(Comment prevComment) {
-        // TODO
-    }
-
     public String getCommentTime() {
-        // TODO
+        return commentDate.toString();
+        // TODO May have to edit the formatting on this line
     }
 
     public String getCommentAuthor() {
-        // TODO Get User and use println() fn.
+        return author.println();
     }
 
-    public boolean removeComment(int CommentNum, User currentUser) {
-        // TODO
+    public boolean hasReplies() {
+        return !commentList.isEmpty();
     }
+
+    public int getNumReplies() {
+        if (commentList.isEmpty())
+            return 0;
+        return commentList.size();
+    }
+
+    /**
+     * NOTE: This method expects a non-zero indexed reply number
+     * which it will be removing. If you want to delte the 7th reply,
+     * actually pass in a 7 as the commentNum argument.
+     * @param replyNum Positive integer representing which reply
+     * in the sequence of rendered replies must be removed.
+     * @param currentUser The logged-in user attempting to make
+     * changes to the replies of a comment
+     * @return boolean representing whether a change was sucessful
+     */
+    public boolean removeReply(int replyNum, User currentUser) {
+        if(replyNum <= 0)
+            return false;
+        int indexNum = replyNum -1;
+        // check if request valid
+        if(!hasReplies() || replyNum > getNumReplies())
+            return false;
+        // check for appropriate user permissions
+        if(commentList.get(indexNum).getCommentAuthor() == currentUser) {
+            commentList.remove(indexNum);
+            return true;
+        }
+        return false;
+    }
+
 }
