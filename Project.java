@@ -23,19 +23,19 @@ public class Project {
 
     public Task createTask(String name, int priority, String demarkation) {
 
-        //creates a new task
+        // creates a new task
         Task task = new Task();
         // assigns name
         name = name;
         // assigns priority
         priority = priority;
         // assigns demarkation
-        demarkation = demarkation;    // may need to be fixed/clarification
+        demarkation = demarkation; // may need to be fixed/clarification
         // returns task
         return task;
     }
 
-    public Task assignTask(Task task ,User user) {
+    public Task assignTask(Task task, User user) {
         task.assignedUsers.add(user);
         return task;
     }
@@ -43,10 +43,11 @@ public class Project {
     public Boolean changeTaskPriority(Task taskName, int priority) {
         // changes task priority
         taskName.setPriority(priority);
-        //cheks to see if the task has the same priority as the one passed
+        // cheks to see if the task has the same priority as the one passed
         if (taskName.getPriority == priority)
-        return true;
-        else return false;
+            return true;
+        else
+            return false;
     }
 
     public void removeTask(Task task) {
@@ -68,16 +69,16 @@ public class Project {
     public Boolean addProject(String name, String description) {
         // if project has the same name as the one passed if not then make a new project
         if (name == project.name)
-        return false;
+            return false;
         else {
-        // create instance of project
-        project = new Project();
-        // assign name
-        name = name;
-        // assign description
-        description = description;
-        return true;
-     }
+            // create instance of project
+            project = new Project();
+            // assign name
+            name = name;
+            // assign description
+            description = description;
+            return true;
+        }
     }
 
     public Boolean removeProject(Project project) {
@@ -86,12 +87,29 @@ public class Project {
         return true;
     }
 
-    public Boolean adUser(User user) {
-        return Boolean;
-    }
+    public Boolean addUser(User user) {
+        // if user does not exist in the user array then add it
+        boolean exists = false;
 
+        // iterates through the user array and if the user is in the user array cange
+        // exists to true
+        for (int i = 0; i < assignedUsers.size(); i++) {
+            if (assignedUsers[i].contains(user)) {
+                exists = true;
+            }
+        }
+        // if exists then add it to the user array and return true
+        if (!exists) {
+            assignedUsers.add(user);
+            return true;
+        } else
+            return false;
+
+    }
+    // returns faq to the termninal
     public String printFaq() {
-        return String;
+        String faq = " No freqently asked questions yet"; // FILL WITH A FAQ!!!!!
+        return faq;
     }
 
     public Boolean addDemarkation(String demarkation) {
