@@ -41,21 +41,39 @@ public class Project {
     }
 
     public Boolean changeTaskPriority(Task taskName, int priority) {
+        // changes task priority
         taskName.setPriority(priority);
+        //cheks to see if the task has the same priority as the one passed
         if (taskName.getPriority == priority)
         return true;
         else return false;
     }
 
-    public void removeTask(Task taskName) {
-
+    public void removeTask(Task task) {
+        // removes task
+        task = null;
     }
 
-    public Boolean removeUser(User user, Task taskName) {
-        return Boolean;
+    public Boolean removeUser(User user, Task task) {
+        // if user exists in the user array then remove it
+        for (int i = 0; i < task.assignedUsers.size(); i++) {
+            if (task.assignedUsers.get(i) == user) {
+                task.assignedUsers.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Boolean addProject(String name, String description) {
+        // create instance of project
+        project = new Project();
+        // assign name
+        name = name;
+        // assign description
+        description = description;
+        
+        
         return Boolean;
     }
 
