@@ -66,19 +66,24 @@ public class Project {
     }
 
     public Boolean addProject(String name, String description) {
+        // if project has the same name as the one passed if not then make a new project
+        if (name == project.name)
+        return false;
+        else {
         // create instance of project
         project = new Project();
         // assign name
         name = name;
         // assign description
         description = description;
-        
-        
-        return Boolean;
+        return true;
+     }
     }
 
     public Boolean removeProject(Project project) {
-        return Boolean;
+        // remove project
+        project = null;
+        return true;
     }
 
     public Boolean adUser(User user) {
