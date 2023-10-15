@@ -41,7 +41,10 @@ public class Project {
     }
 
     public Boolean changeTaskPriority(Task taskName, int priority) {
-        return Boolean;
+        taskName.setPriority(priority);
+        if (taskName.getPriority == priority)
+        return true;
+        else return false;
     }
 
     public void removeTask(Task taskName) {
