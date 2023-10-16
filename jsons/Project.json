@@ -1,0 +1,31 @@
+[
+    {
+        "projectID":"a1b4cb90-5431-4ca5-a570-5d568e82d0be",
+        "name":"Project 1",
+        "description":"This is a calculator project",
+        "dateTime":"2023-10-08,T20:35:36:877649",
+        "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
+        "tasks":["9251dd95-6b92-4f9a-8dd0-b96e168edff6"],
+        "demarkationList":["ToDo", "In_Progress", "Completed"],
+        "projectElements":{
+            "ToDo":["9251dd95-6b92-4f9a-8dd0-b96e168edff6"],
+            "In_Progress":[],
+            "Completed":[]
+        }
+    },{
+        "projectID":"6f1341d0-33e0-4385-9bf3-c72554b884c3",
+        "name":"Project 2",
+        "description":"This is a game project",
+        "dateTime":"2023-10-08,T20:37:38:844649",
+        "assignedUsers":["760e7421-48f8-4b80-852b-06f94f852d3f",
+                            "dc2e88d7-8953-48fa-b388-797bb3289be6"],
+        "tasks":["4dda1f4c-d877-47f5-9099-3169cf8dd408",
+                    "374472be-18b3-4786-98c4-99ed1525a6a0"],
+        "demarkationList":["ToDo", "In_Progress", "Completed"],
+        "projectElements":{
+            "ToDo":["374472be-18b3-4786-98c4-99ed1525a6a0"],
+            "In_Progress":["4dda1f4c-d877-47f5-9099-3169cf8dd408"],
+            "Completed":[]
+        }
+    }
+]

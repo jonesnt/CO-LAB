@@ -1,0 +1,102 @@
+[
+  {
+    "taskID":"9251dd95-6b92-4f9a-8dd0-b96e168edff6",
+    "taskName":"First Task",
+    "description":"create a method",
+    "dateTime":"2023-10-08,T22:45:38:855649",
+    "color":"blue",
+    "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
+    "toDoList":[{
+        "toDoID":"32a78938-7851-4bae-ade9-3963dcbd091a",
+        "task":"finish the method",
+        "completion":true
+      }],
+    "comments":[{
+        "id":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4",
+        "commentList":[
+          "8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
+          "3039415b-4ef0-4700-9ad6-61854af14fc1"
+        ],
+        "commentData":"some comment",
+        "commentDate":"2023-10-08,T23:35:38:855649",
+        "author":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
+      }],
+    "demarkationList":["ToDo", "In_Progress", "Completed"],
+    "taskElements":{
+      "ToDo":["32a78938-7851-4bae-ade9-3963dcbd091a"],
+      "In_Progress":[],
+      "Completed":[]
+    },
+    "priority":1,
+    "completionStatus":true,
+    "TaskHistory":[{
+        "eventTime":"2023-10-08,T22:45:38:855649",
+        "eventName":"Task Created",
+        "involvedUser":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
+      }]
+  },{
+    "taskID":"4dda1f4c-d877-47f5-9099-3169cf8dd408",
+    "taskName":"Game Task",
+    "description":"create the first method",
+    "dateTime":"2023-10-08,T23:46:34:905649",
+    "color":"red",
+    "assignedUsers":["760e7421-48f8-4b80-852b-06f94f852d3f"],
+    "toDoList":[{
+        "toDoID":"174fc8cc-c0bf-42c2-8f7f-e1fe24362779",
+        "task":"finsih the first method",
+        "completion":true
+      }],
+    "comments":[{
+        "id":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
+        "commentList":["3039415b-4ef0-4700-9ad6-61854af14fc1"],
+        "commentData":"another comment",
+        "commentDate":"2023-10-08,T24:40:39:855649",
+        "author":"760e7421-48f8-4b80-852b-06f94f852d3f"
+      }],
+    "demarkationList":["ToDo", "In_Progress", "Completed"],
+    "taskElements":{
+      "ToDo":["174fc8cc-c0bf-42c2-8f7f-e1fe24362779"],
+      "In_Progress":[],
+      "Completed":[]
+    },
+    "priority":1,
+    "completionStatus":true,
+    "TaskHistory":[{
+      "eventTime":"2023-10-08,T23:46:34:905649",
+      "eventName":"Task Created",
+      "involvedUser":"760e7421-48f8-4b80-852b-06f94f852d3f"
+    }]
+  },{
+    "taskID":"374472be-18b3-4786-98c4-99ed1525a6a0",
+    "taskName":"Second Task",
+    "description":"Finish the game",
+    "dateTime":"2023-10-08,T25:36:40:865649",
+    "color":"green",
+    "assignedUsers":["dc2e88d7-8953-48fa-b388-797bb3289be6"],
+    "toDoList":[{
+        "toDoID":"81c9e869-6d46-4d93-b458-ec4b840a1e8d",
+        "task":"check all methods",
+        "completion":false
+      }],
+    "comments":[{
+        "id":"3039415b-4ef0-4700-9ad6-61854af14fc1",
+        "commentList":[],
+        "commentData":"last comment",
+        "commentDate":"2023-10-08,T26:59:40:895649",
+        "author":"dc2e88d7-8953-48fa-b388-797bb3289be6"
+      }],
+    "demarkationList":["ToDo", "In_Progress", "Completed"],
+    "taskElements":{
+      "ToDo":["81c9e869-6d46-4d93-b458-ec4b840a1e8d"],
+      "In_Progress":[],
+      "Completed":[]
+    },
+    "priority":1,
+    "completionStatus":false,
+    "TaskHistory":[{
+      "eventTime":"2023-10-08,T25:36:40:865649",
+      "eventName":"Task Created",
+      "involvedUser":"dc2e88d7-8953-48fa-b388-797bb3289be6"
+    }]
+  }
+]
