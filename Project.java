@@ -113,11 +113,13 @@ public class Project {
     }
 
     public Boolean addDemarkation(String demarkation) {
-        return Boolean;
+        demarkationList.add(demarkation);
+        return true;
     }
 
     public Boolean removeDemarkation(String demarkation) {
-        return Boolean;
+        demarkationList.remove(demarkation);
+        return true;
     }
 
 }
