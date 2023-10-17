@@ -4,7 +4,8 @@ public class Facade {
   protected User currentUser;
 
   public Facade() {
-    // TODO
+    //  empty, as we don't need to do anything
+    //  should the be a singleton?
   }
 
   public void addTask(Task task) {
@@ -43,8 +44,23 @@ public class Facade {
     // TODO
   }
 
+  /**
+   * Attempts to log in the user. Returns true if the log in was successful,
+   * and false if it was not.
+   * @param user The username attempt
+   * @param password The password attempt
+   * @return whether the login was successful
+   */
   public boolean logInUser(User user, String password) {
-    // TODO
+    //  Load in a user attempt
+    User testUser = UserManager.loginAttempt(user, password);
+    //  check if the login was successful
+    if(testUser == null) {
+      // wasn't successful
+      return false;
+    }
+    return true;
+
   }
 
   public void logOutUser() {
