@@ -46,4 +46,21 @@ public class User {
         // TODO check against password requirements
         return false;
     }
+
+    /**
+     * 
+     * @param comparison Checks whether a username matches
+     * the instantiated User.
+     * @return boolean signifying whether the compared
+     * username matches the compared username
+     */
+    public boolean equals(String comparison) {
+        return username == comparison;
+    }
+
+    public boolean attemptPassword(String passAttempt) {
+        return passAttempt == password;
+    }
+
+    // TODO getUserID() 
 }
