@@ -67,16 +67,16 @@ public class ToDo {
    */
   public void setPriority(int priority) {
     priority = priority;
-    //  TODO: What's the limit on priority? Is high more important?
-    //        What's the highest number? What happens if they put in 1000?
+    //  TODO: How do I make sure that the 
   }
 
   /**
    * Sets the demarkation
-   * TODO What's a demarkaiton lol
+   * @param demarkation the column it should be located in
    */
   public void setDemarkation(String demarkation) {
     demarkation = demarkation;
+    //  TODO: should there be a call here for the change of demarkation?
   }
 
   /**
@@ -113,7 +113,7 @@ public class ToDo {
 
   /**
    * Returns the demarkation
-   * TODO what's a demarkation lol
+   * @return the demarkation it's located in
    */
   public String getDemarkation() {
     return demarkation;
