@@ -20,8 +20,12 @@ public class Facade {
     // TODO
   }
 
+  /**
+   * Adds a project to the list
+   * @param project The project wanting to be added
+   */
   public void createProject(Project project) {
-    // TODO
+    ProjectManager.addProject(project);
   }
 
   public boolean removeProject(Project project) {
