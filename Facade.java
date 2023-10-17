@@ -60,15 +60,21 @@ public class Facade {
       return false;
     }
     return true;
-
   }
 
+  /**
+   * Logs out user
+   */
   public void logOutUser() {
     // TODO
   }
 
+  /**
+   * Chacnges the color of the background
+   * @param color The color we want to change
+   */
   public void changeBG(Color color) {
-    // TODO
+    Customizer.changeBG(color);
   }
 
   public boolean changeTaskColor(Color color, Task task) {
