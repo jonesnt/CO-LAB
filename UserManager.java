@@ -96,7 +96,7 @@ public class UserManager {
      * @param username String representing the desired username.
      * @return User matching the desired username.
      */
-    private User findUser(String username) {
+    public User findUser(String username) {
         for(User specificUser : userList) {
             if(specificUser.equals(username))
                 return specificUser;

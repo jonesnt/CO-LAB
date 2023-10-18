@@ -17,8 +17,6 @@ public class User {
         setFirstName(firstName);
         setLastName(lastName);
         setPassword(password);
-        // TODO find out if there is a way to reject instantiation
-        // in the even that an improper user/password is given
     }
 
     public String getFirstName() {
@@ -29,9 +27,11 @@ public class User {
         return lastName;
     }
 
-    public boolean setUsername(String username) {
-        // TODO MUST CHECK DATABASE AGAINST TAKEN USERNAMES
-        return false;
+    public void setUsername(String username) {
+        // no need to check for username duplication
+        // Implementing class UserManger checks for
+        // duplication in already-instantiated userList
+        username = username;
     }
 
     public void setFirstName(String firstName) {
@@ -42,9 +42,10 @@ public class User {
         lastName = lastName;
     }
 
-    public boolean setPassword(String password) {
-        // TODO check against password requirements
-        return false;
+    public void setPassword(String password) {
+        // no need to check password requirements
+        // Implementing class UserManger checks requirements
+        password = password;
     }
 
     /**
@@ -62,5 +63,7 @@ public class User {
         return passAttempt == password;
     }
 
-    // TODO getUserID() 
+    public UUID getUserID() {
+        return userID;
+    }
 }
