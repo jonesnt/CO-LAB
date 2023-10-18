@@ -8,11 +8,11 @@
     "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
     "toDoList":[{
         "toDoID":"32a78938-7851-4bae-ade9-3963dcbd091a",
-        "task":"finish the method",
+        "toDo":"finish the method",
         "completion":true
       }],
     "comments":[{
-        "id":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4",
+        "commentID":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4",
         "commentList":[
           "8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
           "3039415b-4ef0-4700-9ad6-61854af14fc1"
@@ -43,11 +43,11 @@
     "assignedUsers":["760e7421-48f8-4b80-852b-06f94f852d3f"],
     "toDoList":[{
         "toDoID":"174fc8cc-c0bf-42c2-8f7f-e1fe24362779",
-        "task":"finsih the first method",
+        "toDo":"finsih the first method",
         "completion":true
       }],
     "comments":[{
-        "id":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
+        "commentID":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
         "commentList":["3039415b-4ef0-4700-9ad6-61854af14fc1"],
         "commentData":"another comment",
         "commentDate":"2023-10-08,T24:40:39:855649",
@@ -75,11 +75,11 @@
     "assignedUsers":["dc2e88d7-8953-48fa-b388-797bb3289be6"],
     "toDoList":[{
         "toDoID":"81c9e869-6d46-4d93-b458-ec4b840a1e8d",
-        "task":"check all methods",
+        "toDo":"check all methods",
         "completion":false
       }],
     "comments":[{
-        "id":"3039415b-4ef0-4700-9ad6-61854af14fc1",
+        "commentID":"3039415b-4ef0-4700-9ad6-61854af14fc1",
         "commentList":[],
         "commentData":"last comment",
         "commentDate":"2023-10-08,T26:59:40:895649",
