@@ -66,6 +66,7 @@ public class Facade {
 
   /**
    * Attempts to log in the user. Returns true if the log in was successful,
+   * 
    * and false if it was not.
    * @param user The username attempt
    * @param password The password attempt
@@ -73,9 +74,9 @@ public class Facade {
    */
   public boolean logInUser(User user, String password) {
     //  Load in a user attempt
-    User currentUser = UserManager.loginAttempt(user, password);
+    currentUser = UserManager.loginAttempt(user, password);
     //  check if the login was successful
-    if(testUser == null) {
+    if(currentUser == null) {
       // wasn't successful
       return false;
     }
@@ -86,7 +87,7 @@ public class Facade {
    * Logs out user
    */
   public void logOutUser() {
-    // TODO
+    currentUser = null;
   }
 
   /**
