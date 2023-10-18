@@ -8,12 +8,28 @@ public class Facade {
     //  should the be a singleton?
   }
 
-  public void addTask(Task task) {
-    // TODO
+  /**
+   * Adds a task to a project
+   * @param project The project you want to add a task to
+   * @param task The task you want to add
+   * @return Whether it was successful
+   */
+  public boolean addTask(Project project, Task task) {
+    /**
+     * changes from uml:
+     * make it a boolean
+     * add a project parameter
+     */
+    // check if the project exists
+    //  TODO: does this have to deal with the datareader?
+    // if it does, add the task
   }
 
-  public boolean removeTask(Task task) {
-    // TODO
+  public boolean removeTask(Project project, Task task) {
+    /**
+     * changes from UML
+     * add project parameter
+     */
   }
 
   public boolean addToDo(Task task, ToDo todo) {
@@ -29,7 +45,7 @@ public class Facade {
   }
 
   public boolean removeProject(Project project) {
-    // TODO
+    ProjectManager.removeProject(project);
   }
 
   public boolean addComment(Task task, Comment comment) {
@@ -57,7 +73,7 @@ public class Facade {
    */
   public boolean logInUser(User user, String password) {
     //  Load in a user attempt
-    User testUser = UserManager.loginAttempt(user, password);
+    User currentUser = UserManager.loginAttempt(user, password);
     //  check if the login was successful
     if(testUser == null) {
       // wasn't successful
