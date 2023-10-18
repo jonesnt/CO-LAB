@@ -6,37 +6,71 @@
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Task {
 
-    public Task task = null;
     private String taskID;
     private String taskName;
-    private Boolean completionStatus;
+    private Boolean completionStatus = false;
     private int priority;
-    private Date dateTime;
     private Date dueDate;
     private ArrayList<User> assignedUsers = null;
-    private Color color;
+    private String color;
     private ArrayList<ToDo> toDoList = null;
     private ArrayList<Comment> comments = null;
     private HashMap<String, ArrayList<ToDo>> taskElements = null;
     private ArrayList<ToDo> demarkationList= null;
     private LinkedList<TaskEvent> taskHistory = null;
     
-    // returns proximity to deadline 
-    public String proxToDeadline(){
+    
 
-        // puts date time into mm/dd/yyyy format
-        this.dateTime = calender.get(Calender.MONTH)+//
+
+
+    Task(User user ,String taskID, String taskName, int priority,){
+        this.taskID = taskID;
+        this.taskName = taskName;
+        this.priority = priority;
+        this.dueDate = Date.getDate();// figure out a new way of getting the date 
+        this.assignedUsers = new ArrayList<User>();
+        this.demarkationList= new ArrayList<ToDo>(); // idek why its not working
+        this.taskElements = new HashMap<String,ArrayList<ToDo>>();
+        this.comments = new ArrayList<Comment>();
+        this.taskHistory = new LinkedList<TaskEvent>();
+
+        //adds the user who created the task to the list of assigned users
+        this.assignedUsers.add(user);
+        appendEvent("Task Created", user, Date);
+
 
 
     }
 
+    // returns proximity to deadline 
+    public String proxToDeadline(){
+ 
+        //days hours min until deadline
+        
+
+        int min;
+        int hour;
+        int day;
+
+        return min + ":" + hour + ":" + day;
+
+    }
+
     // changes color of the task
-    public void ChangeColor(Color color){
+    public void ChangeColor(String color){
+        // pass into customizer class to change color
+        // deffinetly will need to be edited at some point
+
+        customizer = new Customizer();
+        customizer.changeBG(color);
+
+
     }
     //assigns a user to the task
     public Boolean AssignUser(User user){
@@ -64,7 +98,7 @@ public class Task {
         else{
             // adds demarkation
             taskElements.put(demarkation,Todo);
-            return true
+            return true;
         }
     }
     // removes demarkation
@@ -78,7 +112,7 @@ public class Task {
             taskElements.remove(demarkation);
             return true;
         }
-        else return false
+        else return false;
     }
     // adds todo
     public boolean addToDo(String toDoName,int priority,String demarkation){
@@ -89,8 +123,16 @@ public class Task {
     }
 
     // logs task event and adds it to the task history
-    public boolean appendEvent(String eventName, User involvedUser, Date dateTime){
+    public void appendEvent(String eventName, User involvedUser, Date dateTime){
         // adds a task event to the task history list
         taskHistory.add(taskEvent(eventName,involvedUser,dateTime));
     }
+
+
+
+
+
+
+
+
 }
