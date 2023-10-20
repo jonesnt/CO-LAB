@@ -3,9 +3,13 @@ import java.awt.*;  //  This may need to be changed in the future
 public class Facade {
   protected User currentUser;
 
+  /**
+   * Initializes the Facade Class
+   */
   public Facade() {
     //  empty, as we don't need to do anything
     //  should the be a singleton?
+    ProjectManager.getInstance();
   }
 
   /**
@@ -21,18 +25,36 @@ public class Facade {
      * add a project parameter
      */
     // check if the project exists
+    
     //  TODO: does this have to deal with the datareader?
     // if it does, add the task
   }
 
+  /**
+   * Removes a task from a specific project.
+   * @param project The project to remove the task from
+   * @param task The task to remove
+   * @return Whether the removal was successful
+   */
   public boolean removeTask(Project project, Task task) {
     /**
      * changes from UML
      * add project parameter
      */
   }
-
-  public boolean addToDo(Task task, ToDo todo) {
+  
+  /**
+   * Adds a ToDo to a task.
+   * @param project The project to get the task
+   * @param task The task to add a ToDo to
+   * @param todo The todo to add
+   * @return Whather the removal was successful
+   */
+  public boolean addToDo(Project project, Task task, ToDo todo) {
+    /**
+     * changed from UML
+     * add project parameter
+     */
     // TODO
   }
 
@@ -44,23 +66,74 @@ public class Facade {
     ProjectManager.addProject(project);
   }
 
+  /**
+   * Removes a project
+   * @param project The project to be removed
+   * @return Whether the removal was successful
+   */
   public boolean removeProject(Project project) {
     ProjectManager.removeProject(project);
   }
 
-  public boolean addComment(Task task, Comment comment) {
+  /**
+   * Adds a comment to a task.
+   * @param project The project to get the task
+   * @param task The task to add a comment to
+   * @param comment The comment to add
+   * @return Whether the addition was successful
+   */
+  public boolean addComment(Project project, Task task, Comment comment) {
+    /**
+     * Changes from UML:
+     * add project parameter
+     */
     // TODO
   }
 
-  public boolean removeComment(Task task, Comment comment) {
+  /**
+   * Removes a comment from a task
+   * @param project The project to get the task
+   * @param task The task to add a comment to
+   * @param comment The comment to remove
+   * @return Whether the removal was successful
+   */
+  public boolean removeComment(Project project, Task task, Comment comment) {
+    /**
+     * Changes from UML:
+     * add project parameter
+     */
     // TODO
   }
 
-  public boolean addReply(Task task, Comment parentComment, Comment childComment) {
+  /**
+   * Adds a reply to a comment
+   * @param project The project to get a task
+   * @param task The task to get a the parent commetn
+   * @param parentComment The parent comment to add a reply to
+   * @param childComment The reply to add
+   * @return Whether the reply was successful
+   */
+  public boolean addReply(Project project, Task task, Comment parentComment, Comment childComment) {
+    /**
+     * Changes from UML
+     * add project parameter
+     */
     // TODO
   }
 
-  public boolean removeReply(Task task, Comment parentComment, Comment childComment) {
+  /**
+   * Adds a reply to a comment
+   * @param project The project to get a task
+   * @param task The task to get a the parent commetn
+   * @param parentComment The parent comment to remove the reply from
+   * @param childComment The reply to remove
+   * @return Whether the removal was successful
+   */
+  public boolean removeReply(Project project, Task task, Comment parentComment, Comment childComment) {
+    /**
+     * Changes from UML
+     * add project parameter
+     */
     // TODO
   }
 
@@ -98,6 +171,12 @@ public class Facade {
     Customizer.changeBG(color);
   }
 
+  /**
+   * Changes the color of a specific task
+   * @param color The color to change the task to
+   * @param task The task who's color is going to change
+   * @return Whether the change was successful
+   */
   public boolean changeTaskColor(Color color, Task task) {
     // TODO
   }
