@@ -1,5 +1,16 @@
 import java.awt.*;  //  This may need to be changed in the future
 
+/**
+ * @author hadleya
+ * This class is a facade, designed for the UI to have a single spot to talk
+ * to all of the underlying classes. This simplifies the UI section by having
+ * a single place to interact withall funcionality of the system.
+ * 
+ * WARNING: THIS IS NONFUNCTIONAL! Current KNOWN broken classes include:
+ * addTask
+ * addToDo
+ * changeTaskColor
+ */
 public class Facade {
   protected User currentUser;
 
@@ -144,7 +155,14 @@ public class Facade {
      * Changes from UML
      * add project parameter
      */
-    // TODO
+    // try/catch with project, task, and parentcomment
+    try {
+      project.task.parentComment.addComment(childComment);
+      //  would this work? can i access .parentComment, or would it need to be something else
+      return true;
+    } catch(Exception e) {
+      return false;
+    }
   }
 
   /**
