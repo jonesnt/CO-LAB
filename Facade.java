@@ -80,8 +80,8 @@ public class Facade {
      */
     // try/catch with project and task
     try {
-      //  same problem as addTask, there's not a function implemented yet
-      project.task.addToDo(todo);
+      //  Problem's been solved with the getters, it's implemented in ToDo
+      project.task.addToDo(todo.getToDoName(), todo.getPriority(), todo.getDemarkation());
       return true;
     } catch(Exception e) {
       //  unsuccessful
@@ -178,7 +178,7 @@ public class Facade {
      * Changes from UML
      * add project parameter
      */
-    // TODO
+    // try/catch with project, task, parentComment, and childComment
   }
 
   /**
