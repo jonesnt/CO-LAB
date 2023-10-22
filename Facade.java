@@ -69,9 +69,9 @@ public class Facade {
   /**
    * Adds a ToDo to a task.
    * @param project The project to get the task
-   * @param task The task to add a ToDo to
+   * @param task The task to add a ToDo to add
    * @param todo The todo to add
-   * @return Whather the removal was successful
+   * @return Whather the addition was successful
    */
   public boolean addToDo(Project project, Task task, ToDo todo) {
     /**
@@ -85,6 +85,28 @@ public class Facade {
       return true;
     } catch(Exception e) {
       //  unsuccessful
+      return false;
+    }
+  }
+
+  /**
+   * Removes a ToDo from a task
+   * @param project The project to get the task
+   * @param task The project to get the ToDo to remove
+   * @param todo The todo to remove
+   * @return Whether the removal was successful
+   */
+  public boolean removeToDo(Project project, Task task, ToDo todo) {
+    /**
+     * changes from UML
+     * add project parameter
+     */
+    // try/catch with project, task, and todo
+    try {
+      // in order for this to work, Task needs a removeToDo() function
+      project.task.removeToDo(todo);
+      return true;
+    } catch(Exception e) {
       return false;
     }
   }
