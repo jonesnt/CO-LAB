@@ -67,7 +67,15 @@ public class Facade {
      * changed from UML
      * add project parameter
      */
-    // TODO
+    // try/catch with project and task
+    try {
+      //  same problem as addTask, there's not a function implemented yet
+      project.task.addToDo(todo);
+      return true;
+    } catch(Exception e) {
+      //  unsuccessful
+      return false;
+    }
   }
 
   /**
@@ -114,7 +122,13 @@ public class Facade {
      * Changes from UML:
      * add project parameter
      */
-    // TODO
+    // try/catch with project and task
+    try {
+      project.task.
+      return true;
+    } catch(Exception e) {
+      return false;
+    }
   }
 
   /**
