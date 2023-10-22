@@ -117,7 +117,8 @@ public class Facade {
    * @param project The project wanting to be added
    */
   public void createProject(Project project) {
-    ProjectManager.addProject(project);
+    // this is operating under the assumption that Project has a getter func.
+    ProjectManager.addProject(project.getName());
   }
 
   /**
@@ -126,7 +127,9 @@ public class Facade {
    * @return Whether the removal was successful
    */
   public boolean removeProject(Project project) {
-    ProjectManager.removeProject(project);
+    // same as above, needs a getter function
+    return ProjectManager.removeProject(project.getName());
+    
   }
 
   /**
@@ -156,13 +159,6 @@ public class Facade {
      * Changes from UML:
      * add project parameter
      */
-    // try/catch with project and task
-    try {
-      project.task.
-      return true;
-    } catch(Exception e) {
-      return false;
-    }
   }
 
   /**
@@ -201,7 +197,6 @@ public class Facade {
      * Changes from UML
      * add project parameter
      */
-    // try/catch with project, task, parentComment, and childComment
   }
 
   /**
