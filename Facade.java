@@ -7,8 +7,7 @@ public class Facade {
    * Initializes the Facade Class
    */
   public Facade() {
-    //  empty, as we don't need to do anything
-    //  should the be a singleton?
+    //  initialize singletons
     ProjectManager.getInstance();
   }
 
@@ -46,6 +45,14 @@ public class Facade {
      * changes from UML
      * add project parameter
      */
+    //  try/catch with project and task
+    try {
+      project.removeTask(task);
+      return true;
+    } catch(Exception e) {
+      //  unsuccessful
+      return false;
+    }
   }
   
   /**
