@@ -35,10 +35,11 @@ public class Facade {
      * add a project parameter
      */
     // try/catch with task
-    // this will not work unless Project has an addTask(Task task) in it
     try {
-       project.createTask(task);
-       return true;
+      // This will work once getters are set in place
+      project.createTask(task.getName(), task.getPriority(), 
+                          task.getDemarkation());
+      return true;
     } catch(Exception e) {
       // unsuccessful
       return false;
