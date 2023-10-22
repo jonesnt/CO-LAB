@@ -24,10 +24,15 @@ public class Facade {
      * make it a boolean
      * add a project parameter
      */
-    // check if the project exists
-    
-    //  TODO: does this have to deal with the datareader?
-    // if it does, add the task
+    // try/catch with task
+    // this will not work unless Project has an addTask(Task task) in it
+    try {
+       project.createTask(task);
+       return true;
+    } catch(Exception e) {
+      // unsuccessful
+      return false;
+    }
   }
 
   /**
