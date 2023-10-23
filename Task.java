@@ -75,7 +75,7 @@ public class Task {
     //assigns a user to the task
     public Boolean AssignUser(User user){
         if(assignedUsers.contains(user))
-            return false
+            return false;
         else{
             assignedUsers.add(user);
             return true;
@@ -128,7 +128,38 @@ public class Task {
         taskHistory.add(taskEvent(eventName,involvedUser,dateTime));
     }
 
+    // getters an setters
 
+    public String getTaskID() {
+        return taskID;
+    }
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+    public String getTaskName() {
+        return taskName;
+    }
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+    public Boolean getCompletionStatus() {
+        return completionStatus;
+    }
+    public void setCompletionStatus(Boolean completionStatus) {
+        this.completionStatus = completionStatus;
+    }
+    public int getPriority() {
+        return priority;
+    }
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+    public string getColor(){
+        return color;
+    }
+    public void setColor(String color){
+        this.color = color;
+    }
 
 
 
