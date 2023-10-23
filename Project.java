@@ -122,4 +122,31 @@ public class Project {
         return true;
     }
 
+    //getters and setters
+
+    public String getProjectID() {
+        return projectID;
+    }
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public Date getDatetime() {
+        return datetime;
+    }
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+    
 }
