@@ -26,11 +26,11 @@ public class Project {
         // creates a new task
         Task task = new Task();
         // assigns name
-        name = name;
+        this.name = name;
         // assigns priority
-        priority = priority;
+        this.priority = priority;
         // assigns demarkation
-        demarkation = demarkation; // may need to be fixed/clarification
+        this.demarkation = demarkation; // may need to be fixed/clarification
         // returns task
         return task;
     }
@@ -148,5 +148,5 @@ public class Project {
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
-    
+
 }
