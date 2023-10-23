@@ -122,6 +122,15 @@ public class Task {
         return true;
     }
 
+    // removes todo from task
+    public boolean removeToDo(String toDoName, User user){
+        if(toDoList.contains(toDoName)){
+            toDoList.remove(toDoName);
+            appendEvent("Task Removed", user, Date);
+            return true;
+        }else return false;
+    }
+
     // logs task event and adds it to the task history
     public void appendEvent(String eventName, User involvedUser, Date dateTime){
         // adds a task event to the task history list
