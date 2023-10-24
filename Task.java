@@ -131,6 +131,12 @@ public class Task {
         }else return false;
     }
 
+    public boolean addComment(User user,String desc){
+        //appends a new comment to the array list 
+        //takes in author and comment data
+            this.comments.add(new Comment(desc,user);
+    }
+
     // logs task event and adds it to the task history
     public void appendEvent(String eventName, User involvedUser, Date dateTime){
         // adds a task event to the task history list
