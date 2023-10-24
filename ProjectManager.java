@@ -14,7 +14,7 @@ public class ProjectManager {
     ProjectManager projectManager(){};
 
     //gets instance of ProjectManager
-    public ProjectManager getInstance(){
+    public static ProjectManager getInstance(){
     } 
     //changes aspects of a project 
     // may need to edit peramiters
@@ -31,5 +31,17 @@ public class ProjectManager {
     //edits a project
     // may need to edit peramiters
     public boolean editproject(String projectName){
+    }
+    
+    public Project getCurrentProject() {
+        return currrentProject;
+    }
+
+    public Task getCurrentTask() {
+        return currentTask;
+    }
+
+    public ToDo getCurrentToDo() {
+        return currentToDo
     }
 }
