@@ -226,20 +226,21 @@ public class Facade {
   }
 
   /**
-   * Chacnges the color of the background
-   * @param color The color we want to change
-   */
-  public void changeBG(Color color) {
-    Customizer.changeBG(color);
-  }
-
-  /**
    * Changes the color of a specific task
    * @param color The color to change the task to
    * @param task The task who's color is going to change
    * @return Whether the change was successful
    */
-  public boolean changeTaskColor(Color color, Task task) {
-    // TODO
+  public boolean changeTaskColor(Project projet, Color color, Task task) {
+    /**
+     * changes from UML
+     * add project parameter
+     */
+    //  try/catch with project and task
+    try {
+      project.task.changeTaskColor(color);
+    } catch(Exception e) {
+      return false;
+    }
   }
 }
