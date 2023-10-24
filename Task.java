@@ -23,7 +23,7 @@ public class Task {
     private ArrayList<Comment> comments = null;
     private HashMap<String, ArrayList<ToDo>> taskElements = null;
     private ArrayList<ToDo> demarkationList= null;
-    private LinkedList<TaskEvent> taskHistory = null;
+    private LinkedList<TaskHistory> taskHistory = null;
     
     
 
@@ -38,7 +38,7 @@ public class Task {
         this.demarkationList= new ArrayList<ToDo>(); // idek why its not working
         this.taskElements = new HashMap<String,ArrayList<ToDo>>();
         this.comments = new ArrayList<Comment>();
-        this.taskHistory = new LinkedList<TaskEvent>();
+        this.taskHistory = new LinkedList<TaskHistory>();
 
         //adds the user who created the task to the list of assigned users
         this.assignedUsers.add(user);
