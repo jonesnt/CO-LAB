@@ -128,11 +128,8 @@ public class Task {
         taskHistory.add(taskEvent(eventName,involvedUser,dateTime));
     }
 
-
-
-
-
-
-
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
 
 }
