@@ -1,19 +1,18 @@
 import java.util.UUID;
 
+// TODO: Revise documentation!
 /**
- * @author hadleya
+ * @author hadleya, jonesnt
  * This class holds the data for ToDo, which is a subset of a Task.
  * ToDos are essentially subtasks, in which there are multiple ToDos for one
  * task.
  * These are arranged in an ArrayList in a Task.
  */
 public class ToDo {
-  private String task;
-  private boolean completion;
-  private String toDoID;
-  private String toDoName;
-  private int priority;
-  private String demarkation;
+  private UUID toDoID;
+  private String name;
+  private UUID assignedUser;
+  private boolean isCompleted;
 
   /**
    * Initializes a ToDo Instance.
@@ -24,98 +23,43 @@ public class ToDo {
    * @param priority The integer level of the priority of the task
    * @param demarkation TODO: Write
    */
-  public ToDo(String toDoName, String task, boolean completion, int priority, 
-              String demarkation) {
+  public ToDo(String name) {
     toDoID = UUID.randomUUID();
-    setToDoName(toDoName);
-    setTask(task);
-    setCompletion(completion);
-    setPriority(priority);
-    setDemarkation(demarkation);
+    name = name;
+    assignedUser = null;
+    isCompleted = false;
   }
-
-
-  //  put in proper setters and getters for manipulation
   
-  /**
-   * Sets the ToDoName.
-   * @param toDoName The name of the ToDo
-   */
-  public void setToDoName(String toDoName) {
-    toDoName = toDoName;
+  public boolean assignUser(UUID userID) {
+    if(userID == null)
+      return false;
+    assignedUser = userID;
+    return true;
   }
 
-  /**
-   * Sets the Task
-   * @param task The task needed for this ToDo
-   */
-  public void setTask(String task) {
-    task = task;
+  public String getName() {
+    return name;
   }
 
-  /**
-   * Sets whether the ToDo ic completed or not
-   * @param completion Whather the task is completed
-   */
-  public void setCompletion(boolean completion) {
-    completion = completion;
+  public UUID getAssignedUser() {
+    return assignedUser;
   }
 
-  /**
-   * Sets the priority of the task
-   * @param priority the level of priority needed
-   */
-  public void setPriority(int priority) {
-    priority = priority;
-    //  TODO: How do I make sure that the 
-  }
-
-  /**
-   * Sets the demarkation
-   * @param demarkation the column it should be located in
-   */
-  public void setDemarkation(String demarkation) {
-    demarkation = demarkation;
-    //  TODO: should there be a call here for the change of demarkation?
-  }
-
-  /**
-   * Returns the name of the ToDo
-   * @return the name of the ToDo
-   */
-  public String getToDoName() {
-    return toDoName;
-  }
-
-  /**
-   * Returns the task description
-   * @return the task description
-   */
-  public String getTask() {
-    return task;
-  }
-
-  /**
-   * Returns whether the task is completed
-   * @return whether the task is completed
-   */
   public boolean getCompletion() {
-    return completion;
+    return isCompleted;
   }
 
-  /**
-   * Returns the priority of the task
-   * @return the priority of the task
-   */
-  public int getPriority() {
-    return priority;
+  public void changeCompletion() {
+    isCompleted = !isCompleted;
   }
 
-  /**
-   * Returns the demarkation
-   * @return the demarkation it's located in
-   */
-  public String getDemarkation() {
-    return demarkation;
+  public boolean editToDo(String newName) {
+    if(newName == null)
+      return false;
+    name = newName;
+  }
+
+  public boolean equals(String nameAttempt) {
+    return name == nameAttempt;
   }
 }
