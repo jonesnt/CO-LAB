@@ -19,11 +19,7 @@ public class Comment {
     private UUID author;
     private ArrayList<Comment> replies;
     private ZonedDateTime time;
-<<<<<<< HEAD
-    private 
-=======
     private UUID commentBackEdge;
->>>>>>> CommentClassRevision
 
     public Comment(String commentData, UUID author) {
         // store commentData
