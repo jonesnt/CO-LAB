@@ -29,6 +29,13 @@ public class ToDo {
     assignedUser = null;
     isCompleted = false;
   }
+
+  public ToDo(UUID toDoID, String name, UUID assignedUser, boolean isCompleted) {
+    toDoID = toDoID;
+    name = name;
+    assignedUser = assignedUser;
+    isCompleted = isCompleted;
+  }
   
   public boolean assignUser(UUID userID) {
     if(userID == null)

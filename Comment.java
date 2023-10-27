@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * @author jonesnt
@@ -13,10 +14,12 @@ import java.time.ZonedDateTime;
  * IS A comment.
  */
 public class Comment {
-    private ArrayList<Comment> commentList;
+    private UUID commentID;
     private String commentData;
-    private ZonedDateTime commentDate;
-    private User author;
+    private UUID author;
+    private ArrayList<Comment> replies;
+    private ZonedDateTime time;
+    private 
 
     /**
      * The Comment class constructor requires both the comment
