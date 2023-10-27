@@ -33,6 +33,8 @@ public class Comment {
         // a nullptr signifies that the comment
         // has no children
         replies = null;
+        // assign new ID
+        commentID = UUID.randomUUID();
     }
 
     public Comment(UUID comemntID, String commentData, UUID author,

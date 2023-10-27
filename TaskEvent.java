@@ -5,7 +5,7 @@ import java.time.ZonedDateTime;
  * changed the status or form of a Task.
  * @author jonesnt
  */
-public class TaskHistory {
+public class TaskEvent {
     private ZonedDateTime eventTime;
     private String eventName;
     private User involvedUser;
