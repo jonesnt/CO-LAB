@@ -64,6 +64,7 @@ public class ToDo {
     if(newName == null)
       return false;
     name = newName;
+    return true;
   }
 
   public boolean equals(String nameAttempt) {
