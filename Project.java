@@ -1,152 +1,138 @@
 
-/* 
- * by   
- *   Dillion Norris
- */
+// by Dillion Norris
 
-import java.sql.Date;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
-public class Project {
+public class Project extends Facade {
 
-    Project project = new Project();
-
-    private String projectID;
+    private UUID projectId;
     private String name;
     private String description;
-    private Date datetime;
-    private ArrayList<User> assignedUsers = new ArrayList<User>();
-    private ArrayList<Task> tasks = new ArrayList<Task>();
-    private ArrayList<String> demarkationList = new ArrayList<String>();
-    private HashMap<String, ArrayList<Task>> projectElements = new HashMap<String, ArrayList<Task>>();
+    private ZonedDateTime time;// is this suposed to be the due date or the current time?
+    private ZoneId zoneId;
+    private ArrayList<UUID> assignedUsers;
+    private ArrayList<String> tasks;    // isnt this suppoed to be a UUID?
+    private ArrayList<String> columnList;
+    private HashMap<String, ArrayList<Task>> columns;// the array list may need a instance variable?? idk i just work here...
+    
 
-    public Task createTask(String name, int priority, String demarkation) {
+    // constructor for project
+    Project(String ProjectName, String ProjectDescription,int yearDue,int monthDue,int dayDue){
+        projectId = UUID.randomUUID();
+        name = ProjectName;
+        description = ProjectDescription;
+    
+        //time = new ZonedDateTime().now() // for current time 
 
-        // creates a new task
-        Task task = new Task();
-        // assigns name
-        this.name = name;
-        // assigns priority
-        this.priority = priority;
-        // assigns demarkation
-        this.demarkation = demarkation; // may need to be fixed/clarification
-        // returns task
-        return task;
-    }
+        // this will be the due date
+        //zoneId = new ZoneDateTime().getZoneId();
+        //time = new ZonedDateTime().of(yearDue,monthDue, dayDue, 0, 0, 0, 0,);
 
-    public Task assignTask(Task task, User user) {
-        task.assignedUsers.add(user);
-        return task;
-    }
+     assignedUsers = new ArrayList<UUID>();
+     tasks = new ArrayList<String>();
+     columnList = new ArrayList<String>();
+     columns = new HashMap<String, ArrayList<Task>();
+    }   
 
-    public Boolean changeTaskPriority(Task taskName, int priority) {
-        // changes task priority
-        taskName.setPriority(priority);
-        // cheks to see if the task has the same priority as the one passed
-        if (taskName.getPriority == priority)
-            return true;
-        else
-            return false;
-    }
-
-    public void removeTask(Task task) {
-        // removes task
-        task = null;
-    }
-
-    public Boolean removeUser(User user, Task task) {
-        // if user exists in the user array then remove it
-        for (int i = 0; i < task.assignedUsers.size(); i++) {
-            if (task.assignedUsers.get(i) == user) {
-                task.assignedUsers.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean addProject(String name, String description) {
-        // if project has the same name as the one passed if not then make a new project
-        if (name == project.name)
-            return false;
-        else {
-            // create instance of project
-            project = new Project();
-            // assign name
-            name = name;
-            // assign description
-            description = description;
-            return true;
-        }
-    }
-
-    public Boolean removeProject(Project project) {
-        // remove project
-        project = null;
+    // adds column within project for the tasks to be catergorized
+    public boolean addColumn(String columnName) { // may need to be changed later
+        columnList.add(columnName);
         return true;
     }
 
-    public Boolean addUser(User user) {
-        // if user does not exist in the user array then add it
-        boolean exists = false;
+    // ads task to "columns" HashMap with column as the key and Task as the value
+    // does not need to create task (I hope)
+    public boolean addTask(Task newTask, int columnChoice){
+        return columns.putIfAbsent(columnList[columnList],ArrayList<Task>().add(newTask));// weird error idk
+    }
 
-        // iterates through the user array and if the user is in the user array cange
-        // exists to true
-        for (int i = 0; i < assignedUsers.size(); i++) {
-            if (assignedUsers[i].contains(user)) {
-                exists = true;
-            }
-        }
-        // if exists then add it to the user array and return true
-        if (!exists) {
+    // removes column 
+    public boolean removeColumn(int columnChoice) {
+        return columns.remove(columnList[columnChoice]);// refer to Line 22
+    }
+    //removes task from project
+    public boolean removeTask(Task removeTask){// for the love of god make the key a peramiter :)
+
+        // find key in which that task exists
+
+
+        return true;
+    }
+    // assigns users UUID to Project
+    public boolean assignUser(UUID user){
+        //if user exists then false
+        // else add em
+        if ( assignedUsers.contains(user))
+        return false;
+        else{
             assignedUsers.add(user);
             return true;
-        } else
-            return false;
-
+        }
+        
+    } 
+    //unassins user form the project 
+    public boolean unassignUser(UUID user){
+        //if user exists then remove 
+        // else return false
+        if ( assignedUsers.contains(user)){
+           assignedUsers.add(user);
+            return true; 
+        }else return false;
     }
-    // returns faq to the termninal
-    public String printFaq() {
-        String faq = " No freqently asked questions yet"; // FILL WITH A FAQ!!!!!
-        return faq;
-    }
 
-    public Boolean addDemarkation(String demarkation) {
-        demarkationList.add(demarkation);
+    // moves task to different column
+    public boolean changeColumn(Task changeTask, int columnChoice){
+        if (columns.containsvalue(Arraylist.get(changeTask))){
+     // delete the other one 
+        removeTask(changeTask);
+     // add task to column 
+        addTask(changeTask, columnChoice);
+        return true;
+      }else return false;
+    }
+    // eddits atributes of the project
+    public boolean editProject(String newName, String newDescription){
+        name = newName;
+        description = newDescription;
         return true;
     }
 
-    public Boolean removeDemarkation(String demarkation) {
-        demarkationList.remove(demarkation);
-        return true;
-    }
+    // getters and setters 
 
-    //getters and setters
-
-    public String getProjectID() {
-        return projectID;
+    public UUID getUUID(){
+        return projectId;
     }
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDescription() {
+    public String getDescription(){
         return description;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public ZonedDateTime getTime(){
+        return time;
     }
-    public Date getDatetime() {
-        return datetime;
+    public ArrayList<UUID> getAssignedUsers(){
+        return assignedUsers;
     }
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    public ArrayList<String> getTask(){
+        return tasks;
+    }
+    public ArrayList<String> getColumnList(){
+        return columnList;
+    }
+
+
+    public boolean iterate(String attempt){
+        // i have no idea what to do with this
+    }
+
+    // sees if the project = another project
+    public boolean equals(Project projectAttempt){
+        
     }
 
 }
+
+
+
