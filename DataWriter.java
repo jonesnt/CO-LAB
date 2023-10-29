@@ -89,6 +89,12 @@ public class DataWriter extends DataConstants {
 
         return userDetails;
     }
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+}
+=======
+>>>>>>> DataReader_class
 
     /**
      * Converts a Project object to a JSONObject representation.
@@ -224,4 +230,15 @@ public class DataWriter extends DataConstants {
         return taskHistArray;
     }
 
+<<<<<<< HEAD
 }
+=======
+    // TODO add way to update/overload specific data
+
+    // TODO update save methods, Facade -> Project -> Task -> ToDo
+
+    // TODO use the datareader to read json file than change what you need in data writer then upadte
+
+}
+>>>>>>> Stashed changes
+>>>>>>> DataReader_class
