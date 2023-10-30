@@ -44,12 +44,22 @@ public class Facade {
     return facade;
   }
 
-  public User logInUser(String user, String pass) {
-    //  TODO
+  public boolean logInUser(String user, String pass) {
+    //  If it wasn't possible, let them know!
+    currentUser = userManager.loginAttempt(user, pass);
+    if (currentUser == null) {
+      //  reset all variables to null
+      currentUser = currentProjectList = currrentProject = currentTaskList =
+        currentTask = currentToDoList = currentToDo = currentCommentList =
+          currentComment = null;
+      return false;
+    }
+    
+    return true;
   }
 
   public void logOutUser() {
-    //  TODO
+    currentUser = null;
   }
 
   public boolean changeCurrentProject(Project newProject) {
