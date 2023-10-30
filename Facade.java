@@ -28,13 +28,21 @@ public class Facade {
   //  singleton design
   private Facade() {
     //  What needs to be in here?
-    //  huge line of code lmao
-    currentUser = currentProjectList = currrentProject = currentTaskList =
-      currentTask = currentToDoList = currentToDo = currentCommentList =
-        currentComment = null;
+    //  Waterfall method - This function makes it stream down to make 
+    //  everything else null,
+    //  Project -> Task -> ToDo & Comment
+    currentProjectList = null;
+    changeCurrentProject(null);
     //  Initialize the UserManager
     //  This is implemented yet!!
     UserManager.getInstance();
+    //  Initialize the DataReader and DataWriter
+    //  Like above, this isn't implemented yet
+    DataReader.getInstance();
+    DataWriter.getInstance();
+
+    //  Get a list of the Users to log in
+    DataReader.getUsers();
   }
 
   public Facade getInstance() {
@@ -48,22 +56,42 @@ public class Facade {
     //  If it wasn't possible, let them know!
     currentUser = userManager.loginAttempt(user, pass);
     if (currentUser == null) {
-      //  reset all variables to null
-      currentUser = currentProjectList = currrentProject = currentTaskList =
-        currentTask = currentToDoList = currentToDo = currentCommentList =
-          currentComment = null;
+      //  reset all variables to null, no user = no access
+      currentProjectList = null;
+      changeCurrentProject(null);
       return false;
     }
-    
+    //  invisible else function, they have access, get them their projects
+    //  this function is actively being implemented by rene
+    currentProjectList = DataReader.getProjects(currentUser);
     return true;
   }
 
   public void logOutUser() {
+    //  clear everything 
     currentUser = null;
+    currentProjectList = null;
+    changeCurrentProject(null);
   }
 
   public boolean changeCurrentProject(Project newProject) {
-    //  TODO
+    // first, check and see if it was requested to become null:
+    if (newProject == null) {
+      currentTaskList = null;
+      changeCurrentTask(null);
+    }
+    if (currentProjectList.contains(newProject)) {
+      //  this is is for security, it can be changed to just:
+      //  currentProject = newproject
+      currentProject = currentProjectList.get(
+        currentProjectList.indexOf(newProject));
+      //  generate new list of tasks
+      //  this should work? im not entirely sure
+      currentTaskList = DataReader.getTasks(currentProject);
+      return true;
+    }
+    //  else
+    return false;
   }
 
   public boolean changeCurrentTask(Task newTask) {
@@ -165,7 +193,14 @@ public class Facade {
   }
 
   public ArrayList<Project> getProjectList() {
-    // TODO
+    //  return a string function, should be right
+    String output = null;
+    //  There's an ArrayList forEach option, idk if that's relevant here
+    //  Might speed up the code, not sure, anyways:
+    for(int i = 0; i < currentProjectList.size(); ++i) {
+      //  new line deliminated as of right now
+      output += "\n" + currentProjectList.get(i);
+    }
   }
 
   public ArrayList<Task> getTaskList() {
