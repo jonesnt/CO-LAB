@@ -17,7 +17,7 @@ public class Project extends Facade {
     private ArrayList<UUID> assignedUsers;
     private ArrayList<String> tasks;    // isnt this suppoed to be a UUID?
     private ArrayList<String> columnList;
-    private HashMap<String, ArrayList<Task>> columns;// the array list may need a instance variable?? idk i just work here...
+    private HashMap<String, ArrayList<Task>> columns;// the array list may need a instance variable?? 
     
 
     // constructor for project
@@ -54,13 +54,9 @@ public class Project extends Facade {
     public boolean removeColumn(int columnChoice) {
         return columns.remove(columnList[columnChoice]);// refer to Line 22
     }
-    //removes task from project
-    public boolean removeTask(Task removeTask){// for the love of god make the key a peramiter :)
-
-        // find key in which that task exists
-
-
-        return true;
+    //removes task from task array list 
+    public boolean removeTask(Task removeTask){
+       return tasks.remove(removeTask);
     }
     // assigns users UUID to Project
     public boolean assignUser(UUID user){
@@ -124,12 +120,17 @@ public class Project extends Facade {
 
 
     public boolean iterate(String attempt){
-        // i have no idea what to do with this
+        //iterate through the list of tasks to see if a task name matches any of the ones that already exist.
+        if(tasks.contains(attempt))
+        return true;
+        else return false;
     }
 
     // sees if the project = another project
     public boolean equals(Project projectAttempt){
-        
+        if (projectId == projectAttempt.getUUID())
+        return true;
+        else return false;
     }
 
 }
