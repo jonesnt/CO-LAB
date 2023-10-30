@@ -10,6 +10,7 @@ import java.util.UUID;
  * This is a revision or the original class, to increase functionality and talk
  */
 public class Facade {
+
   private User currentUser;
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
@@ -24,6 +25,11 @@ public class Facade {
   //  It's better to ask for forgiveness than permission
 
   //  singleton design
+  private Facade() {
+    //  TODO
+    //  What needs to be in here?
+  }
+
   public Facade getInstance() {
     //  TODO
   }
@@ -136,5 +142,21 @@ public class Facade {
   public void render() {
     //  should this be void? or something else...
     //  TODO
+  }
+
+  public ArrayList<Project> getProjectList() {
+    // TODO
+  }
+
+  public ArrayList<Task> getTaskList() {
+    // TODO
+  }
+
+  public ArrayList<ToDo> getToDoList() {
+    // TODO
+  }
+
+  public ArrayList<Comment> getCommentList() {
+    // TODO
   }
 }
