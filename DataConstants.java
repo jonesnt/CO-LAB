@@ -1,6 +1,6 @@
 public abstract class DataConstants {
     // USER JSON Constants
-    protected static final String USER_FILE_NAME = "CO-LAB/jsons/User.json";
+    protected static final String USER_FILE_NAME = "/Users/reneolea/Documents/CSCE 247/stuff/JSON/User.json";
     protected static final String USER_ID = "userID";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_PASSWORD = "password";
@@ -8,7 +8,7 @@ public abstract class DataConstants {
     protected static final String USER_LAST_NAME = "lastName";
 
     // PROJECT JSON Constants
-    protected static final String PROJECT_FILE_NAME = "CO-LAB/jsons/Project.json";
+    protected static final String PROJECT_FILE_NAME = "/Users/reneolea/Documents/CSCE 247/stuff/JSON/Project.json";
     protected static final String PROJECT_ID = "projectID";
     protected static final String PROJECT_NAME = "name";
     protected static final String PROJECT_DESCRIPTION = "description";
@@ -19,7 +19,7 @@ public abstract class DataConstants {
     protected static final String PROJECT_COLUMNS = "columns";
 
     // TASK JSON Constants
-    protected static final String TASK_FILE_NAME = "CO-LAB/jsons/Task.json";
+    protected static final String TASK_FILE_NAME = "/Users/reneolea/Documents/CSCE 247/stuff/JSON/Task.json";
     protected static final String TASK_ID = "taskID";
     protected static final String TASK_NAME = "name";
     protected static final String TASK_DESCRIPTION = "description";
@@ -31,7 +31,7 @@ public abstract class DataConstants {
     protected static final String TASK_BG_COLOR = "bgColor";
     protected static final String TASK_FG_COLOR = "fgColor";
     protected static final String TASK_COLUMN_TAG = "columnTag";
-
+    
     // TODOS JSON Constants
     protected static final String TODO_ID = "toDoID";
     protected static final String TODO_NAME = "name";
