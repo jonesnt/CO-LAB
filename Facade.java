@@ -11,14 +11,17 @@ import java.util.UUID;
  */
 public class Facade {
   private User currentUser;
+  private ArrayList<Project> currentProjectList;
   private Project currentProject;
-  private ArrayList<String> currenTaskList;
+  private ArrayList<Task> currentTaskList;
   private Task currentTask;
-  private ArrayList<String> currentToDoList;
+  private ArrayList<ToDo> currentToDoList;
   private ToDo currentToDo;
   private ArrayList<String> currentCommentList;
   private Comment currentComment;
   //  ArrayLists might need to be changed
+  //  After looking in DataReader, I think they need to be the type
+  //  It's better to ask for forgiveness than permission
 
   //  singleton design
   public Facade getInstance() {
