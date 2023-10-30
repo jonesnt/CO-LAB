@@ -11,6 +11,7 @@ import java.util.UUID;
  */
 public class Facade {
 
+  private Facade facade;
   private User currentUser;
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
@@ -26,12 +27,21 @@ public class Facade {
 
   //  singleton design
   private Facade() {
-    //  TODO
     //  What needs to be in here?
+    //  huge line of code lmao
+    currentUser = currentProjectList = currrentProject = currentTaskList =
+      currentTask = currentToDoList = currentToDo = currentCommentList =
+        currentComment = null;
+    //  Initialize the UserManager
+    //  This is implemented yet!!
+    UserManager.getInstance();
   }
 
   public Facade getInstance() {
-    //  TODO
+    if (facade == null) {
+      facade = new Facade();
+    }
+    return facade;
   }
 
   public User logInUser(String user, String pass) {
