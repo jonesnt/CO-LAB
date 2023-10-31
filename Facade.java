@@ -83,84 +83,100 @@ public class Facade {
 //  change functions
   public boolean changeCurrentProject(int projNum) {
     //  WARNING: THIS IS ONE INDEXED!
-    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  If a 0 is put in, it will CLEAR and make the currentProject NULL!!
     //  CHECK THIS IN THE UI!
-    //  -1 = close it down
-    if (projNum == -1) {
-      currentProject = null;
-      //  clear tasklist and currenttask
-      currentTaskList = null;
-      currentAvailableTasks = null;
-      changeCurrentTask(-1);
-      return true;
-    }
-    // check and make sure that it isn't less than 0, and error if it is
-    // also check and it isn't larger than the arraylist
+    //  check the number
     if (projNum < 0 || projNum > (currentProjectList.size() + 1))
       return false;
-    // set currentProject to the index - 1
-    currentProject = currentProjectList.get(projNum - 1);
-    //  update the tasklist
-
-    //placeholder
-    return false;
+    // clear the items below (waterfall method)
+    currentTaskList = null;
+    changeCurrentTask(0);
+    //  see if it's supposed to clear
+    if (projNum == 0) {
+      currentProject = null;
+    } else {
+      // set the current project to the index - 1
+      currentProject  = currentProjectList.get(projNum - 1);
+    }
+    return true;
   }
 
   public boolean changeCurrentTask(int taskNum) {
     //  WARNING: THIS IS ONE INDEXED!
-    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  If a 0 is put in, it will CLEAR and make the currentTask NULL!!
     //  CHECK THIS IN THE UI!
-    //  -1 = make it null
-    if (taskNum == -1) {
-      currentTask = null;
-      // clear levels below
-      currentToDoList = null;
-      currentCommentList = null;
-      changeCurrentToDo(-1);
-      changeCurrentComment(-1);
-      return true;
+    //  check the number
+    if (taskNum < 0 || taskNum > (currentTaskList.size() + 1))
+      return false;
+    // clear items below (waterfall)
+    currentToDoList = null;
+    currentCommentList = null;
+    changeCurrentToDo(0);
+    changeCurrentComment(0);
+    //  see if it's supposed to clear
+    if (taskNum == 0) {
+      currentTask = null
+    } else {
+      currentTask = currentTaskList.get(taskNum - 1);
     }
-    //  TODO
-    //placeholder
-    return false;
+    return true;
   }
 
   public boolean changeCurrentToDo(int toDoNum) {
     //  WARNING: THIS IS ONE INDEXED!
-    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  If a 0 is put in, it will CLEAR and make the currentToDo NULL!!
     //  CHECK THIS IN THE UI!
-    //  -1 = make it null
-    if (toDoNum == -1) {
+    //  check the number
+    if (toDoNum < 0 || toDoNum > (currentToDoList.size() + 1))
+      return false;
+    //  see if it's supposed to clear
+    if (toDoNum == 0) {
       currentToDo = null;
-      return true;
+    } else {
+      currentToDo = currentToDoList.get(toDoNum - 1);
     }
-    //  TODO
-    //placeholder
-    return false;
+    return true;
   }
-
+  
   public boolean changeCurrentComment(int commentNum) {
+    //  this one is different because it can see all comments past it, and
+    //  can go back an edge. it can't see ones on the same layer
     //  WARNING: THIS IS ONE INDEXED!
-    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  If a 0 is put in, it will GO BACK a LAYER if possible
     //  CHECK THIS IN THE UI!
-    //  -1 = make it null
-    if (commentNum == -1) {
-      currentComment = null;
-      return true;
+    //  check the number
+    if (commentNum < 0 || commentNum < (currentCommentList.size() - 1))
+      return false;
+    // see if it's supposed to go back
+    if (commentNum == 0) {
+      //  Right now, getBackEdge() returns a UUID? why
+      currentComment = currentComment.getBackEdge();
+    } else { 
+      currentComment = currentComment.getReplies().get(commentNum - 1);
     }
-    //  TODO
-    //  placeholder
-    return false;
+    currentCommentList = currentComment.getReplies();
+    return true;
   }
 
 //  add functions
   public boolean addProject(Project newProject) {
-    //  placeholder
-    return false;
+    //  first, check and see that it's not null && if that project already 
+      //  exists
+    if (newProject == null)
+      reutrn false;
+    for (String name : currentProjectList) {
+      //  getname() doesn't exist? what
+      if (name.equals(newProject.getName()))
+        return false;
+    }
+    //  add it to the list
+    currentProjectList.add(newProject);
+    return true;
   }
 
   public boolean addTask(Task newTask) {
-    //  TODO
+    // find column it's supposed to be in
+    
   }
 
   public boolean addToDo(ToDo newToDo) {
