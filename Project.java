@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.Queue;
+import java.util.LinkedList;
 
 public class Project {
 
@@ -52,7 +53,7 @@ public class Project {
             columnList = columnList;
 
             for(String specificColumn : columnList) {
-                Queue<Task> tempQueue = new Queue<Task>();
+                Queue<Task> tempQueue = new LinkedList<Task>();
                 columns.put(description, tempQueue);
             }
 
