@@ -58,8 +58,8 @@ public class Project {
             }
 
             for(int i = 0; i < tasks.size(); ++i) {
-                Queue tempQueue = columns.get(tasks.get(i).getColumnTag());
-                tempQueue.add(tasks.get(i));
+                String tempTag = tasks.get(i).getColumnTag();
+                columns.get(tempTag).add(tasks.get(i));
             }
         }
 
