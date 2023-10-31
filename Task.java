@@ -24,7 +24,4 @@ public class Task {
     taskID =     
   }
 
-  public String getColumnTag() {
-    return columnTag;
-  }
 }
