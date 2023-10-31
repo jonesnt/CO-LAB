@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -13,12 +14,17 @@ public class Facade {
 
   private Facade facade;
   private User currentUser;
+
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
-  private ArrayList<Task> currentTaskList;
+  
+  private ArrayList<String> currentAvailableTasks;
+  private HashMap<String, ArrayList<Task>> currentTaskList;  //  does this need to be a hashmap?
   private Task currentTask;
+  
   private ArrayList<ToDo> currentToDoList;
   private ToDo currentToDo;
+  
   private ArrayList<String> currentCommentList;
   private Comment currentComment;
   //  ArrayLists might need to be changed
@@ -40,9 +46,8 @@ public class Facade {
     //  Like above, this isn't implemented yet
     DataReader.getInstance();
     DataWriter.getInstance();
-
-    //  Get a list of the Users to log in
-    DataReader.getUsers();
+    //  There used to be a getUsers() datareader function here but I removed it.
+    //  It should be implemented in UserManager
   }
 
   public Facade getInstance() {
@@ -74,11 +79,16 @@ public class Facade {
     changeCurrentProject(null);
   }
 
+//  change functions
   public boolean changeCurrentProject(Project newProject) {
-    // first, check and see if it was requested to become null:
+    //  first, write the project to the dataWriter:
+    //  this isn't implemented yet, let's hope it's right
+    DataWriter.saveProject(currentProject);
+    //  now, check and see if it was requested to become null:
     if (newProject == null) {
       currentTaskList = null;
       changeCurrentTask(null);
+      return true;
     }
     if (currentProjectList.contains(newProject)) {
       //  this is is for security, it can be changed to just:
@@ -87,7 +97,9 @@ public class Facade {
         currentProjectList.indexOf(newProject));
       //  generate new list of tasks
       //  this should work? im not entirely sure
-      currentTaskList = DataReader.getTasks(currentProject);
+      //  currentTaskList = DataReader.getTasks(currentProject);
+      //  ^ commented out because i think it should be like this:
+      
       return true;
     }
     //  else
@@ -95,19 +107,62 @@ public class Facade {
   }
 
   public boolean changeCurrentTask(Task newTask) {
-    //  TODO
+    //  push changes
+    DataWriter.saveProject(currentProject);
+    //  null check
+    if (newTask == null) {
+      currentTask = null;
+      //  waterfall method
+      currentToDoList = null;
+      currentCommentList = null;
+      changeCurrentToDo(null);
+      changeCurrentComment(null);
+      return true;
+    }
+    //  invisible else
+    //  does it exist?
+    if (current)
+    return false;
   }
 
   public boolean changeCurrentToDo(ToDo newToDo) {
-    //  TODO
+    //  push changes
+    DataWriter.saveProject(currentProject);
+    //  null check
+    if (newToDo == null) {
+      currentToDo = null;
+      return true;
+    }
+    //  invisible else
+    //  check to see if it exists
+    if (currentToDoList.contains(newToDo)) {
+      // it does, make it the current one
+      currentToDo = newToDo;
+      return true;
+    }
+    //placeholder
+    return false;
   }
 
   public boolean changeCurrentComment(Comment newComment) {
+    //  push changes
+    DataWriter.saveProject(currentProject);
+    //  check if it's null
+    if (newComment == null) {
+      currentComment = null;
+      return true;
+    }
+    //  How would i focus a reply - or should i even do that? or just heads
     //  TODO
+    //  placeholder
+    return false;
   }
 
+//  add functions
   public boolean addProject(Project newProject) {
-    //  TODO
+    //  I'm adding a saveProject feature here, since it needs to be added
+    currentProjectList.add(newProject);
+    DataWriter.saveProject(newProject);
   }
 
   public boolean addTask(Task newTask) {
@@ -126,7 +181,7 @@ public class Facade {
     //  is this needed, or can this be folded into addComment?
     //  TODO
   }
-
+//  remove functions
   public boolean removeProject(Project project) {
     //  TODO
   }
@@ -144,7 +199,7 @@ public class Facade {
   }
 
   //  do we need to add removeReply too?
-
+//  edit functions
   public boolean editProject(String name, String description) {
     //  TODO
   }
@@ -170,7 +225,7 @@ public class Facade {
     //  not String?
     //  TODO
   }
-
+//  asssign functions
   public boolean assignProjectUser(UUID UserID) {
     //  TODO
   }
@@ -186,12 +241,12 @@ public class Facade {
   public boolean unassignTaskUser(UUID UserID) {
     //  TODO
   }
-
+// render
   public void render() {
     //  should this be void? or something else...
     //  TODO
   }
-
+//  getters
   public ArrayList<Project> getProjectList() {
     //  return a string function, should be right
     String output = null;
