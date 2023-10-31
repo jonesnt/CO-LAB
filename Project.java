@@ -140,16 +140,14 @@ public class Project {
         return assignedUsers;
     }
 
-    public ArrayList<Task> getTasks(){
+    public ArrayList<Task> closeProject(){
         tasks = new ArrayList<Task>();
-        HashMap<String, Queue<Task>> tempColumns = columns;
-        Queue<Task> tempQueue = null;
-        while (!tempColumns.isEmpty()) {
+        while (!columns.isEmpty()) {
             for(String specificString : columnList) {
-                if(tempColumns.get(specificString) != null) {
-                    tasks.add(tempColumns.get(specificString).remove());
-                    if(tempColumns.get(specificString).isEmpty())
-                        tempColumns.remove(specificString);
+                if(columns.get(specificString) != null) {
+                    tasks.add(columns.get(specificString).remove());
+                    if(columns.get(specificString).isEmpty())
+                        columns.remove(specificString);
                 }
             }
         }
