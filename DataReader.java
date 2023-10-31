@@ -137,15 +137,6 @@ public class DataReader extends DataConstants {
         return null;
     }
 
-
-
-
-
-
-
-
-
-
     // Gets the tasks asscoiated with a specifc project
     public static ArrayList<Task> getTasksByProject(Project project) {
         // gets the task UUIDs from the provided project
@@ -164,25 +155,28 @@ public class DataReader extends DataConstants {
         return associatedTasks;
     }
 
+    // Gets the todos associated with a specific task
+    public static ArrayList<ToDo> getToDosByTask(Task task) {
+        return task.getToDos(); // add ArrayList<ToDo> getToDos() to Task
+    }
 
+    // Gets the comments associated with a specific task
+    public static ArrayList<Comment> getCommentsByTask(Task task) {
+        return task.getComments(); // add ArrayList<Comment> getComments to task
+    }
 
+    public static User getUserByUUID(String uuid) {
+        ArrayList<User> users = DataReader.getUsers();
 
-
-
-
-
-    
-
-    public static Task getTaskByUUID(String uuid) {
-        ArrayList<Task> allTasks = getTasks();
-        if (allTasks != null) {
-            for (Task task : allTasks) {
-                if (task.getID().equals(UUID.fromString(uuid))) {
-                    return task;
+        if (users != null) {
+            for (User user : users) {
+                if (user.getUserID().toString().equals(uuid)) {
+                    return user;
                 }
             }
         }
-        return null;
+
+        return null; // Return null if no user is found with the given UUID
     }
 
     public static Project getProjectByUUID(String uuid) {
@@ -196,6 +190,18 @@ public class DataReader extends DataConstants {
             }
         }
 
+        return null;
+    }
+
+    public static Task getTaskByUUID(String uuid) {
+        ArrayList<Task> allTasks = getTasks();
+        if (allTasks != null) {
+            for (Task task : allTasks) {
+                if (task.getID().equals(UUID.fromString(uuid))) {
+                    return task;
+                }
+            }
+        }
         return null;
     }
 
