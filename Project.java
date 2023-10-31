@@ -54,7 +54,7 @@ public class Project {
 
             for(String specificColumn : columnList) {
                 Queue<Task> tempQueue = new LinkedList<Task>();
-                columns.put(description, tempQueue);
+                columns.put(specificColumn, tempQueue);
             }
 
             for(int i = 0; i < tasks.size(); ++i) {
