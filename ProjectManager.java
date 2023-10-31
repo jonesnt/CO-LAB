@@ -56,7 +56,7 @@ public class ProjectManager {
     //edits a project
     // may need to edit peramiters
     public boolean editproject(String projectName){
-
+        
     }
     
     public Project getCurrentProject() {
@@ -81,5 +81,17 @@ public class ProjectManager {
                 return false;
         }
         return true;
+    }
+
+    public ArrayList<Project> getProjectList() {
+        return projects;
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return currrentProject.getTasks();
+    }
+
+    public ArrayList<ToDo> getToDoList() {
+        return currentTask.getToDoList();
     }
 }

@@ -6,20 +6,21 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.Queue;
 
-public class Project extends Facade {
+public class Project {
 
-    private UUID projectId;
+    private UUID projectID;
     private String name;
     private String description;
     private ZonedDateTime time;// is this suposed to be the due date or the current time?
-    private ZoneId zoneId;
     private ArrayList<UUID> assignedUsers;
-    private ArrayList<String> tasks;    // isnt this suppoed to be a UUID?
+    private ArrayList<Task> tasks;    // isnt this suppoed to be a UUID?
     private ArrayList<String> columnList;
-    private HashMap<String, ArrayList<Task>> columns;// the array list may need a instance variable?? 
+    private HashMap<String, Queue<Task>> columns;// the array list may need a instance variable?? 
     
 
+    /*
     // constructor for project
     Project(String ProjectName, String ProjectDescription,int yearDue,int monthDue,int dayDue){
         projectId = UUID.randomUUID();
@@ -37,6 +38,29 @@ public class Project extends Facade {
      columnList = new ArrayList<String>();
      columns = new HashMap<String, ArrayList<Task>();
     }   
+    */
+
+    public Project(UUID projectID, String name, String description,
+        ZonedDateTime time, ArrayList<UUID> assignedUsers,
+        ArrayList<Task> tasks, ArrayList<String> columnList) {
+            projectID = projectID;
+            name = name;
+            description = description;
+            time = time;
+            assignedUsers = assignedUsers;
+            tasks = tasks;
+            columnList = columnList;
+
+            for(String specificColumn : columnList) {
+                Queue<Task> tempQueue = new Queue<Task>();
+                columns.put(description, tempQueue);
+            }
+
+            for(int i = 0; i < tasks.size(); ++i) {
+                Queue tempQueue = columns.get(tasks.get(i).getColumnTag());
+                tempQueue.add(tasks.get(i));
+            }
+        }
 
     // adds column within project for the tasks to be catergorized
     public boolean addColumn(String columnName) { // may need to be changed later
@@ -102,16 +126,32 @@ public class Project extends Facade {
     public UUID getUUID(){
         return projectId;
     }
+
     public String getDescription(){
         return description;
     }
+
     public ZonedDateTime getTime(){
         return time;
     }
+
     public ArrayList<UUID> getAssignedUsers(){
         return assignedUsers;
     }
-    public ArrayList<String> getTask(){
+
+    public ArrayList<Task> getTasks(){
+        tasks = new ArrayList<Task>();
+        HashMap<String, Queue<Task>> tempColumns = columns;
+        Queue<Task> tempQueue = null;
+        while (!tempColumns.isEmpty()) {
+            for(String specificString : columnList) {
+                if(tempColumns.get(specificString) != null) {
+                    tasks.add(tempColumns.get(specificString).remove());
+                    if(tempColumns.get(specificString).isEmpty())
+                        tempColumns.remove(specificString);
+                }
+            }
+        }
         return tasks;
     }
     public ArrayList<String> getColumnList(){
