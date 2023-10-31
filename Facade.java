@@ -18,8 +18,7 @@ public class Facade {
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
   
-  private ArrayList<String> currentAvailableTasks;
-  private HashMap<String, ArrayList<Task>> currentTaskList;  //  does this need to be a hashmap?
+  private ArrayList<Task> currentTaskList;
   private Task currentTask;
   
   private ArrayList<ToDo> currentToDoList;
@@ -77,82 +76,78 @@ public class Facade {
     currentUser = null;
     currentProjectList = null;
     changeCurrentProject(null);
+    //  exit system
+    exit();
   }
 
 //  change functions
-  public boolean changeCurrentProject(Project newProject) {
-    //  first, write the project to the dataWriter:
-    //  this isn't implemented yet, let's hope it's right
-    DataWriter.saveProject(currentProject);
-    //  now, check and see if it was requested to become null:
-    if (newProject == null) {
+  public boolean changeCurrentProject(int projNum) {
+    //  WARNING: THIS IS ONE INDEXED!
+    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  CHECK THIS IN THE UI!
+    //  -1 = close it down
+    if (projNum == -1) {
+      currentProject = null;
+      //  clear tasklist and currenttask
       currentTaskList = null;
-      changeCurrentTask(null);
+      currentAvailableTasks = null;
+      changeCurrentTask(-1);
       return true;
     }
-    if (currentProjectList.contains(newProject)) {
-      //  this is is for security, it can be changed to just:
-      //  currentProject = newproject
-      currentProject = currentProjectList.get(
-        currentProjectList.indexOf(newProject));
-      //  generate new list of tasks
-      //  this should work? im not entirely sure
-      //  currentTaskList = DataReader.getTasks(currentProject);
-      //  ^ commented out because i think it should be like this:
-      
-      return true;
-    }
-    //  else
-    return false;
-  }
+    // check and make sure that it isn't less than 0, and error if it is
+    // also check and it isn't larger than the arraylist
+    if (projNum < 0 || projNum > (currentProjectList.size() + 1))
+      return false;
+    // set currentProject to the index - 1
+    currentProject = currentProjectList.get(projNum - 1);
+    //  update the tasklist
 
-  public boolean changeCurrentTask(Task newTask) {
-    //  push changes
-    DataWriter.saveProject(currentProject);
-    //  null check
-    if (newTask == null) {
-      currentTask = null;
-      //  waterfall method
-      currentToDoList = null;
-      currentCommentList = null;
-      changeCurrentToDo(null);
-      changeCurrentComment(null);
-      return true;
-    }
-    //  invisible else
-    //  does it exist?
-    if (current)
-    return false;
-  }
-
-  public boolean changeCurrentToDo(ToDo newToDo) {
-    //  push changes
-    DataWriter.saveProject(currentProject);
-    //  null check
-    if (newToDo == null) {
-      currentToDo = null;
-      return true;
-    }
-    //  invisible else
-    //  check to see if it exists
-    if (currentToDoList.contains(newToDo)) {
-      // it does, make it the current one
-      currentToDo = newToDo;
-      return true;
-    }
     //placeholder
     return false;
   }
 
-  public boolean changeCurrentComment(Comment newComment) {
-    //  push changes
-    DataWriter.saveProject(currentProject);
-    //  check if it's null
-    if (newComment == null) {
+  public boolean changeCurrentTask(int taskNum) {
+    //  WARNING: THIS IS ONE INDEXED!
+    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  CHECK THIS IN THE UI!
+    //  -1 = make it null
+    if (taskNum == -1) {
+      currentTask = null;
+      // clear levels below
+      currentToDoList = null;
+      currentCommentList = null;
+      changeCurrentToDo(-1);
+      changeCurrentComment(-1);
+      return true;
+    }
+    //  TODO
+    //placeholder
+    return false;
+  }
+
+  public boolean changeCurrentToDo(int toDoNum) {
+    //  WARNING: THIS IS ONE INDEXED!
+    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  CHECK THIS IN THE UI!
+    //  -1 = make it null
+    if (toDoNum == -1) {
+      currentToDo = null;
+      return true;
+    }
+    //  TODO
+    //placeholder
+    return false;
+  }
+
+  public boolean changeCurrentComment(int commentNum) {
+    //  WARNING: THIS IS ONE INDEXED!
+    //  If a -1 is put in, it will CLEAR and make the currentProject NULL!!
+    //  CHECK THIS IN THE UI!
+    //  -1 = make it null
+    if (commentNum == -1) {
       currentComment = null;
       return true;
     }
-    //  How would i focus a reply - or should i even do that? or just heads
     //  TODO
     //  placeholder
     return false;
@@ -160,9 +155,8 @@ public class Facade {
 
 //  add functions
   public boolean addProject(Project newProject) {
-    //  I'm adding a saveProject feature here, since it needs to be added
-    currentProjectList.add(newProject);
-    DataWriter.saveProject(newProject);
+    //  placeholder
+    return false;
   }
 
   public boolean addTask(Task newTask) {
@@ -268,5 +262,12 @@ public class Facade {
 
   public ArrayList<Comment> getCommentList() {
     // TODO
+  }
+// exit function
+  private void exit() {
+    //  Write each project to file
+    for (Project project : currentProjectList) {
+      DataWriter.saveProject(project);
+    }
   }
 }
