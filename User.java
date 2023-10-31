@@ -107,4 +107,8 @@ public class User {
     public UUID getUserID() {
         return userID;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
