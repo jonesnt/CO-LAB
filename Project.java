@@ -145,9 +145,11 @@ public class Project {
         while (!columns.isEmpty()) {
             for(String specificString : columnList) {
                 if(columns.get(specificString) != null) {
-                    tasks.add(columns.get(specificString).remove());
-                    if(columns.get(specificString).isEmpty())
+                    if(columns.get(specificString).isEmpty()) {
                         columns.remove(specificString);
+                    } else {
+                        tasks.add(columns.get(specificString).remove());
+                    }
                 }
             }
         }
