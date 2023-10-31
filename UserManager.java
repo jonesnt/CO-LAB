@@ -162,6 +162,14 @@ public class UserManager {
         return null;
     }
 
+    public User findUser(UUID userID) {
+        for(User specUser : userList) {
+            if(specUser.getUserID() == userID)
+            return specUser;
+        }
+        return null;
+    }
+
     // TODO password validity checker
     /**
      * This method compares a password attempt to the
