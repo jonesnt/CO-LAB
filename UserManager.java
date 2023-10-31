@@ -176,4 +176,12 @@ public class UserManager {
         // else return false;
         return true;  // TEMPORARY
     }
+
+    public String getUserName(UUID userID) {
+        for(User specUser : userList) {
+            if (specUser.getUserID() == userID)
+                return specUser.getUsername();
+        }
+        return null;
+    }
 }
