@@ -194,4 +194,8 @@ public class UserManager {
     public void exit() {
         DataWriter.getInstance().saveUsers(userList);
     }
+
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
 }
