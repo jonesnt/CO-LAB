@@ -66,14 +66,11 @@ public class Project {
     // adds column within project for the tasks to be catergorized
     public boolean addColumn(String columnName) {
 
-        if (!columnList.contains(columnName))
+        if (!columnList.contains(columnName)){
         columnList.add(columnName);
-
-        Queue<Task> newQueue = new Queue<Task>();
-            
-        columns.put(columnName, newQueue);// * ask about 
-
+        columns.put(columnName, columns.get(columnName));
         return true;
+        }else return false;
     }
 
     // ads task to "columns" HashMap with column as the key and Task as the value
@@ -160,6 +157,7 @@ public class Project {
         */
         //remove old task
         //addd task to column
+        
         Task tempTask  = changeTask;
         removeTask(changeTask);
         addTask(tempTask, columnList.get(columnChoice));
