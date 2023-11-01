@@ -12,6 +12,10 @@ import java.util.UUID;
  */
 public class Facade {
 
+  private DataWriter dW;
+  private DataReader dR;
+  private UserManager uM;
+
   private Facade facade;
   private User currentUser;
   private UUID currentUserID;
@@ -38,14 +42,14 @@ public class Facade {
     //  everything else null,
     //  Project -> Task -> ToDo & Comment
     currentProjectList = null;
-    changeCurrentProject(null);
+    changeCurrentProject(0);
     //  Initialize the UserManager
     //  This is implemented yet!!
     UserManager.getInstance();
     //  Initialize the DataReader and DataWriter
     //  Like above, this isn't implemented yet
-    DataReader.getInstance();
-    DataWriter.getInstance();
+    dR = DataReader.getInstance();
+    dW = DataWriter.getInstance();
     //  There used to be a getUsers() datareader function here but I removed it.
     //  It should be implemented in UserManager
   }
@@ -59,7 +63,7 @@ public class Facade {
 
   public boolean logInUser(String user, String pass) {
     //  If it wasn't possible, let them know!
-    currentUser = userManager.loginAttempt(user, pass);
+    currentUser = loginAttempt(user, pass);
     if (currentUser == null) {
       //  reset all variables to null, no user = no access
       currentProjectList = null;
@@ -69,7 +73,7 @@ public class Facade {
     currentUserID = currentUser.getID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
-    currentProjectList = DataReader.getProjects(currentUser);
+    currentProjectList = dR.getProjects(currentUser);
     return true;
   }
 
@@ -329,7 +333,7 @@ public class Facade {
   private void exit() {
     //  Write each project to file
     for (Project project : currentProjectList) {
-      DataWriter.saveProject(project);
+      dW.saveProject(project);
     }
   }
   //  helper function to remove 1
