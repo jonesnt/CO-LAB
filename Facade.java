@@ -79,40 +79,25 @@ public class Facade {
 
   public void logOutUser() {
     //  clear everything 
-    currentUser = null;
-    currentProjectList = null;
-    changeCurrentProject(0);
-    //  exit system
-    exit();
-  }
-
-//  change functions
-  public boolean changeCurrentProject(int projNum) {
-    //  WARNING: THIS IS ONE INDEXED!
-    //  If a 0 is put in, it will CLEAR and make the currentProject NULL!!
-    //  CHECK THIS IN THE UI!
-    //  check the number
-    if (projNum < 0 || projNum > (currentProjectList.size() + 1))
-      return false;
-    // clear the items below (waterfall method)
-    currentTaskList = null;
-    changeCurrentTask(0);
-    //  see if it's supposed to clear
-    if (projNum == 0) {
-      currentProject = null;
-    } else {
-      // set the current project to the index - 1
-      currentProject  = currentProjectList.get(projNum - 1);
-    }
-    return true;
-  }
-
-  public boolean changeCurrentTask(int taskNum) {
-    //  WARNING: THIS IS ONE INDEXED!
-    //  If a 0 is put in, it will CLEAR and make the currentTask NULL!!
-    //  CHECK THIS IN THE UI!
-    //  check the number
-    if (taskNum < 0 || taskNum > (currentTaskList.size() + 1))
+    currentUser = null;;
+    //  ArrayLists might need to be changed
+    //  After looking in DataReader, I think they need to be the type
+    //  It's better to ask for forgiveness than permission
+  
+    //  singleton design
+    private Facade() {
+      //  What needs to be in here?
+      //  Waterfall method - This function makes it stream down to make 
+      //  everything else null,
+      //  Project -> Task -> ToDo & Comment
+      currentProjectList = null;
+      changeCurrentProject(0);
+      //  Initialize the UserManager
+      //  This is implemented yet!!
+      UserManager.getInstance();
+      //  Initialize the DataReader and DataWriter
+      //  Like above, this isn't implemented yet
+      dR = DataReader.getInstance(); + 1))
       return false;
     // clear items below (waterfall)
     currentToDoList = null;
