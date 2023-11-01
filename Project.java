@@ -90,7 +90,7 @@ public class Project {
         while (!columns.isEmpty()) {
             for(Task specificTask : tasks) {
                 // if specific string is int columns
-                if(columns.get(specificTask) = removeTask) {
+                if( = removeTask.getName.equals(columns.get(specificTask))) {
 
                     
                 }
