@@ -152,4 +152,15 @@ public class Task {
   public boolean equals(String nameAttempt) {
     return name == nameAttempt;
   }
+
+  public boolean removeTopLevelComment(int specComment, UUID user) {
+    int choice = specComment - 1;
+    if(choice >= 0 && choice < comments.size()) {
+      if(comments.get(choice).getAuthor() == user) {
+        comments.remove(choice);
+        return true;
+      }
+    }
+    return false;
+  }
 }
