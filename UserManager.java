@@ -16,7 +16,7 @@ public class UserManager {
      * class is meant to be a singleton
      */
     private UserManager() {
-        // TODO READ DATA FROM USERS JSON
+        userList = DataReader.getInstance().getUsers()
     }
 
     /**
@@ -145,7 +145,6 @@ public class UserManager {
             return specificUser.getUserID();
         else
             return null;
-        return null;
     }
 
     /**
@@ -162,6 +161,14 @@ public class UserManager {
         return null;
     }
 
+    public User findUser(UUID userID) {
+        for(User specUser : userList) {
+            if(specUser.getUserID() == userID)
+            return specUser;
+        }
+        return null;
+    }
+
     // TODO password validity checker
     /**
      * This method compares a password attempt to the
@@ -171,9 +178,20 @@ public class UserManager {
      * @return boolean representing whether the password is acceptable
      */
     private boolean checkPassword(String password) {
-        // if(REGEX)
-        //   return true;
-        // else return false;
-        return true;  // TEMPORARY
+        if(password.length() >= 7)
+            return true;
+        return false;
+    }
+
+    public String getUserName(UUID userID) {
+        for(User specUser : userList) {
+            if (specUser.getUserID() == userID)
+                return specUser.getUsername();
+        }
+        return null;
+    }
+
+    public void exit() {
+        DataWriter.getInstance().saveUsers(userList);
     }
 }

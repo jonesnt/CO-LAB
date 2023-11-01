@@ -4,13 +4,23 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;;
+import org.json.simple.parser.JSONParser;
 
 public class DataReader extends DataConstants {
+    private static DataReader dataReader;
+
     private DataReader() {
+    }
+
+    public static DataReader getInstance() {
+        if (dataReader == null) {
+            dataReader = new DataReader();
+        }
+        return dataReader;
     }
 
     /**
@@ -64,7 +74,9 @@ public class DataReader extends DataConstants {
                 String description = (String) projectJSON.get(PROJECT_DESCRIPTION);
                 ZonedDateTime time = ZonedDateTime.parse((String) projectJSON.get(PROJECT_DATE_TIME));
                 ArrayList<UUID> assignedUsers = (ArrayList<UUID>) projectJSON.get(PROJECT_ASSIGNED_USERS);
+
                 ArrayList<String> tasks = (ArrayList<String>) projectJSON.get(PROJECT_TASKS);
+
                 ArrayList<String> columnList = (ArrayList<String>) projectJSON.get(PROJECT_COLUMN_LIST);
 
                 JSONObject projectColumnsJSON = (JSONObject) projectJSON.get(PROJECT_COLUMNS);
@@ -122,6 +134,74 @@ public class DataReader extends DataConstants {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    // Gets the tasks asscoiated with a specifc project
+    public static ArrayList<Task> getTasksByProject(Project project) {
+        // gets the task UUIDs from the provided project
+        List<String> taskUUIDs = project.getTasks();
+
+        ArrayList<Task> associatedTasks = new ArrayList<>();
+
+        // gets the task object for each UUID
+        for (String taskUUID : taskUUIDs) {
+            Task task = getTaskByUUID(taskUUID);
+            if (task != null) {
+                associatedTasks.add(task);
+            }
+        }
+
+        return associatedTasks;
+    }
+
+    // Gets the todos associated with a specific task
+    public static ArrayList<ToDo> getToDosByTask(Task task) {
+        return task.getToDos(); // add ArrayList<ToDo> getToDos() to Task
+    }
+
+    // Gets the comments associated with a specific task
+    public static ArrayList<Comment> getCommentsByTask(Task task) {
+        return task.getComments(); // add ArrayList<Comment> getComments to task
+    }
+
+    public static User getUserByUUID(String uuid) {
+        ArrayList<User> users = DataReader.getUsers();
+
+        if (users != null) {
+            for (User user : users) {
+                if (user.getUserID().toString().equals(uuid)) {
+                    return user;
+                }
+            }
+        }
+
+        return null; // Return null if no user is found with the given UUID
+    }
+
+    public static Project getProjectByUUID(String uuid) {
+        ArrayList<Project> projects = getProjects();
+
+        if (projects != null) {
+            for (Project project : projects) {
+                if (project.getID().toString().equals(uuid)) {
+                    return project;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static Task getTaskByUUID(String uuid) {
+        ArrayList<Task> allTasks = getTasks();
+        if (allTasks != null) {
+            for (Task task : allTasks) {
+                if (task.getID().equals(UUID.fromString(uuid))) {
+                    return task;
+                }
+            }
+        }
         return null;
     }
 
@@ -209,7 +289,7 @@ public class DataReader extends DataConstants {
         ArrayList<User> users = getUsers();
         if (users != null) {
             for (User user : users) {
-                if (user.getUsername().equals(username)) { // add getUsername to Project
+                if (user.getUsername().equals(username)) {
                     return user.getUserID();
                 }
             }

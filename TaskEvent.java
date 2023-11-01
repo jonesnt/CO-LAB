@@ -1,4 +1,5 @@
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * This class represents an event occuring which
@@ -8,7 +9,8 @@ import java.time.ZonedDateTime;
 public class TaskEvent {
     private ZonedDateTime eventTime;
     private String eventName;
-    private User involvedUser;
+    private UUID relatedUser;
+    private UserManager instance;
 
     /**
      * This constructor accepts the name of the event
@@ -19,7 +21,7 @@ public class TaskEvent {
     public TaskEvent(String eventName, User involvedUser) {
         eventTime = ZonedDateTime.now();
         eventName = eventName;
-        involvedUser = involvedUser;
+        relatedUser = involvedUser.getUserID();
     }
 
     /**
@@ -37,7 +39,11 @@ public class TaskEvent {
      * of the user involved with the event
      */
     public String getInvolvedUser() {
-        return involvedUser.getFirstName + " "
-        involvedUser.getLastName;
+        User currentUser = instance.findUser(relatedUser);
+        if(currentUser != null) {
+            return currentUser.getFirstName() + " " +
+            currentUser.getLastName();
+        }
+        return "deleted user";
     }
 }
