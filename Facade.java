@@ -29,7 +29,7 @@ public class Facade {
   private ArrayList<ToDo> currentToDoList;
   private ToDo currentToDo;
   
-  private ArrayList<String> currentCommentList;
+  private ArrayList<Comment> currentCommentList;
   private Comment currentComment;
   //  ArrayLists might need to be changed
   //  After looking in DataReader, I think they need to be the type
@@ -303,7 +303,7 @@ public class Facade {
         return false;
     }
     //  send it
-    currentTask.editTask(name, description, currentUser);
+    return currentTask.editTask(name, description, currentUser);
   }
 
   public boolean editToDo(String name, User assignedUser, boolean completion) {
@@ -342,25 +342,62 @@ public class Facade {
   }
 
   public boolean editComment(String newComment) {
-    //  TODO
-    return false;
+    return currentComment.editComment(newComment);
   }
 
 //  asssign functions
   public boolean assignProjectUser(UUID UserID) {
-    //  TODO
+    //  make sure that the user exists
+    if (UserID == null)
+      return false;
+    //  check that the user exists
+    for (User u : uM.getUserList()) {
+      if (u.getUserID().equals(UserID)) {
+        //  real, assign user
+        currentProject.assignUser(UserID);
+        return true;
+      }
+    }
+    return false;
   }
 
   public boolean unassignProjectUser(UUID UserID) {
-    //  TODO
+    //  make sure that the user exists
+    if (UserID == null)
+      return false;
+    //  check that the user is in the project
+    if (currentProject.getAssignedUsers().contains(UserID)) {
+      currentProject.unassignUser(UserID);
+      return true;
+    }
+    return false;
   }
 
   public boolean assignTaskUser(UUID UserID) {
-    //  TODO
+    //  make sure that the user exists
+    if (UserID == null)
+      return false;
+    //  check that the user exists
+    for (User u : uM.getUserList()) {
+      if (u.getUserID().equals(UserID)) {
+        //  real, assign user
+        currentTask.assignUser(UserID, currentUser);
+        return true;
+      }
+    }
+    return false;
   }
 
   public boolean unassignTaskUser(UUID UserID) {
-    //  TODO
+    //  make sure that the user exists
+    if (UserID == null)
+      return false;
+    //  check that the user is in the task
+    if (currentTask.getAssignedUsers().contains(UserID)) {
+      currentTask.unassignUser(UserID, currentUser);
+      return true;
+    }
+    return false;
   }
 // render
   public void render() {
@@ -369,26 +406,19 @@ public class Facade {
   }
 //  getters
   public ArrayList<Project> getProjectList() {
-    //  return a string function, should be right
-    String output = null;
-    //  There's an ArrayList forEach option, idk if that's relevant here
-    //  Might speed up the code, not sure, anyways:
-    for(int i = 0; i < currentProjectList.size(); ++i) {
-      //  new line deliminated as of right now
-      output += "\n" + currentProjectList.get(i);
-    }
+    return currentProjectList;
   }
 
   public ArrayList<Task> getTaskList() {
-    // TODO
+    return currentTaskList;
   }
 
   public ArrayList<ToDo> getToDoList() {
-    // TODO
+    return currentToDoList;
   }
 
   public ArrayList<Comment> getCommentList() {
-    // TODO
+    return currentCommentList;
   }
 // exit function
   private void exit() {
