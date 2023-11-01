@@ -125,7 +125,7 @@ public class Project {
     // getters and setters 
 
     public UUID getUUID(){
-        return projectId;
+        return projectID;
     }
 
     public String getDescription(){
@@ -169,7 +169,7 @@ public class Project {
 
     // sees if the project = another project
     public boolean equals(Project projectAttempt){
-        if (projectId == projectAttempt.getUUID())
+        if (projectID == projectAttempt.getUUID())
         return true;
         else return false;
     }
