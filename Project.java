@@ -77,11 +77,23 @@ public class Project {
 
     // removes column 
     public boolean removeColumn(int columnChoice) {
-        return columns.remove(columnList[columnChoice]);// refer to Line 22
+
+        columns.remove(columnList[columnChoice]);
+
+        return true;
     }
     //removes task from task array list 
     public boolean removeTask(Task removeTask){
-       return tasks.remove(removeTask);
+
+       if(columnList.contains(removeTask)){
+
+
+
+
+       }else return false;
+
+
+
     }
     // assigns users UUID to Project
     public boolean assignUser(UUID user){
