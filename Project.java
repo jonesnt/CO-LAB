@@ -85,16 +85,14 @@ public class Project {
     //removes task from task array list 
     public boolean removeTask(Task removeTask){
 
-       if(columnList.contains(removeTask)){
-        //while 
+       if(tasks.contains(removeTask)){
+        //while  columns exist 
         while (!columns.isEmpty()) {
-            for(String specificString : columnList) {
-                if(columns.get(specificString) != null) {
-                    if(columns.get(specificString).isEmpty()) {
-                        columns.remove(specificString);
-                    } else {
-                        tasks.add(columns.get(specificString).remove());
-                    }
+            for(Task specificTask : tasks) {
+                // if specific string is int columns
+                if(columns.get(specificTask) = removeTask) {
+
+                    
                 }
             }
         }
