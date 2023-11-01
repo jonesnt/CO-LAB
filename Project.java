@@ -86,7 +86,18 @@ public class Project {
     public boolean removeTask(Task removeTask){
 
        if(columnList.contains(removeTask)){
-
+        //while 
+        while (!columns.isEmpty()) {
+            for(String specificString : columnList) {
+                if(columns.get(specificString) != null) {
+                    if(columns.get(specificString).isEmpty()) {
+                        columns.remove(specificString);
+                    } else {
+                        tasks.add(columns.get(specificString).remove());
+                    }
+                }
+            }
+        }
 
 
 
@@ -169,6 +180,9 @@ public class Project {
     }
     public ArrayList<String> getColumnList(){
         return columnList;
+    }
+    public String getName(){
+        return name;
     }
 
 
