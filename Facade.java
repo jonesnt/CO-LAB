@@ -14,6 +14,7 @@ public class Facade {
 
   private Facade facade;
   private User currentUser;
+  private UUID currentUserID;
 
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
@@ -65,6 +66,7 @@ public class Facade {
       changeCurrentProject(null);
       return false;
     }
+    currentUserID = currentUser.getID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
     currentProjectList = DataReader.getProjects(currentUser);
@@ -75,7 +77,7 @@ public class Facade {
     //  clear everything 
     currentUser = null;
     currentProjectList = null;
-    changeCurrentProject(null);
+    changeCurrentProject(0);
     //  exit system
     exit();
   }
@@ -115,7 +117,7 @@ public class Facade {
     changeCurrentComment(0);
     //  see if it's supposed to clear
     if (taskNum == 0) {
-      currentTask = null
+      currentTask = null;
     } else {
       currentTask = currentTaskList.get(taskNum - 1);
     }
@@ -163,10 +165,10 @@ public class Facade {
     //  first, check and see that it's not null && if that project already 
       //  exists
     if (newProject == null)
-      reutrn false;
-    for (String name : currentProjectList) {
+      return false;
+    for (Project proj : currentProjectList) {
       //  getname() doesn't exist? what
-      if (name.equals(newProject.getName()))
+      if (proj.getName().equals(newProject.getName()))
         return false;
     }
     //  add it to the list
@@ -175,37 +177,81 @@ public class Facade {
   }
 
   public boolean addTask(Task newTask) {
-    // find column it's supposed to be in
-    
+    // make sure everything exists
+    if (newTask == null || currentProject == null)
+      return false;
+    //  WILL NOT WORK: im requesting the ColumnChoice to be a String
+    return currentProject.addTask(newTask, newTask.getColumnTag());
   }
 
   public boolean addToDo(ToDo newToDo) {
-    //  TODO
+    //  make sure everything exists
+    if (newToDo == null || currentTask == null);
+      return false;
+    //  this should be pretty easy, let the task handle it
+    return currentTask.addToDo(newToDo);
   }
 
   public boolean addComment(Comment newComment) {
-    //  TODO
+    //  This is for a head comment, NOT a reply!
+    //  existience check
+    if (newComment == null || currentTask == null)
+      return false;
+    return currentTask.addComment(newComment);
   }
 
   public boolean addReply(String reply) {
-    //  is this needed, or can this be folded into addComment?
-    //  TODO
+    //  begin me questioning if i exist
+    if (reply == null || currentComment == null)
+      reutrn false;    
+    return currentComment.addReply(reply, currentUser.getUUID);  // or UserID?
   }
 //  remove functions
-  public boolean removeProject(Project project) {
-    //  TODO
+  public boolean removeProject(int projNum) {
+    //  one indexed!!
+    //  check and make sure it's a valid number, and isn't in a project
+    if ( projNum < 1 || projNum > (currentProjectList.size() + 1) ||
+      currentProject != null)
+      return false;
+    //  go ahead and remove it
+    currentProjectList.remove(projNum - 1);
+    return true;
+  }
+//  START OF SUB FUNCTION, FIX ABOVE ^ (if you have time)
+  public boolean removeTask(int taskNum) {
+    //  check if the current task is null, and it's in bounds
+    int num = sub(taskNum);
+    if (currentTask != null || num > currentTaskList.size() || num < 0) 
+      return false;
+    // it's not, call to remove it
+    boolean result = currentProject.removeTask(currentTaskList.get(num));
+    //  make sure it went through
+    if (!result)
+      return false;
+    currentTaskList.remove(num);
+    return result;
   }
 
-  public boolean removeTask(Task task) {
-    //  TODO
-  }
-
-  public boolean removeToDo(ToDo toDo) {
-    //  TODO
-  }
-
-  public boolean removeComment(Comment comment) {
-    //  TODO
+  public boolean removeComment(int commentNum) {
+    //  remove ONLY it's replies, in order to remove top-level comments,
+    //  it needs to have currentComment = null (i think)
+    int num = sub(commentNum);
+    //  check that it won't fail
+    if (num < 0 || num > currentCommentList.size())
+      return false;
+    //  let's remove it
+    //  if it's the head comment, remove that one only
+    //  neither of these are implemented yet !!
+    boolean result;
+    if (currentComment.getBackEdge() == null) {
+      result = currentTask.removeComment(num);
+    } else { // this means it's a comment
+      result = currentComment.removeReply(currentCommentList.get(num));
+    }
+    if(!result)
+      return false;
+    currentCommentList.remove(num);
+    return false;
   }
 
   //  do we need to add removeReply too?
@@ -285,5 +331,9 @@ public class Facade {
     for (Project project : currentProjectList) {
       DataWriter.saveProject(project);
     }
+  }
+  //  helper function to remove 1
+  private int sub(int remove) {
+    return remove - 1;
   }
 }
