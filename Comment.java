@@ -19,9 +19,9 @@ public class Comment {
     private UUID author;
     private ArrayList<Comment> replies;
     private ZonedDateTime time;
-    private UUID commentBackEdge;
+    private Comment commentBackEdge;
 
-    public Comment(String commentData, UUID author) {
+    public Comment(String commentData, UUID author, Comment backEdge) {
         // store commentData
         commentData = commentData;
         // store UUID of comment author
@@ -35,10 +35,11 @@ public class Comment {
         replies = null;
         // assign new ID
         commentID = UUID.randomUUID();
+        commentBackEdge = backEdge;
     }
 
     public Comment(UUID comemntID, String commentData, UUID author,
-        ArrayList<Comment> replies, ZonedDateTime time, UUID commentBackEdge) {
+        ArrayList<Comment> replies, ZonedDateTime time, Comment commentBackEdge) {
             commentID = comemntID;
             commentData = commentData;
             author = author;
@@ -62,7 +63,7 @@ public class Comment {
         return author;
     }
 
-    public UUID getBackEdge() {
+    public Comment getBackEdge() {
         return commentBackEdge;
     }
 
@@ -73,7 +74,7 @@ public class Comment {
     public boolean addReply(String reply, UUID author) {
         if(reply == null)
             return false;
-        replies.add(new Comment(reply, author));
+        replies.add(new Comment(reply, author, this));
         return true;
     }
 
@@ -85,7 +86,7 @@ public class Comment {
         return commentID;
     }
 
-    public boolean equls(UUID commentAttempt) {
+    public boolean equals(UUID commentAttempt) {
         return commentID == commentAttempt;
     }
 

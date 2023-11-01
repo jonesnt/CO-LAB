@@ -54,12 +54,12 @@ public class Project {
 
             for(String specificColumn : columnList) {
                 Queue<Task> tempQueue = new LinkedList<Task>();
-                columns.put(description, tempQueue);
+                columns.put(specificColumn, tempQueue);
             }
 
             for(int i = 0; i < tasks.size(); ++i) {
-                Queue tempQueue = columns.get(tasks.get(i).getColumnTag());
-                tempQueue.add(tasks.get(i));
+                String tempTag = tasks.get(i).getColumnTag();
+                columns.get(tempTag).add(tasks.get(i));
             }
         }
 
@@ -77,11 +77,32 @@ public class Project {
 
     // removes column 
     public boolean removeColumn(int columnChoice) {
-        return columns.remove(columnList[columnChoice]);// refer to Line 22
+
+        columns.remove(columnList[columnChoice]);
+
+        return true;
     }
     //removes task from task array list 
     public boolean removeTask(Task removeTask){
-       return tasks.remove(removeTask);
+
+       if(tasks.contains(removeTask)){
+        //while  columns exist 
+        while (!columns.isEmpty()) {
+            for(Task specificTask : tasks) {
+                // if specific string is int columns
+                if(removeTask.getName().equals(columns.get(specificTask))) {
+
+                    
+                }
+            }
+        }
+
+
+
+       }else return false;
+
+
+
     }
     // assigns users UUID to Project
     public boolean assignUser(UUID user){
@@ -125,7 +146,7 @@ public class Project {
     // getters and setters 
 
     public UUID getUUID(){
-        return projectId;
+        return projectID;
     }
 
     public String getDescription(){
@@ -140,16 +161,16 @@ public class Project {
         return assignedUsers;
     }
 
-    public ArrayList<Task> getTasks(){
+    public ArrayList<Task> closeProject(){
         tasks = new ArrayList<Task>();
-        HashMap<String, Queue<Task>> tempColumns = columns;
-        Queue<Task> tempQueue = null;
-        while (!tempColumns.isEmpty()) {
+        while (!columns.isEmpty()) {
             for(String specificString : columnList) {
-                if(tempColumns.get(specificString) != null) {
-                    tasks.add(tempColumns.get(specificString).remove());
-                    if(tempColumns.get(specificString).isEmpty())
-                        tempColumns.remove(specificString);
+                if(columns.get(specificString) != null) {
+                    if(columns.get(specificString).isEmpty()) {
+                        columns.remove(specificString);
+                    } else {
+                        tasks.add(columns.get(specificString).remove());
+                    }
                 }
             }
         }
@@ -157,6 +178,9 @@ public class Project {
     }
     public ArrayList<String> getColumnList(){
         return columnList;
+    }
+    public String getName(){
+        return name;
     }
 
 
@@ -169,7 +193,7 @@ public class Project {
 
     // sees if the project = another project
     public boolean equals(Project projectAttempt){
-        if (projectId == projectAttempt.getUUID())
+        if (projectID == projectAttempt.getUUID())
         return true;
         else return false;
     }
