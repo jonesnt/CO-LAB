@@ -69,6 +69,43 @@ public class DataWriter extends DataConstants {
     }
 
     /**
+     * Saves or overwrites a single project in the Project JSON file.
+     *
+     * @param project the Project object to save or overwrite
+     */
+    public static void saveProject(Project project) {
+        // Get the Facade instance which manages the projects
+        Facade facade = Facade.getInstance();
+
+        // Retrieve the current list of projects from the facade.
+        ArrayList<Project> projects = facade.getProjectList();
+
+        // Initialize a variable to keep track of the index of the project to save.
+        // It starts at -1 to show that by default, the project is not found.
+        int projectIndex = -1;
+
+        // Iterate over the list of projects to check if the project already exists
+        // based on the project ID.
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).getID().equals(project.getID())) {
+                projectIndex = i;
+                break;
+            }
+        }
+
+        // If the project was found in the list, update the project at the found index.
+        // Otherwise, add the new project to the end of the list.
+        if (projectIndex != -1) {
+            projects.set(projectIndex, project);
+        } else {
+            projects.add(project);
+        }
+
+        // Save the updated list of projects
+        saveProjects();
+    }
+
+    /**
      * Converts a list of tasks to a JSONArray and saves it to a file.
      */
     public static void saveTasks() {
