@@ -11,7 +11,7 @@ import java.awt.*;  //  This may need to be changed in the future
  * addToDo
  * changeTaskColor
  */
-public class Facade {
+public class FacadeDEFUNCT {
   protected User currentUser;
 
   /**

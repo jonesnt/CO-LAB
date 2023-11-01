@@ -73,7 +73,7 @@ public class Facade {
     currentUserID = currentUser.getID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
-    currentProjectList = dR.getProjects(currentUser);
+    currentProjectList = dR.getProjectsByUser(currentUser);
     return true;
   }
 
