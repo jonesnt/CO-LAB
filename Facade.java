@@ -63,14 +63,14 @@ public class Facade {
 
   public boolean logInUser(String user, String pass) {
     //  If it wasn't possible, let them know!
-    currentUser = loginAttempt(user, pass);
+    currentUser = uM.loginAttempt(user, pass);
     if (currentUser == null) {
       //  reset all variables to null, no user = no access
       currentProjectList = null;
-      changeCurrentProject(null);
+      changeCurrentProject(0);
       return false;
     }
-    currentUserID = currentUser.getID();
+    currentUserID = currentUser.getUserID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
     currentProjectList = dR.getProjectsByUser(currentUser);
@@ -190,10 +190,10 @@ public class Facade {
 
   public boolean addToDo(ToDo newToDo) {
     //  make sure everything exists
-    if (newToDo == null || currentTask == null);
+    if (newToDo == null || currentTask == null)
       return false;
     //  this should be pretty easy, let the task handle it
-    return currentTask.addToDo(newToDo);
+    return currentTask.addToDo(newToDo, currentUser);
   }
 
   public boolean addComment(Comment newComment) {
@@ -207,10 +207,20 @@ public class Facade {
   public boolean addReply(String reply) {
     //  begin me questioning if i exist
     if (reply == null || currentComment == null)
-      reutrn false;    
-    return currentComment.addReply(reply, currentUser.getUUID);  // or UserID?
+      return false;    
+    return currentComment.addReply(reply, currentUser.getUserID());  // or UserID?
   }
-//  remove functions
+
+  public boolean addColumn(String columnName) {
+    //  check and make sure it's null
+    if (columnName == null)
+      return false;
+    //  dude death grips is playing i can't focus
+    return currentProject.addColumn(columnName);
+  }
+
+  //  remove functions
+
   public boolean removeProject(int projNum) {
     //  one indexed!!
     //  check and make sure it's a valid number, and isn't in a project
@@ -221,6 +231,7 @@ public class Facade {
     currentProjectList.remove(projNum - 1);
     return true;
   }
+
 //  START OF SUB FUNCTION, FIX ABOVE ^ (if you have time)
   public boolean removeTask(int taskNum) {
     //  check if the current task is null, and it's in bounds
@@ -258,33 +269,83 @@ public class Facade {
     return false;
   }
 
-  //  do we need to add removeReply too?
+  public boolean removeColumn(int columnChoice) {
+    //  make sure that it's valid
+    int num = sub(columnChoice);
+    if (num < 0)
+      return false;
+    return currentProject.removeColumn(num);
+  }
+  //  do we need to add removeReply too? NO
+
 //  edit functions
   public boolean editProject(String name, String description) {
-    //  TODO
+    // check and make sure everything isn't null
+    if (description == null)
+      return false;
+    //  make sure there aren't any with the same name
+    for (Project proj : currentProjectList) {
+      if (proj.getName().toLowerCase.equals(name.toLowerCase()))
+        return false;
+    }
+    //  send it, i think it might need to be expanded
+    currentProject.editProject(name, description);
+    return true;
   }
 
   public boolean editTask(String name, String description) {
-    //  TODO
+    //  check and make sure everything isn't null
+    if (description == null)
+      return false;
+    //  make sure there aren't any tasks with the same name
+    for (Task task: currentTaskList) {
+      if (task.getName().toLowerCase().equals(name.toLowerCase()))
+        return false;
+    }
+    //  send it
+    currentTask.editTask(name, description, currentUser);
   }
 
-  public boolean editToDo(String name, User assignedUser) {
-    //  or should we have a assgin/unassign user class?
-    //  TODO
+  public boolean editToDo(String name, User assignedUser, boolean completion) {
+    //  this is an all around for edit the ToDo
+    //  make sure the name is good
+    if (name != null && currentToDo != null) {
+      for (ToDo cToDo : currentToDoList) {
+        if (cToDo.getName().toLowerCase().equals(name.toLowerCase()))
+          return false;
+      }
+      currentToDo.editToDo(name);
+    }
+    //  see if we need to change the user
+    //  this is a mess
+    if ( assignedUser != null) {
+      boolean test = false;
+      for (User u : uM.getUserList()) {
+        if (u.getUserID().equals(assignedUser.getUserID())) {
+          test = true;
+          currentToDo.assignUser(assignedUser.getUserID());
+          continue;
+        }
+        if (!test) {
+          return test;
+        }
+      }
+    }
+    //  finally, change the completion if needed
+    if (currentToDo.getCompletion() != completion) {
+      currentToDo.changeCompletion();
+    } else {
+      return false;
+    }
+    //  everything worked!
+    return true;
   }
 
   public boolean editComment(String newComment) {
     //  TODO
+    return false;
   }
 
-  public boolean addColumn(String columnName) {
-    //  TODO
-  }
-
-  public boolean removeColumn(int ColumnChoice) {
-    //  not String?
-    //  TODO
-  }
 //  asssign functions
   public boolean assignProjectUser(UUID UserID) {
     //  TODO
