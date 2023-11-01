@@ -74,7 +74,7 @@ public class Task {
     return false;
   }
 
-  public boolean editTask(String newName, String newDescription User currentUser) {
+  public boolean editTask(String newName, String newDescription, User currentUser) {
     if(newName == null || newDescription == null)
       return false;
     if(newName != null)
@@ -103,7 +103,7 @@ public class Task {
     return true;
   }
 
-  public boolean addToDo(ToDo newToDo, User cuerrentUser)  
+  public boolean addToDo(ToDo newToDo, User cuerrentUser) { 
     if(iterate(newToDo.getName())) {
       todos.add(newToDo);
       addEvent(cuerrentUser, "added ToDo of name " +
