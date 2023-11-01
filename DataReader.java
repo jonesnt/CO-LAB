@@ -4,7 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -73,12 +72,20 @@ public class DataReader extends DataConstants {
                 String name = (String) projectJSON.get(PROJECT_NAME);
                 String description = (String) projectJSON.get(PROJECT_DESCRIPTION);
                 ZonedDateTime time = ZonedDateTime.parse((String) projectJSON.get(PROJECT_DATE_TIME));
-                ArrayList<UUID> assignedUsers = (ArrayList<UUID>) projectJSON.get(PROJECT_ASSIGNED_USERS);
+                ArrayList<UUID> assignedUsers = convertToUUIDList((JSONArray) projectJSON.get(PROJECT_ASSIGNED_USERS));
 
-                ArrayList<String> tasks = (ArrayList<String>) projectJSON.get(PROJECT_TASKS);
+                JSONArray taskUUIDsJSON = (JSONArray) projectJSON.get(PROJECT_TASKS);
+                ArrayList<Task> tasks = new ArrayList<>();
+                for (Object taskUUIDObj : taskUUIDsJSON) {
+                    String taskUUIDStr = (String) taskUUIDObj;
+                    UUID taskUUID = UUID.fromString(taskUUIDStr);
+                    Task task = getTaskByUUID(taskUUID);
+                    if (task != null) {
+                        tasks.add(task);
+                    }
+                }
 
                 ArrayList<String> columnList = (ArrayList<String>) projectJSON.get(PROJECT_COLUMN_LIST);
-
                 JSONObject projectColumnsJSON = (JSONObject) projectJSON.get(PROJECT_COLUMNS);
                 HashMap<String, ArrayList<UUID>> columns = new HashMap<>();
                 for (String columnName : columnList) {
@@ -137,22 +144,31 @@ public class DataReader extends DataConstants {
         return null;
     }
 
-    // Gets the tasks asscoiated with a specifc project
-    public static ArrayList<Task> getTasksByProject(Project project) {
-        // gets the task UUIDs from the provided project
-        List<String> taskUUIDs = project.getTasks();
 
-        ArrayList<Task> associatedTasks = new ArrayList<>();
 
-        // gets the task object for each UUID
-        for (String taskUUID : taskUUIDs) {
-            Task task = getTaskByUUID(taskUUID);
-            if (task != null) {
-                associatedTasks.add(task);
+
+
+
+    // Gets the projects assigned to a user
+    public static ArrayList<Project> getProjectsByUser(User user) {
+        ArrayList<Project> projectsForUser = new ArrayList<>();
+        ArrayList<Project> allProjects = getProjects(); // Get all projects
+        UUID userUUID = user.getUserID(); // Get the user's UUID
+
+        if (allProjects != null) {
+            for (Project project : allProjects) {
+                if (project.getAssignedUsers().contains(userUUID)) {
+                    projectsForUser.add(project);
+                }
             }
         }
+        return projectsForUser;
+    }
 
-        return associatedTasks;
+    // Gets the tasks asscoiated with a specifc project
+    public static ArrayList<Task> getTasksByProject(Project project) {
+        ArrayList<Task> tasks = project.getTasks();
+        return tasks;
     }
 
     // Gets the todos associated with a specific task
@@ -176,7 +192,7 @@ public class DataReader extends DataConstants {
             }
         }
 
-        return null; // Return null if no user is found with the given UUID
+        return null;
     }
 
     public static Project getProjectByUUID(String uuid) {
@@ -193,17 +209,23 @@ public class DataReader extends DataConstants {
         return null;
     }
 
-    public static Task getTaskByUUID(String uuid) {
+    public static Task getTaskByUUID(UUID taskUUID) {
         ArrayList<Task> allTasks = getTasks();
         if (allTasks != null) {
             for (Task task : allTasks) {
-                if (task.getID().equals(UUID.fromString(uuid))) {
+                if (task.getID().equals(taskUUID)) {
                     return task;
                 }
             }
         }
         return null;
     }
+
+
+
+
+
+
 
     /**
      * Converts a JSONArray of ToDo items into an ArrayList of ToDo objects.
