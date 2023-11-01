@@ -2,7 +2,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.LinkedBlockingDeque;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -11,7 +15,8 @@ import org.json.simple.JSONObject;
  */
 public class DataWriter extends DataConstants {
     private static DataWriter dataWriter;
-    private DataWriter()  {
+
+    private DataWriter() {
     }
 
     public static DataWriter getInstance() {
@@ -46,8 +51,8 @@ public class DataWriter extends DataConstants {
      * Converts a list of projects to a JSONArray and saves it to a file.
      */
     public static void saveProjects() {
-        ProjectManager projectManager = ProjectManager.getInstance();
-        ArrayList<Project> projects = projectManager.getProjects();
+        Facade facade = Facade.getInstance(); // Updated to use Facade instead of ProjectManager
+        ArrayList<Project> projects = facade.getProjectList();
 
         JSONArray jsonProjects = new JSONArray();
 
@@ -67,11 +72,12 @@ public class DataWriter extends DataConstants {
      * Converts a list of tasks to a JSONArray and saves it to a file.
      */
     public static void saveTasks() {
-        Task tasks = new Task(User user ,String taskID, String taskName, int priority);
-        ArrayList<Task> taskList = tasks.getTasks();
+        Facade facade = Facade.getInstance(); // Use the Facade to get the instance
+        ArrayList<Task> taskList = facade.getTaskList();
+
         JSONArray jsonTasks = new JSONArray();
 
-        for(Task task : taskList) {
+        for (Task task : taskList) {
             jsonTasks.add(getTaskJSON(task));
         }
 
@@ -108,27 +114,30 @@ public class DataWriter extends DataConstants {
      */
     public static JSONObject getProjectJSON(Project project) {
         JSONObject projectDetails = new JSONObject();
-        projectDetails.put(PROJECT_ID, project.getId().toString());
-        projectDetails.put(PROJECT_NAME, project.getProjectName());
+        projectDetails.put(PROJECT_ID, project.getID().toString());
+        projectDetails.put(PROJECT_NAME, project.getName());
         projectDetails.put(PROJECT_DESCRIPTION, project.getDescription());
-        projectDetails.put(PROJECT_DATE_TIME, project.getDateTime());
+        projectDetails.put(PROJECT_DATE_TIME, project.getTime());
 
-        JSONArray assignedUsers = new JSONArray(project.getAssignedUsers());
-        projectDetails.put(PROJECT_ASSIGNED_USERS, assignedUsers);
+        JSONArray columnListJSON = new JSONArray();
+        JSONObject columnsJSON = new JSONObject();
+        for (String column : project.getColumnList()) {
+            // Add column name to columnList JSON Array
+            columnListJSON.add(column);
 
-        JSONArray tasks = new JSONArray(project.getTasks());
-        projectDetails.put(PROJECT_TASKS, tasks);
-
-        JSONArray demarkationList = new JSONArray(project.getDemarkationList());
-        projectDetails.put(PROJECT_DEMARKATION_LIST, demarkationList);
-
-        JSONObject projectElements = new JSONObject();
-        projectElements.put(PROJECT_ELEMENTS_TODO, project.getProjectElements().get(PROJECT_ELEMENTS_TODO));
-        projectElements.put(PROJECT_ELEMENTS_IN_PROGRESS,
-                project.getProjectElements().get(PROJECT_ELEMENTS_IN_PROGRESS));
-        projectElements.put(PROJECT_ELEMENTS_COMPLETED, project.getProjectElements().get(PROJECT_ELEMENTS_COMPLETED));
-
-        projectDetails.put(PROJECT_ELEMENTS, projectElements);
+            // Create a JSON Array for the tasks in the current column
+            JSONArray tasksJSON = new JSONArray();
+            List<Task> tasksInColumn = project.getColumns().get(column); // need to add a getColumns to project, maybe
+            if (tasksInColumn != null) {
+                for (Task task : tasksInColumn) {
+                    tasksJSON.add(task.getID().toString());
+                }
+            }
+            // Add the tasks JSON Array to the corresponding column in columns JSON Object
+            columnsJSON.put(column, tasksJSON);
+        }
+        projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
+        projectDetails.put(PROJECT_COLUMNS, columnsJSON);
 
         return projectDetails;
     }
@@ -141,11 +150,11 @@ public class DataWriter extends DataConstants {
      */
     public static JSONObject getTaskJSON(Task task) {
         JSONObject taskDetails = new JSONObject();
-        taskDetails.put(TASK_ID, task.getTaskID().toString());
-        taskDetails.put(TASK_NAME, task.getTaskName());
+        taskDetails.put(TASK_ID, task.getID().toString());
+        taskDetails.put(TASK_NAME, task.getName());
         taskDetails.put(TASK_DESCRIPTION, task.getDescription());
-        taskDetails.put(TASK_DATE_TIME, task.getDateTime());
-        taskDetails.put(TASK_COLOR, task.getColor());
+        taskDetails.put(TASK_BG_COLOR, task.getbgColor());
+        taskDetails.put(TASK_FG_COLOR, task.getfgColor());
 
         JSONArray assignedUsers = new JSONArray();
         for (UUID userID : task.getAssignedUsers()) {
@@ -153,13 +162,10 @@ public class DataWriter extends DataConstants {
         }
         taskDetails.put(PROJECT_ASSIGNED_USERS, assignedUsers);
 
-        taskDetails.put(TASK_TODO_LIST, getToDosJSON(task.getToDoList()));
+        taskDetails.put(TASK_TODOS, getToDosJSON(task.getToDos()));
         taskDetails.put(TASK_COMMENTS, getCommentsJSON(task.getComments()));
-        taskDetails.put(TASK_DEMARKATION_LIST, new JSONArray(task.getDemarkationList()));
-        taskDetails.put(TASK_TASK_ELEMENTS, getTaskElementsJSON(task.getTaskElements()));
-        taskDetails.put(TASK_PRIORITY, task.getPriority());
-        taskDetails.put(TASK_COMPLETION_STATUS, task.isCompletionStatus());
-        taskDetails.put(TASK_TASK_HISTORY, getTaskHistoriesJSON(task.getTaskHistory()));
+        taskDetails.put(TASK_COMPLETION_STATUS, task.isCompleted());
+        taskDetails.put(TASK_HISTORY, getTaskHistoriesJSON(task.getHistory()));
 
         return taskDetails;
     }
@@ -174,9 +180,10 @@ public class DataWriter extends DataConstants {
         JSONArray toDoArray = new JSONArray();
         for (ToDo toDo : toDoList) {
             JSONObject obj = new JSONObject();
-            obj.put(TODO_ID, toDo.getToDoID().toString());
-            obj.put(TODO_TODO, toDo.getToDo());
-            obj.put(TODO_COMPLETION, toDo.isCompletion());
+            obj.put(TODO_ID, toDo.getID().toString());
+            obj.put(TODO_NAME, toDo.getName());
+            obj.put(TODO_COMPLETION, toDo.getCompletion());
+            obj.put(TODO_ASSIGNED_USER, toDo.getAssignedUser());
             toDoArray.add(obj);
         }
         return toDoArray;
@@ -192,10 +199,25 @@ public class DataWriter extends DataConstants {
         JSONArray commentArray = new JSONArray();
         for (Comment comment : comments) {
             JSONObject obj = new JSONObject();
-            obj.put(COMMENT_ID, comment.getCommentID().toString());
-            obj.put(COMMENT_LIST, new JSONArray(comment.getCommentList())); // Assuming commentList is a list of strings
+            obj.put(COMMENT_ID, comment.getID().toString());
+
+            // Convert list of reply IDs to JSONArray
+            JSONArray repliesArray = new JSONArray();
+            for (Comment reply : comment.getReplies()) {
+                JSONObject replyObj = new JSONObject();
+                replyObj.put(COMMENT_ID, reply.getID().toString());
+                // Assuming replies don't have further nested replies
+                // If they do, you might need recursively call getCommentsJSON or similar
+                replyObj.put(COMMENT_DATA, reply.getCommentData());
+                replyObj.put(COMMENT_TIME, reply.getTime());
+                replyObj.put(COMMENT_AUTHOR, reply.getAuthor().toString());
+                repliesArray.add(replyObj);
+            }
+
+            obj.put(COMMENT_REPLIES, repliesArray);
+            obj.put(COMMENT_REPLIES, repliesArray);
             obj.put(COMMENT_DATA, comment.getCommentData());
-            obj.put(COMMENT_DATE, comment.getCommentDate());
+            obj.put(COMMENT_TIME, comment.getTime());
             obj.put(COMMENT_AUTHOR, comment.getAuthor().toString());
             commentArray.add(obj);
         }
@@ -208,13 +230,13 @@ public class DataWriter extends DataConstants {
      * @param taskHistories the list of TaskHistory objects to convert
      * @return a JSONArray representing the list of TaskHistories
      */
-    public static JSONArray getTaskHistoriesJSON(ArrayList<TaskHistory> taskHistories) {
+    public static JSONArray getTaskHistoriesJSON(LinkedList<TaskEvent> taskHistories) {
         JSONArray taskHistArray = new JSONArray();
-        for (TaskHistory taskHistory : taskHistories) {
+        for (TaskEvent taskHistory : taskHistories) {
             JSONObject obj = new JSONObject();
-            obj.put(TASK_HISTORY_EVENT_TIME, taskHistory.getEventTime());
-            obj.put(TASK_HISTORY_EVENT_NAME, taskHistory.getEventName());
-            obj.put(TASK_HISTORY_INVOLVED_USER, taskHistory.getInvolvedUser().toString());
+            obj.put(TASK_EVENT_TIME, taskHistory.getEventTime());
+            obj.put(TASK_EVENT_NAME, taskHistory.getEventName());
+            obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().toString());
             taskHistArray.add(obj);
         }
         return taskHistArray;
