@@ -10,6 +10,16 @@ import org.json.simple.JSONObject;
  * Handles writing data objects to their corresponding JSON files.
  */
 public class DataWriter extends DataConstants {
+    private static DataWriter dataWriter;
+    private DataWriter()  {
+    }
+
+    public static DataWriter getInstance() {
+        if (dataWriter == null) {
+            dataWriter = new DataWriter();
+        }
+        return dataWriter;
+    }
 
     /**
      * Converts a list of users to a JSONArray and saves it to a file.
