@@ -64,8 +64,15 @@ public class Project {
     }
 
     // adds column within project for the tasks to be catergorized
-    public boolean addColumn(String columnName) { // may need to be changed later
+    public boolean addColumn(String columnName) {
+
+        if (!columnList.contains(columnName))
         columnList.add(columnName);
+
+        Queue<Task> newQueue = new Queue<Task>();
+            
+        columns.put(columnName, newQueue);// * ask about 
+
         return true;
     }
 
@@ -74,7 +81,6 @@ public class Project {
     public boolean addTask(Task newTask, String columnChoice) {
         // return
         // columns.putIfAbsent(columnList[columnList],ArrayList<Task>().add(newTask));//
-        // weird error idk
 
         if (tasks.contains(newTask) && columnList.contains(columnChoice)) {
             columns.get(columnChoice).add(newTask);
@@ -86,12 +92,14 @@ public class Project {
 
     // removes column
     public boolean removeColumn(int columnChoice) {
-        if(columnList.contains(columnChoice)){
-            w
 
-        }
-
-        return true;
+        String tempColumn = columnList.get(columnChoice);
+        if(columnList.contains(tempColumn)){
+            columns.remove(tempColumn);
+            columnList.remove(columnChoice);
+            return true;
+        }else return false;
+        
     }
 
     // removes task from task array list
@@ -138,6 +146,26 @@ public class Project {
     // moves task to different column
     public boolean changeColumn(Task changeTask, int columnChoice) {
 
+        //if task and column exitst 
+        if(tasks.contains(changeTask)&&columnList.contains(columnList.get(columnChoice))){
+     /* 
+        // find old column 
+        HashMap<String, Queue<Task>> tempColumns = columns;
+        String oldColumn;
+        while (!tempColumns.isEmpty()) {
+            for (String specificString : columnList) 
+                if (tempColumns.get(specificString).contains(changeTask)) // ***may need to adjust parentheses
+                    oldColumn = specificString;
+        } 
+        */
+        //remove old task
+        //addd task to column
+        Task tempTask  = changeTask;
+        removeTask(changeTask);
+        addTask(tempTask, columnList.get(columnChoice));
+        return true;
+        }else return false;
+        /* 
         if (columns.containsvalue(Arraylist.get(changeTask))) {
             // delete the other one
             removeTask(changeTask);
@@ -146,10 +174,17 @@ public class Project {
             return true;
         } else
             return false;
+
+            */
     }
 
     // eddits atributes of the project
     public boolean editProject(String newName, String newDescription) {
+        if( newName == null)
+        newName = name;
+        if (newDescription == null)
+        newDescription = description;
+
         name = newName;
         description = newDescription;
         return true;
@@ -193,7 +228,7 @@ public class Project {
         return columnList;
     }
 
-    public boolean iterate(String attempt) {
+    public boolean iterate(Task attempt) {
         // iterate through the list of tasks to see if a task name matches any of the
         // ones that already exist.
         if (tasks.contains(attempt))
