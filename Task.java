@@ -103,7 +103,7 @@ public class Task {
     return true;
   }
 
-  public boolean addToDo(ToDo newToDo, User cuerrentUser)  
+  public boolean addToDo(ToDo newToDo, User cuerrentUser)  {
     if(iterate(newToDo.getName())) {
       todos.add(newToDo);
       addEvent(cuerrentUser, "added ToDo of name " +
