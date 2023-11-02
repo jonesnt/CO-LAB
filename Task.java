@@ -37,7 +37,7 @@ public class Task {
 
   public Task(UUID taskID, String name, String description, LinkedList<TaskEvent> history, 
   ArrayList<ToDo> todos, ArrayList<Comment> comments, ArrayList<UUID> assignedUsers, 
-  boolean isCompleted, Color bgColor, Color fgColor, String columnTag) {
+  boolean isCompleted,  String columnTag) {
     taskID = taskID;
     name = name;
     description = description;

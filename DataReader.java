@@ -122,8 +122,8 @@ public class DataReader extends DataConstants {
                 UUID taskID = UUID.fromString((String) taskJSON.get(TASK_ID));
                 String name = (String) taskJSON.get(TASK_NAME);
                 String description = (String) taskJSON.get(TASK_DESCRIPTION);
-                Color bgColor = Color.decode((String) taskJSON.get(TASK_BG_COLOR));
-                Color fgColor = Color.decode((String) taskJSON.get(TASK_FG_COLOR));
+                // Color bgColor = Color.decode((String) taskJSON.get(TASK_BG_COLOR));
+                // Color fgColor = Color.decode((String) taskJSON.get(TASK_FG_COLOR));
                 String columnTag = (String) taskJSON.get(TASK_COLUMN_TAG);
                 ArrayList<UUID> assignedUsers = (ArrayList<UUID>) taskJSON.get(PROJECT_ASSIGNED_USERS);
                 boolean isCompleted = (boolean) taskJSON.get(TASK_COMPLETION_STATUS);
@@ -132,7 +132,7 @@ public class DataReader extends DataConstants {
                 LinkedList<TaskEvent> history = getHistory((JSONArray) taskJSON.get(TASK_HISTORY));
 
                 tasks.add(new Task(taskID, name, description, history, todos, comments,
-                        assignedUsers, isCompleted, bgColor, fgColor, columnTag));
+                        assignedUsers, isCompleted, columnTag));
             }
 
             return tasks;

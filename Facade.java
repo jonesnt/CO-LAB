@@ -45,7 +45,7 @@ public class Facade {
     changeCurrentProject(0);
     //  Initialize the UserManager
     //  This is implemented yet!!
-    UserManager.getInstance();
+    uM = UserManager.getInstance();
     //  Initialize the DataReader and DataWriter
     //  Like above, this isn't implemented yet
     dR = DataReader.getInstance();
@@ -425,7 +425,7 @@ public class Facade {
     return currentTask;
   }
 
-  public ToDo getCurrenToDo() {
+  public ToDo getCurrentToDo() {
     return currentToDo;
   }
 

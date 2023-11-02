@@ -95,7 +95,7 @@ public class User {
      * username matches the compared username
      */
     public boolean equals(String comparison) {
-        return username == comparison;
+        return this.username.equals(comparison);
     }
 
     /**
@@ -106,7 +106,7 @@ public class User {
      * @return boolean representing whether the password was correct
      */
     public boolean attemptPassword(String passAttempt) {
-        return passAttempt == password;
+        return passAttempt.equals(password);
     }
 
     /**

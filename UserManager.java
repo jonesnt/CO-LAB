@@ -72,7 +72,7 @@ public class UserManager {
      * @return User object corresponding to the logged-in user
      */
     public User loginAttempt(String userName, String pass) {
-
+        
         for(User specificUser : userList) {
             if(specificUser.equals(userName) && specificUser.attemptPassword(pass)) {
                 return specificUser;
