@@ -49,17 +49,26 @@ public class TUI {
     System.out.println("You chose " + f.getCurrentProject().getName() );
 
     
-
-
-
-    
-    
-    
-    
     //  add new comment
     f.changeCurrentTask(f.getTaskList().indexOf(newTask));
     Comment newComment = new Comment("Avoid civilians Jeff!", f.getCurrentUser().getUserID(), null);
     f.addComment(newComment);
+
+
+    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
+
+    f.addTask(newTask);
+
+    f.assignTaskUser(f.);
+    
+
+
+    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
+
+    f.addTask(newTask);
+
+    f.assignTaskUser(f.);
+    
 
     /* 
     Facade f = Facade.getInstance();
