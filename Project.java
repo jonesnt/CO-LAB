@@ -64,14 +64,14 @@ public class Project {
     }
 
     public Project(String name, String description) {
-        projectID = UUID.randomUUID();
+        this.projectID = UUID.randomUUID();
         this.name = name;
         this.description = description;
-        time = ZonedDateTime.now();
-        columns = new HashMap<>();
-        assignedUsers = null;
-        tasks = null;
-        columnList = null;
+        this.time = ZonedDateTime.now();
+        this.columns = new HashMap<>();
+        this.assignedUsers = null;
+        this.tasks = null;
+        this.columnList = null;
     }
 
     // adds column within project for the tasks to be catergorized

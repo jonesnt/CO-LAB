@@ -24,17 +24,17 @@ public class ToDo {
    * @param demarkation TODO: Write
    */
   public ToDo(String name) {
-    toDoID = UUID.randomUUID();
-    name = name;
-    assignedUser = null;
-    isCompleted = false;
+    this.toDoID = UUID.randomUUID();
+    this.name = name;
+    this.assignedUser = null;
+    this.isCompleted = false;
   }
 
   public ToDo(UUID toDoID, String name, UUID assignedUser, boolean isCompleted) {
-    toDoID = toDoID;
-    name = name;
-    assignedUser = assignedUser;
-    isCompleted = isCompleted;
+    this.toDoID = toDoID;
+    this.name = name;
+    this.assignedUser = assignedUser;
+    this.isCompleted = isCompleted;
   }
   
   public boolean assignUser(UUID userID) {

@@ -9,7 +9,7 @@
     "toDoList":[{
         "toDoID":"32a78938-7851-4bae-ade9-3963dcbd091a",
         "toDo":"finish the method",
-        "completion":true
+        "isCompleted":true
       }],
     "comments":[{
         "commentID":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4",
@@ -28,7 +28,7 @@
       "Completed":[]
     },
     "priority":1,
-    "completionStatus":true,
+    "isCompleted":true,
     "TaskHistory":[{
         "eventTime":"2023-10-08,T22:45:38:855649",
         "eventName":"Task Created",
@@ -44,7 +44,7 @@
     "toDoList":[{
         "toDoID":"174fc8cc-c0bf-42c2-8f7f-e1fe24362779",
         "toDo":"finsih the first method",
-        "completion":true
+        "isCompleted":true
       }],
     "comments":[{
         "commentID":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
@@ -60,7 +60,7 @@
       "Completed":[]
     },
     "priority":1,
-    "completionStatus":true,
+    "isCompleted":true,
     "TaskHistory":[{
       "eventTime":"2023-10-08,T23:46:34:905649",
       "eventName":"Task Created",
@@ -76,7 +76,7 @@
     "toDoList":[{
         "toDoID":"81c9e869-6d46-4d93-b458-ec4b840a1e8d",
         "toDo":"check all methods",
-        "completion":false
+        "isCompleted":false
       }],
     "comments":[{
         "commentID":"3039415b-4ef0-4700-9ad6-61854af14fc1",
@@ -92,7 +92,7 @@
       "Completed":[]
     },
     "priority":1,
-    "completionStatus":false,
+    "isCompleted":false,
     "TaskHistory":[{
       "eventTime":"2023-10-08,T25:36:40:865649",
       "eventName":"Task Created",

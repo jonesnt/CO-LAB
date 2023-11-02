@@ -40,11 +40,11 @@ public class Comment {
 
     public Comment(UUID comemntID, String commentData, UUID author,
         ArrayList<Comment> replies, ZonedDateTime time, UUID commentBackEdge) {
-            commentID = comemntID;
-            commentData = commentData;
-            author = author;
-            replies = replies;
-            time = time;
+            this.commentID = comemntID;
+            this.commentData = commentData;
+            this.author = author;
+            this.replies = replies;
+            this.time = time;
             //BROKEN
             // commentBackEdge = commentBackEdge;
     }
@@ -52,7 +52,7 @@ public class Comment {
     public boolean editComment(String newComment) {
         if(newComment == null)
             return false;
-        commentData = newComment;
+        this.commentData = newComment;
         return true;
     }
 

@@ -19,15 +19,15 @@ public class TaskEvent {
      * @param involvedUser User representing the involved user
      */
     public TaskEvent(String eventName, User involvedUser) {
-        eventTime = ZonedDateTime.now();
-        eventName = eventName;
-        relatedUser = involvedUser.getUserID();
+        this.eventTime = ZonedDateTime.now();
+        this. = eventName;
+        this.relatedUser = involvedUser.getUserID();
     }
 
     public TaskEvent(ZonedDateTime eventTime, String eventName, User involvedUser) {
-        eventTime = eventTime;
-        eventName = eventName;
-        relatedUser = involvedUser.getUserID();
+        this.eventTime = eventTime;
+        this.eventName = eventName;
+        this.relatedUser = involvedUser.getUserID();
     }
 
     /**
