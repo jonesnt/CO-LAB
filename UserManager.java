@@ -17,7 +17,7 @@ public class UserManager {
      */
     private UserManager() {
         DataReader dr = DataReader.getInstance();
-        userList = dr.getUsers();
+        userList = dr.;
     }
 
     /**

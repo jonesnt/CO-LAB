@@ -30,11 +30,11 @@ public class User {
 
     public User(UUID userID, String username,
             String lastName, String firstName, String password) {
-        userID = userID;
-        username = username;
-        password = password;
-        firstName = firstName;
-        lastName = lastName;
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     /**
@@ -61,7 +61,7 @@ public class User {
         // no need to check for username duplication
         // Implementing class UserManger checks for
         // duplication in already-instantiated userList
-        username = username;
+        this.username = username;
     }
 
     /**
@@ -69,11 +69,11 @@ public class User {
      * @param firstName String representing the user's first name
      */
     public void setFirstName(String firstName) {
-        firstName = firstName;
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        lastName = lastName;
+        this.lastName = lastName;
     }
 
     /**
@@ -83,7 +83,7 @@ public class User {
     public void setPassword(String password) {
         // no need to check password requirements
         // Implementing class UserManger checks requirements
-        password = password;
+        this.password = password;
     }
 
     /**
