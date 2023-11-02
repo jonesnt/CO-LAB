@@ -90,4 +90,14 @@ public class Comment {
         return commentID == commentAttempt;
     }
 
+    public boolean removeReply(int choice, UUID currentUser) {
+        if(choice >= 0 && choice < replies.size()) {  // nested to prevent nullptr exception
+            if(currentUser == replies.get(choice).getAuthor()) {
+                replies.remove(choice);
+                return true;
+            }
+        }
+        return false;  
+    } 
+
 }
