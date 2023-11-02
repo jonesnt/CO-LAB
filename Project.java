@@ -63,6 +63,16 @@ public class Project {
         }
     }
 
+    public Project(String name, String description) {
+        projectID = UUID.randomUUID();
+        name = name;
+        description = description;
+        time = ZonedDateTime.now();
+        assignedUsers = null;
+        tasks = null;
+        columnList = null;
+    }
+
     // adds column within project for the tasks to be catergorized
     public boolean addColumn(String columnName) {
 
@@ -207,6 +217,8 @@ public class Project {
     }
 
     public ArrayList<Task> getTasks() {
+        if (columns.isEmpty())
+            return null;
         tasks = new ArrayList<Task>();
         HashMap<String, Queue<Task>> tempColumns = columns;
         Queue<Task> tempQueue = null;

@@ -103,6 +103,7 @@ public class Facade {
     } else {
       // set the current project to the index - 1
       currentProject  = currentProjectList.get(projNum - 1);
+      currentTaskList = currentProject.getTasks();
     }
     return true;
   }
@@ -124,6 +125,8 @@ public class Facade {
       currentTask = null;
     } else {
       currentTask = currentTaskList.get(taskNum - 1);
+      currentToDoList = currentTask.getTodo();
+      currentCommentList = currentTask.getComments();
     }
     return true;
   }
@@ -156,6 +159,8 @@ public class Facade {
     // see if it's supposed to go back
     if (commentNum == 0) {
       //  Right now, getBackEdge() returns a UUID? why
+      if (currentComment.getBackEdge() == null)
+        return false;
       currentComment = currentComment.getBackEdge();
     } else { 
       currentComment = currentComment.getReplies().get(commentNum - 1);
@@ -182,7 +187,7 @@ public class Facade {
 
   public boolean addTask(Task newTask) {
     // make sure everything exists
-    if (newTask == null || currentProject == null)
+    if (newTask == null || currentProject == null || currentProject.getColumnList().isEmpty())
       return false;
     //  WILL NOT WORK: im requesting the ColumnChoice to be a String
     return currentProject.addTask(newTask, newTask.getColumnTag());
