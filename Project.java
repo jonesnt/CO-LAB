@@ -226,6 +226,21 @@ public class Project {
         return columnList;
     }
 
+    public ArrayList<Task> getColumn(String columnName) {
+        //  check if the column exists
+        if (columnName == null || columns.containsKey(columnName)) {
+            return null;
+        }
+        ArrayList<Task> result;
+        Queue<Task> queue  = columns.get(columnName);
+        Task[] array = queue.toArray(new Task[0]);
+        ArrayList<Task> co = null;
+        for (int i = 0; i < array.length; ++i) {
+            co.add(array[i]);
+        }
+        return co;
+    }
+
     public boolean iterate(Task attempt) {
         // iterate through the list of tasks to see if a task name matches any of the
         // ones that already exist.

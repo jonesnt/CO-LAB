@@ -29,9 +29,7 @@ public class DataWriter extends DataConstants {
     /**
      * Converts a list of users to a JSONArray and saves it to a file.
      */
-    public static void saveUsers() {
-        UserManager userManager = UserManager.getInstance();
-        ArrayList<User> userList = userManager.getUsers();
+    public static void saveUsers(ArrayList<User> userList) {
 
         JSONArray jsonUsers = new JSONArray();
 
@@ -87,7 +85,7 @@ public class DataWriter extends DataConstants {
         // Iterate over the list of projects to check if the project already exists
         // based on the project ID.
         for (int i = 0; i < projects.size(); i++) {
-            if (projects.get(i).getID().equals(project.getID())) {
+            if (projects.get(i).getUUID().equals(project.getUUID())) {
                 projectIndex = i;
                 break;
             }
@@ -151,7 +149,7 @@ public class DataWriter extends DataConstants {
      */
     public static JSONObject getProjectJSON(Project project) {
         JSONObject projectDetails = new JSONObject();
-        projectDetails.put(PROJECT_ID, project.getID().toString());
+        projectDetails.put(PROJECT_ID, project.getUUID().toString());
         projectDetails.put(PROJECT_NAME, project.getName());
         projectDetails.put(PROJECT_DESCRIPTION, project.getDescription());
         projectDetails.put(PROJECT_DATE_TIME, project.getTime());
@@ -164,7 +162,7 @@ public class DataWriter extends DataConstants {
 
             // Create a JSON Array for the tasks in the current column
             JSONArray tasksJSON = new JSONArray();
-            List<Task> tasksInColumn = project.getColumns().get(column); // need to add a getColumns to project, maybe
+            List<Task> tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
             if (tasksInColumn != null) {
                 for (Task task : tasksInColumn) {
                     tasksJSON.add(task.getID().toString());
@@ -190,8 +188,8 @@ public class DataWriter extends DataConstants {
         taskDetails.put(TASK_ID, task.getID().toString());
         taskDetails.put(TASK_NAME, task.getName());
         taskDetails.put(TASK_DESCRIPTION, task.getDescription());
-        taskDetails.put(TASK_BG_COLOR, task.getbgColor());
-        taskDetails.put(TASK_FG_COLOR, task.getfgColor());
+        // taskDetails.put(TASK_BG_COLOR, task.getbgColor());
+        // taskDetails.put(TASK_FG_COLOR, task.getfgColor());
 
         JSONArray assignedUsers = new JSONArray();
         for (UUID userID : task.getAssignedUsers()) {

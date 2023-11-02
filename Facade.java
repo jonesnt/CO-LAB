@@ -16,7 +16,7 @@ public class Facade {
   private DataReader dR;
   private UserManager uM;
 
-  private Facade facade;
+  private static Facade facade;
   private User currentUser;
   private UUID currentUserID;
 
@@ -54,7 +54,7 @@ public class Facade {
     //  It should be implemented in UserManager
   }
 
-  public Facade getInstance() {
+  public static Facade getInstance() {
     if (facade == null) {
       facade = new Facade();
     }
@@ -259,9 +259,9 @@ public class Facade {
     //  neither of these are implemented yet !!
     boolean result;
     if (currentComment.getBackEdge() == null) {
-      result = currentTask.removeComment(num);
+      result = currentTask.removeTopLevelComment(num, currentUserID);
     } else { // this means it's a comment
-      result = currentComment.removeReply(currentCommentList.get(num));
+      result = currentComment.removeReply(num, currentUserID);
     }
     if(!result)
       return false;
@@ -285,7 +285,7 @@ public class Facade {
       return false;
     //  make sure there aren't any with the same name
     for (Project proj : currentProjectList) {
-      if (proj.getName().toLowerCase.equals(name.toLowerCase()))
+      if (proj.getName().toLowerCase().equals(name.toLowerCase()))
         return false;
     }
     //  send it, i think it might need to be expanded
