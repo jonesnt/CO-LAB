@@ -87,7 +87,7 @@ public class DataWriter extends DataConstants {
         // Iterate over the list of projects to check if the project already exists
         // based on the project ID.
         for (int i = 0; i < projects.size(); i++) {
-            if (projects.get(i).getID().equals(project.getID())) {
+            if (projects.get(i).getUUID().equals(project.getUUID())) {
                 projectIndex = i;
                 break;
             }
