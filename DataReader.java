@@ -173,7 +173,7 @@ public class DataReader extends DataConstants {
 
     // Gets the todos associated with a specific task
     public static ArrayList<ToDo> getToDosByTask(Task task) {
-        return task.getToDos(); // add ArrayList<ToDo> getToDos() to Task
+        return task.getTodo(); // add ArrayList<ToDo> getToDos() to Task
     }
 
     // Gets the comments associated with a specific task
@@ -366,7 +366,7 @@ public class DataReader extends DataConstants {
         ArrayList<Task> tasks = getTasks();
         if (tasks != null) {
             for (Task task : tasks) {
-                ArrayList<ToDo> todos = task.getToDos(); // add getToDos to Task class
+                ArrayList<ToDo> todos = task.getTodo(); // add getToDos to Task class
                 for (ToDo todo : todos) {
                     if (todo.getName().equals(todoName)) {
                         return todo.getID();
