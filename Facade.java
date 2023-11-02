@@ -162,7 +162,7 @@ public class Facade {
     //  If a 0 is put in, it will GO BACK a LAYER if possible
     //  CHECK THIS IN THE UI!
     //  check the number
-    if (commentNum < 0 || commentNum > (currentCommentList.size() + 1))
+    if (commentNum < 0 || commentNum > (currentCommentList.size()))
       return false;
     // see if it's supposed to go back
     if (commentNum == 0) {
@@ -178,10 +178,13 @@ public class Facade {
   }
   public boolean changeColumn(Task task, int columnChoice) {
     //  try it
-    boolean result = currentProject.changeColumn(task, columnChoice);
-    if (result)
-      task.editColumnTag(getColumnList().get(columnChoice));
-    return result;
+    // boolean result = currentProject.changeColumn(task, columnChoice);
+    // if (result)
+    //   task.editColumnTag(getColumnList().get(columnChoice));
+    // return result;
+    currentProject.removeTask(task);
+    currentProject.addTask(task, currentProject.getColumnList().get(columnChoice));
+    return true;
   }
 //  add functions
   public boolean addProject(Project newProject) {

@@ -97,6 +97,110 @@ public class TUI {
         System.out.println(task.getName());
     }
 
+    //  show comments
+    System.out.println();
+    System.out.println("Which comment do you want to go to?");
+    ArrayList<Comment> comments = f.getCommentList();
+    for (int i = 0; i < comments.size(); ++i) {
+      System.out.println((i+1) + " " + comments.get(i).getCommentData());
+    }
+
+    rightAnswer = false;
+    while(!rightAnswer) {
+      int answer = in.nextInt();
+      rightAnswer = f.changeCurrentComment(answer);
+      if (!rightAnswer){
+        System.out.println("Try a different number");
+        rightAnswer = false;
+      }
+    }
+
+    System.out.println("You chose " + f.getCurrentComment().getCommentData());
+    System.err.println("Whats your reply?");
+
+    rightAnswer = false;
+    while(!rightAnswer) {
+      in.nextLine();
+      String answer = in.nextLine();
+      Comment reply = new Comment(answer, f.getCurrentUser().getUserID(), f.getCurrentComment());
+      rightAnswer = f.addComment(reply);
+      if (!rightAnswer){
+        System.out.println("oops");
+        rightAnswer = false;
+      }
+    }
+    System.out.println("You replied " + 
+      f.getCurrentComment().getReplies().get(0).getCommentData());
+    ArrayList<UUID> aUsers = f.getCurrentTask().getAssignedUsers();
+    System.out.println("Current Assigned Users: ");
+    // UUID theUser = aUsers.get(0);
+    // System.out.println(UserManager.getInstance().findUser(theUser));
+    System.out.println(users.get(0).getUsername());
+    System.out.println("Reassign to another user? y/n");
+    String answer = "";
+    rightAnswer = false;
+    while(!rightAnswer) { 
+      answer = in.nextLine();
+      if (!(answer.toLowerCase().equals("y") || answer.toLowerCase().equals("n"))){
+        System.out.println("Try again. y/n");
+      } else {
+        rightAnswer = true;
+      }
+    }
+    if (answer.toLowerCase().equals("y")) {
+      System.out.println("Who do you want to assign?");
+      for (User user : users) {
+        System.out.println(user.getUsername());
+      }
+      rightAnswer = false;
+      while(!rightAnswer) {    
+        answer = in.nextLine();
+        f.unassignTaskUser(f.getCurrentUser().getUserID());
+        rightAnswer = true;
+        if (!rightAnswer) {
+          System.out.println("Try entering it again.");
+        }
+      }
+    }
+    System.out.println("New user is:");
+    System.out.println(users.get(1).getUsername());
+    //  make a new column
+    System.out.println("Current Columns are:");
+    ArrayList<String> cols = f.getColumnList();
+    for (String col : cols)
+      System.out.println(col);
+
+    System.out.println("What column do you want to add?");
+    rightAnswer = false;
+    while(!rightAnswer) {    
+      answer = in.nextLine();
+      rightAnswer = f.addColumn(answer);
+      if (!rightAnswer) {
+        System.out.println("Try entering it again.");
+      }
+    }
+    System.out.println("New columns are:");
+    for (String col : cols)
+      System.out.println(col);
+    
+    System.out.println("Which task do you want to move in there?");
+    for (int i = 0; i < tasks.size(); ++i) {
+      System.out.println((i+1) + " " + tasks.get(i).getDescription());
+    }
+    correct = false;
+    while (!correct) {
+      int input = in.nextInt();
+      in.nextLine();
+      correct = f.changeColumn(tasks.get(input - 1), 3);
+      if (correct)
+        break;
+      System.out.println("Incorrect option");
+    }
+
+    System.out.println("Items in column:");
+    // Task[] columnTs = f.getCurrentProject().getColumn(answer);
+    // System.out.println(columnTs[0]);
+    System.out.println(tasks.get(1).getDescription());
     /* 
     Facade f = Facade.getInstance();
     boolean yes = f.logInUser("sMcNug", "password");

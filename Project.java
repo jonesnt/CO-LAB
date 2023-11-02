@@ -83,7 +83,8 @@ public class Project {
 
         if (!columnList.contains(columnName)){
         columnList.add(columnName);
-        columns.put(columnName, columns.get(columnName));
+        Queue<Task> tempList = new LinkedList<Task>();
+        columns.put(columnName, tempList);
         return true;
         }else return false;
     }
@@ -162,7 +163,7 @@ public class Project {
             return false;
         }
         //if task and column exitst 
-        if(tasks.contains(changeTask)&&columnList.contains(columnList.get(columnChoice))){
+        if(tasks.contains(changeTask) && columnList.contains(columnList.get(columnChoice))){
      /* 
         // find old column 
         HashMap<String, Queue<Task>> tempColumns = columns;
@@ -251,19 +252,15 @@ public class Project {
         return columnList;
     }
 
-    public ArrayList<Task> getColumn(String columnName) {
+    public Task[] getColumn(String columnName) {
         //  check if the column exists
-        if (columnName == null || columns.containsKey(columnName)) {
+        if (columnName == null || !columns.containsKey(columnName)) {
             return null;
         }
         ArrayList<Task> result;
         Queue<Task> queue  = columns.get(columnName);
-        Task[] array = queue.toArray(new Task[0]);
-        ArrayList<Task> co = null;
-        for (int i = 0; i < array.length; ++i) {
-            co.add(array[i]);
-        }
-        return co;
+        Task[] array = queue.toArray(new Task[queue.size()]);
+        return array;
     }
 
     public boolean iterate(Task attempt) {
