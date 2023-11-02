@@ -4,7 +4,7 @@
         "name":"Electric Missiles",
         "description":"The Electric Missiles Project",
         "time":"2023-10-08T20:35:36.877649Z",
-        "assignedUsers":[],
+        "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
         "tasks":[],
         "columnList":["ToDo", "Doing", "Completed"],
         "columns":{
@@ -17,7 +17,7 @@
         "name":"Soap Free Washers",
         "description":"The Soap Free Washers Project",
         "time":"2023-10-08T20:37:38.844649Z",
-        "assignedUsers":[],
+        "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
         "tasks":[],
         "columnList":["ToDo", "Doing", "Completed"],
         "columns":{
@@ -30,7 +30,7 @@
         "name":"Air Computers",
         "description":"The Air Computers Projects",
         "time":"2023-10-08T20:37:38.844649Z",
-        "assignedUsers":[],
+        "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
         "tasks":[],
         "columnList":["ToDo", "Doing", "Completed"],
         "columns":{

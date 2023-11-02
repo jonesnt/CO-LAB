@@ -34,9 +34,10 @@ public class TUI {
  
 
     ArrayList<Project> projs = f.getProjectList();
-    System.out.println("chose project:");
-    for (int i = 1; i < projs.size(); i++)
-    System.out.println(projs.get(i).getName() + "\n");
+    System.out.println("choose project:");
+    for (int i = 0; i < projs.size(); ++i) {
+      System.out.println(i + ": " + projs.get(i).getName());
+    }
 
 
     /* 
