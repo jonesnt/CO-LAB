@@ -120,8 +120,8 @@ public class Facade {
     if (currentTaskList == null || taskNum < 0 || taskNum > (currentTaskList.size() + 1))
       return false;
     // clear items below (waterfall)
-    currentToDoList = null;
-    currentCommentList = null;
+    currentToDoList = new ArrayList<ToDo>();
+    currentCommentList = new ArrayList<Comment>();
     changeCurrentToDo(0);
     changeCurrentComment(0);
     //  see if it's supposed to clear
@@ -158,16 +158,16 @@ public class Facade {
     //  If a 0 is put in, it will GO BACK a LAYER if possible
     //  CHECK THIS IN THE UI!
     //  check the number
-    if (commentNum < 0 || commentNum < (currentCommentList.size() - 1))
+    if (commentNum < 0 || commentNum > (currentCommentList.size() + 1))
       return false;
     // see if it's supposed to go back
     if (commentNum == 0) {
       //  Right now, getBackEdge() returns a UUID? why
-      if (currentComment.getBackEdge() == null)
+      if (currentComment == null || currentComment.getBackEdge() == null)
         return false;
       currentComment = currentComment.getBackEdge();
-    } else { 
-      currentComment = currentComment.getReplies().get(commentNum - 1);
+    } else {
+      currentComment = currentCommentList.get(commentNum - 1);
     }
     currentCommentList = currentComment.getReplies();
     return true;
@@ -196,6 +196,7 @@ public class Facade {
     if (newTask == null || currentProject == null || currentProject.getColumnList().isEmpty())
       return false;
     //  WILL NOT WORK: im requesting the ColumnChoice to be a String
+    currentTaskList.add(newTask);
     return currentProject.addTask(newTask, newTask.getColumnTag());
   }
 
@@ -210,9 +211,14 @@ public class Facade {
   public boolean addComment(Comment newComment) {
     //  This is for a head comment, NOT a reply!
     //  existience check
+    if (currentComment != null)
+      addReply(newComment.getCommentData());
     if (newComment == null || currentTask == null)
       return false;
-    return currentTask.addComment(newComment);
+    boolean worked = currentTask.addComment(newComment);
+    // if (worked) 
+      // currentCommentList.add(newComment);
+    return worked;
   }
 
   public boolean addReply(String reply) {

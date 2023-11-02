@@ -24,10 +24,10 @@ public class Task {
     this.taskID = UUID.randomUUID();
     this.name = name;
     this.description = description;
-    this.history = null;
-    this.todos = null;
-    this.comments = null;
-    this.assignedUsers = null;
+    this.history = new LinkedList<TaskEvent>();
+    this.todos = new ArrayList<ToDo>();
+    this.comments = new ArrayList<Comment>();
+    this.assignedUsers = new ArrayList<UUID>();
     this.isCompleted = false;
     this.bgColor = null;
     this.fgColor = null;

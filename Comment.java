@@ -23,19 +23,19 @@ public class Comment {
 
     public Comment(String commentData, UUID author, Comment backEdge) {
         // store commentData
-        commentData = commentData;
+        this.commentData = commentData;
         // store UUID of comment author
-        author = author;
+        this.author = author;
         // then, find out what time they made the comment
         // and then store it
-        time = ZonedDateTime.now();
+        this.time = ZonedDateTime.now();
         // initialize the array list of 'threads'
         // a nullptr signifies that the comment
         // has no children
-        replies = null;
+        this.replies = new ArrayList<Comment>();
         // assign new ID
-        commentID = UUID.randomUUID();
-        commentBackEdge = backEdge;
+        this.commentID = UUID.randomUUID();
+        this.commentBackEdge = backEdge;
     }
 
     public Comment(UUID comemntID, String commentData, UUID author,

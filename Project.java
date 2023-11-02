@@ -94,7 +94,7 @@ public class Project {
         // return
         // columns.putIfAbsent(columnList[columnList],ArrayList<Task>().add(newTask));//
 
-        if (tasks.contains(newTask) && columnList.contains(columnChoice)) {
+        if (!tasks.contains(newTask) && columnList.contains(columnChoice)) {
             columns.get(columnChoice).add(newTask);
             return true;
         } else
