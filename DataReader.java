@@ -281,7 +281,7 @@ public class DataReader extends DataConstants {
             JSONObject taskHistoryJSON = (JSONObject) aTaskHistory;
             ZonedDateTime eventTime = ZonedDateTime.parse((String) taskHistoryJSON.get(TASK_EVENT_TIME));
             String eventName = (String) taskHistoryJSON.get(TASK_EVENT_NAME);
-            User involvedUser = ((User) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
+            UUID involvedUser = UUID.fromString((String) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
             taskHistoriesList.add(new TaskEvent(eventTime, eventName, involvedUser));
         }
         return taskHistoriesList;
