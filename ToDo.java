@@ -59,6 +59,9 @@ public class ToDo {
   public void changeCompletion() {
     isCompleted = !isCompleted;
   }
+  public UUID getID() {
+    return toDoID;
+  }
 
   public boolean editToDo(String newName) {
     if(newName == null)

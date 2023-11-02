@@ -111,4 +111,9 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    // THIS IS INSECURE AS FU**, PUSH IT
+    public String getPassword() {
+        return password;
+    }
 }

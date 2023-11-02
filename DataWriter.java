@@ -197,7 +197,7 @@ public class DataWriter extends DataConstants {
         }
         taskDetails.put(PROJECT_ASSIGNED_USERS, assignedUsers);
 
-        taskDetails.put(TASK_TODOS, getToDosJSON(task.getToDos()));
+        taskDetails.put(TASK_TODOS, getToDosJSON(task.getTodo()));
         taskDetails.put(TASK_COMMENTS, getCommentsJSON(task.getComments()));
         taskDetails.put(TASK_COMPLETION_STATUS, task.isCompleted());
         taskDetails.put(TASK_HISTORY, getTaskHistoriesJSON(task.getHistory()));
