@@ -24,10 +24,10 @@ public class TaskEvent {
         this.relatedUser = involvedUser.getUserID();
     }
 
-    public TaskEvent(ZonedDateTime eventTime, String eventName, User involvedUser) {
+    public TaskEvent(ZonedDateTime eventTime, String eventName, UUID involvedUser) {
         this.eventTime = eventTime;
         this.eventName = eventName;
-        this.relatedUser = involvedUser.getUserID();
+        this.relatedUser = involvedUser;
     }
 
     /**
