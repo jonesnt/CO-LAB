@@ -28,8 +28,8 @@ public class User {
         setPassword(password);
     }
 
-    public User(UUID userID, String username, String password,
-            String lastName, String firstName) {
+    public User(UUID userID, String username,
+            String lastName, String firstName, String password) {
         userID = userID;
         username = username;
         password = password;
