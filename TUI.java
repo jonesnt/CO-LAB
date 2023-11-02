@@ -17,12 +17,17 @@ public class TUI {
 
     login = f.logInUser(username, pass);
     if(!login){
+      System.out.println(" ");
       System.out.println("login Unsuccessful");
     System.out.println(" ");
     System.out.println("----------------------------------------------------------------");
+    
     }
      if (login){
+      System.out.println(" ");
       System.out.println("login Successfull");
+      System.out.println(" ");
+    System.out.println("----------------------------------------------------------------");
      }
 
   }
