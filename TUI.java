@@ -10,12 +10,13 @@ public class TUI {
     while (!login){
     System.out.println("-----------------------------------------------------------------");
     System.out.println(" ");
-    System.out.println("Username:");//aMadden
-    String username = in.nextLine();
-    System.out.println("Password:");//1234
-    String pass= in.nextLine();
-
-    login = f.logInUser(username, pass);
+    // System.out.println("Username:");//aMadden
+    // String username = in.nextLine();
+    // System.out.println("Password:");//1234
+    // String pass= in.nextLine();
+    
+    // login = f.logInUser(username, pass);
+    login = f.logInUser("aMadden", "1234");
     if(!login){
       System.out.println(" ");
       System.out.println("login Unsuccessful");
@@ -31,7 +32,8 @@ public class TUI {
      }
 
   }
- 
+  //  make arraylist of all users:
+  ArrayList<User> users = f.getuserList();
 
     ArrayList<Project> projs = f.getProjectList();
     System.out.println("choose project:");
@@ -48,27 +50,52 @@ public class TUI {
     }
     System.out.println("You chose " + f.getCurrentProject().getName() );
 
-    
+    //  add new task
+    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
+    f.addTask(newTask);
+    //  assign user
+    f.changeCurrentTask(f.getTaskList().size());
+    f.assignTaskUser(f.findUser("jBlum").getUserID());
     //  add new comment
-    f.changeCurrentTask(f.getTaskList().indexOf(newTask));
     Comment newComment = new Comment("Avoid civilians Jeff!", f.getCurrentUser().getUserID(), null);
     f.addComment(newComment);
-
-
-    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
-
-    f.addTask(newTask);
-
-    f.assignTaskUser(f.);
-    
-
-
-    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
-
-    f.addTask(newTask);
-
-    f.assignTaskUser(f.);
-    
+    System.out.println(f.getCommentList().get(f.getCommentList().size() - 1).getCommentData());
+    //  move curve the metal to make a cylindrical shape
+    f.changeCurrentTask(0);
+    System.out.println("Choose the task you want to do:\n");
+    for (int i = 0; i < f.getTaskList().size(); ++i) {
+      System.err.println((i+1) + " " + f.getTaskList().get(i).getName());
+    }
+    boolean rightAnswer = false;
+    while(!rightAnswer) {
+      int answer = in.nextInt();
+      rightAnswer = f.changeCurrentTask(answer);
+      if (!rightAnswer || answer == 0){
+        System.out.println("Try a different number");
+        rightAnswer = false;
+      }
+    }
+    System.out.println("You chose " + f.getCurrentTask().getName());
+    System.out.println("Change to which column?");
+    ArrayList<String> columns = f.getColumnList();
+    for (int i = 0; i < columns.size(); ++i) {
+      System.out.println((i+1) + " " + columns.get(i));
+    }
+    rightAnswer = false;
+    while(!rightAnswer) {
+      int answer = in.nextInt();
+      rightAnswer = f.changeColumn(f.getCurrentTask(), answer - 1);
+      if (!rightAnswer){
+        System.out.println("Try a different number");
+        rightAnswer = false;
+      }
+    }
+    System.out.println("Column \"Doing\" contains:");
+    ArrayList<Task> tasks = f.getTaskList();
+    for (Task task : tasks) {
+      if (task.getColumnTag().equals("Doing"))
+        System.out.println(task.getName());
+    }
 
     /* 
     Facade f = Facade.getInstance();

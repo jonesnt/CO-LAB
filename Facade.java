@@ -121,7 +121,7 @@ public class Facade {
     //  If a 0 is put in, it will CLEAR and make the currentTask NULL!!
     //  CHECK THIS IN THE UI!
     //  check the number
-    if (currentTaskList == null || taskNum < 0 || taskNum > (currentTaskList.size() + 1))
+    if (currentTaskList == null || taskNum < 0 || taskNum > (currentTaskList.size()))
       return false;
     // clear items below (waterfall)
     currentToDoList = new ArrayList<ToDo>();
@@ -176,7 +176,13 @@ public class Facade {
     currentCommentList = currentComment.getReplies();
     return true;
   }
-
+  public boolean changeColumn(Task task, int columnChoice) {
+    //  try it
+    boolean result = currentProject.changeColumn(task, columnChoice);
+    if (result)
+      task.editColumnTag(getColumnList().get(columnChoice));
+    return result;
+  }
 //  add functions
   public boolean addProject(Project newProject) {
     //  first, check and see that it's not null && if that project already 
@@ -427,6 +433,9 @@ public class Facade {
     //  TODO
   }
 //  getters
+  public User findUser(String username) {
+    return uM.findUser(username);
+  }
   public ArrayList<Project> getMasterList() {
     return masterProjectList;
   }
@@ -447,6 +456,9 @@ public class Facade {
 
   public Comment getCurrentComment() {
     return currentComment;
+  }
+  public ArrayList<String> getColumnList() {
+    return currentProject.getColumnList();
   }
 
   public ArrayList<Project> getProjectList() {

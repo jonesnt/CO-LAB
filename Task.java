@@ -72,6 +72,10 @@ public class Task {
     return false;
   }
 
+  public void editColumnTag(String newColumnTag) {
+    this.columnTag = newColumnTag;
+  }
+  
   public boolean editTask(String newName, String newDescription, User currentUser) {
     if(newName == null || newDescription == null)
       return false;

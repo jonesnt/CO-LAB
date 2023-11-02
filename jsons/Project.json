@@ -5,10 +5,10 @@
         "description":"The Electric Missiles Project",
         "time":"2023-10-08T20:35:36.877649Z",
         "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
-        "tasks":[],
+        "tasks":["9251dd95-6b92-4f9a-8dd0-b96e168edff6"],
         "columnList":["ToDo", "Doing", "Completed"],
         "columns":{
-            "ToDo":[],
+            "ToDo":["9251dd95-6b92-4f9a-8dd0-b96e168edff6"],
             "In_Progress":[],
             "Completed":[]
         }

@@ -157,7 +157,10 @@ public class Project {
 
     // moves task to different column
     public boolean changeColumn(Task changeTask, int columnChoice) {
-
+        //make cure it's within bounds
+        if (columnChoice > columnList.size() ||columnChoice < 0) {
+            return false;
+        }
         //if task and column exitst 
         if(tasks.contains(changeTask)&&columnList.contains(columnList.get(columnChoice))){
      /* 
