@@ -74,7 +74,7 @@ public class Task {
     return false;
   }
 
-  public boolean editTask(String newName, String newDescription User currentUser) {
+  public boolean editTask(String newName, String newDescription, User currentUser) {
     if(newName == null || newDescription == null)
       return false;
     if(newName != null)
@@ -136,6 +136,16 @@ public class Task {
   private void addEvent(User currentUser, String eventDescription) {
     history.add(new TaskEvent(eventDescription, currentUser));
   }
+  public ArrayList<ToDo> getTodo() {
+    return todos;
+  }
+  public ArrayList<Comment> getComments(){
+    return comments;
+  }
+  public boolean isCompleted(){
+    return isCompleted;
+  }
+
 
   public String getColumnTag() {
     return columnTag;
