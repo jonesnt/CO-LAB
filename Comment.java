@@ -39,13 +39,14 @@ public class Comment {
     }
 
     public Comment(UUID comemntID, String commentData, UUID author,
-        ArrayList<Comment> replies, ZonedDateTime time, Comment commentBackEdge) {
+        ArrayList<Comment> replies, ZonedDateTime time, UUID commentBackEdge) {
             commentID = comemntID;
             commentData = commentData;
             author = author;
             replies = replies;
             time = time;
-            commentBackEdge = commentBackEdge;
+            //BROKEN
+            // commentBackEdge = commentBackEdge;
     }
 
     public boolean editComment(String newComment) {

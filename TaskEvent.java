@@ -24,6 +24,12 @@ public class TaskEvent {
         relatedUser = involvedUser.getUserID();
     }
 
+    public TaskEvent(ZonedDateTime eventTime, String eventName, User involvedUser) {
+        eventTime = eventTime;
+        eventName = eventName;
+        relatedUser = involvedUser.getUserID();
+    }
+
     /**
      * This method returns the name of the event
      * @return String representing the event name
