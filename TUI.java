@@ -35,10 +35,18 @@ public class TUI {
 
     ArrayList<Project> projs = f.getProjectList();
     System.out.println("choose project:");
-    for (int i = 0; i < projs.size(); ++i) {
-      System.out.println(i + ": " + projs.get(i).getName());
+    for (int i = 1; i < projs.size() + 1; ++i) {
+      System.out.println(i + ": " + projs.get(i - 1).getName());
     }
-
+    boolean correct = false;
+    while (!correct) {
+      int input = in.nextInt();
+      correct = f.changeCurrentProject(input);
+      if (correct)
+        break;
+      System.out.println("Incorrect option");
+    }
+    System.out.println("You chose " + f.getCurrentProject().getName() );
 
     /* 
     Facade f = Facade.getInstance();
