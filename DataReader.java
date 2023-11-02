@@ -330,7 +330,7 @@ public class DataReader extends DataConstants {
         if (projects != null) {
             for (Project project : projects) {
                 if (project.getName().equals(projectName)) {
-                    return project.getID();
+                    return project.getUUID();
                 }
             }
         }

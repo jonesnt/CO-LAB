@@ -16,7 +16,8 @@ public class UserManager {
      * class is meant to be a singleton
      */
     private UserManager() {
-        userList = DataReader.getInstance().getUsers();
+        DataReader dr = DataReader.getInstance();
+        userList = dr.getUsers();
     }
 
     /**
