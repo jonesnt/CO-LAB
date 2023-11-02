@@ -20,7 +20,7 @@ public class TaskEvent {
      */
     public TaskEvent(String eventName, User involvedUser) {
         this.eventTime = ZonedDateTime.now();
-        this. = eventName;
+        this.eventName = eventName;
         this.relatedUser = involvedUser.getUserID();
     }
 
