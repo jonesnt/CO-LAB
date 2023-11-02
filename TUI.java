@@ -48,6 +48,14 @@ public class TUI {
     }
     System.out.println("You chose " + f.getCurrentProject().getName() );
 
+
+    Task newTask = new Task("Avoid Civilians Task", "Avoid civilians Jeff!", "ToDo", f.getCurrentUser());
+
+    f.addTask(newTask);
+
+    f.assignTaskUser(f.);
+    
+
     /* 
     Facade f = Facade.getInstance();
     boolean yes = f.logInUser("sMcNug", "password");
