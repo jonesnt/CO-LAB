@@ -10,13 +10,12 @@ public class TUI {
     while (!login){
     System.out.println("-----------------------------------------------------------------");
     System.out.println(" ");
-    // System.out.println("Username:");//aMadden
-    // String username = in.nextLine();
-    // System.out.println("Password:");//1234
-    // String pass= in.nextLine();
+    System.out.println("Username:");//aMadden
+    String username = in.nextLine();
+    System.out.println("Password:");//1234
+    String pass= in.nextLine();
     
-    // login = f.logInUser(username, pass);
-    login = f.logInUser("aMadden", "1234");
+    login = f.logInUser(username, pass);
     if(!login){
       System.out.println(" ");
       System.out.println("login Unsuccessful");
