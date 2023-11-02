@@ -29,7 +29,8 @@
         "eventTime":"2023-10-08T22:45:38.855649Z",
         "eventName":"Task Created",
         "involvedUser":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
-      }]
+      }],
+      "columgTag":"ToDo"
   },{
     "taskID":"4dda1f4c-d877-47f5-9099-3169cf8dd408",
     "name":"Game Task",
@@ -57,7 +58,8 @@
       "eventTime":"2023-10-08T23:46:34.905649Z",
       "eventName":"Task Created",
       "involvedUser":"760e7421-48f8-4b80-852b-06f94f852d3f"
-    }]
+    }],
+    "columgTag":"ToDo"
   },{
     "taskID":"374472be-18b3-4786-98c4-99ed1525a6a0",
     "name":"Second Task",
@@ -85,6 +87,7 @@
       "eventTime":"2023-10-09T02:59:40.895649Z",
       "eventName":"Task Created",
       "involvedUser":"dc2e88d7-8953-48fa-b388-797bb3289be6"
-    }]
+    }],
+    "columgTag":"ToDo"
   }
 ]
