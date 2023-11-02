@@ -227,15 +227,8 @@ public class Project {
         tasks = new ArrayList<Task>();
         HashMap<String, Queue<Task>> tempColumns = columns;
         Queue<Task> tempQueue = null;
-        while (!tempColumns.isEmpty()) {
-            for (String specificString : columnList) {
-                if (!(tempColumns.get(specificString).isEmpty())) {
-                    tasks.add(tempColumns.get(specificString).remove());
-                    if (tempColumns.get(specificString).isEmpty())
-                        tempColumns.remove(specificString);
-                }
-            }
-        }
+        ArrayList<String> tempList = columnList;
+        
         return tasks;
     }
 
