@@ -1,21 +1,21 @@
 [
     {
         "userID":"28b8af0e-624f-4fb0-ac94-b2422727b25b",
-        "username":"bJohn",
+        "username":"aMadden",
         "password":"1234",
-        "firstName":"Billy",
-        "lastName":"Johnson"
+        "firstName":"Atticus",
+        "lastName":"Madden"
     },{
         "userID":"760e7421-48f8-4b80-852b-06f94f852d3f",
-        "username":"sMcNug",
+        "username":"jBlum",
         "password":"password",
-        "firstName":"Sam",
-        "lastName":"McNugget"
+        "firstName":"Jeff",
+        "lastName":"Goldblum"
     },{
         "userID":"dc2e88d7-8953-48fa-b388-797bb3289be6",
-        "username":"tLee",
+        "username":"aFinch",
         "password":"asdf",
-        "firstName":"Tony",
-        "lastName":"Lee"
+        "firstName":"Atticus",
+        "lastName":"Finch"
     }
 ]
