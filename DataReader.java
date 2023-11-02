@@ -93,7 +93,7 @@ public class DataReader extends DataConstants {
                 }
 
                 projects.add(new Project(projectID, name, description, time, assignedUsers, tasks,
-                        columnList, columns));
+                        columnList));
             }
 
             return projects;
@@ -131,8 +131,8 @@ public class DataReader extends DataConstants {
                 ArrayList<Comment> comments = getComments((JSONArray) taskJSON.get(TASK_COMMENTS));
                 LinkedList<TaskEvent> history = getHistory((JSONArray) taskJSON.get(TASK_HISTORY));
 
-                tasks.add(new Task(taskID, name, description, bgColor, fgColor, assignedUsers, todos, comments,
-                        isCompleted, history, columnTag));
+                tasks.add(new Task(taskID, name, description, history, todos, comments,
+                        assignedUsers, isCompleted, bgColor, fgColor, columnTag));
             }
 
             return tasks;
@@ -200,7 +200,7 @@ public class DataReader extends DataConstants {
 
         if (projects != null) {
             for (Project project : projects) {
-                if (project.getID().toString().equals(uuid)) {
+                if (project.getUUID().toString().equals(uuid)) {
                     return project;
                 }
             }
@@ -281,7 +281,7 @@ public class DataReader extends DataConstants {
             JSONObject taskHistoryJSON = (JSONObject) aTaskHistory;
             ZonedDateTime eventTime = ZonedDateTime.parse((String) taskHistoryJSON.get(TASK_EVENT_TIME));
             String eventName = (String) taskHistoryJSON.get(TASK_EVENT_NAME);
-            UUID involvedUser = UUID.fromString((String) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
+            User involvedUser = ((User) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
             taskHistoriesList.add(new TaskEvent(eventTime, eventName, involvedUser));
         }
         return taskHistoriesList;
@@ -330,7 +330,7 @@ public class DataReader extends DataConstants {
         if (projects != null) {
             for (Project project : projects) {
                 if (project.getName().equals(projectName)) {
-                    return project.getID();
+                    return project.getUUID();
                 }
             }
         }
