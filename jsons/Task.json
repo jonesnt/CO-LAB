@@ -1,100 +1,88 @@
 [
   {
     "taskID":"9251dd95-6b92-4f9a-8dd0-b96e168edff6",
-    "taskName":"First Task",
+    "name":"First Task",
     "description":"create a method",
-    "dateTime":"2023-10-08,T22:45:38:855649",
-    "color":"blue",
+    "time":"2023-10-08T22:45:38.855649Z",
+    "bgColor":"#0000FF",
+    "fgColor":"#FF0000",
     "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
-    "toDoList":[{
+    "todos":[{
         "toDoID":"32a78938-7851-4bae-ade9-3963dcbd091a",
-        "toDo":"finish the method",
-        "isCompleted":true
+        "name":"finish the method",
+        "isCompleted":true,
+        "assignedUser":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
       }],
     "comments":[{
         "commentID":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4",
-        "commentList":[
+        "replies":[
           "8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
           "3039415b-4ef0-4700-9ad6-61854af14fc1"
         ],
         "commentData":"some comment",
-        "commentDate":"2023-10-08,T23:35:38:855649",
-        "author":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
+        "time":"2023-10-08T23:35:38.855649Z",
+        "author":"28b8af0e-624f-4fb0-ac94-b2422727b25b",
+        "commentBackEdge":"822044f5-debc-4ab3-a1b8-ab66b8ee8dc4"
       }],
-    "demarkationList":["ToDo", "In_Progress", "Completed"],
-    "taskElements":{
-      "ToDo":["32a78938-7851-4bae-ade9-3963dcbd091a"],
-      "In_Progress":[],
-      "Completed":[]
-    },
-    "priority":1,
     "isCompleted":true,
-    "TaskHistory":[{
-        "eventTime":"2023-10-08,T22:45:38:855649",
+    "history":[{
+        "eventTime":"2023-10-08T22:45:38.855649Z",
         "eventName":"Task Created",
         "involvedUser":"28b8af0e-624f-4fb0-ac94-b2422727b25b"
       }]
   },{
     "taskID":"4dda1f4c-d877-47f5-9099-3169cf8dd408",
-    "taskName":"Game Task",
+    "name":"Game Task",
     "description":"create the first method",
-    "dateTime":"2023-10-08,T23:46:34:905649",
-    "color":"red",
+    "time":"2023-10-08T23:46:34.905649Z",
+    "bgColor":"#FF0000",
+    "fgColor":"#0000FF",
     "assignedUsers":["760e7421-48f8-4b80-852b-06f94f852d3f"],
-    "toDoList":[{
+    "todos":[{
         "toDoID":"174fc8cc-c0bf-42c2-8f7f-e1fe24362779",
-        "toDo":"finsih the first method",
-        "isCompleted":true
+        "name":"finsih the first method",
+        "isCompleted":true,
+        "assignedUser":"760e7421-48f8-4b80-852b-06f94f852d3f"
       }],
     "comments":[{
         "commentID":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9",
-        "commentList":["3039415b-4ef0-4700-9ad6-61854af14fc1"],
+        "replies":["3039415b-4ef0-4700-9ad6-61854af14fc1"],
         "commentData":"another comment",
-        "commentDate":"2023-10-08,T24:40:39:855649",
-        "author":"760e7421-48f8-4b80-852b-06f94f852d3f"
+        "time":"2023-10-09T00:40:39.855649Z",
+        "author":"760e7421-48f8-4b80-852b-06f94f852d3f",
+        "commentBackEdge":"8e7368ad-98d4-49e8-b8c1-93d00c9c11a9"
       }],
-    "demarkationList":["ToDo", "In_Progress", "Completed"],
-    "taskElements":{
-      "ToDo":["174fc8cc-c0bf-42c2-8f7f-e1fe24362779"],
-      "In_Progress":[],
-      "Completed":[]
-    },
-    "priority":1,
     "isCompleted":true,
-    "TaskHistory":[{
-      "eventTime":"2023-10-08,T23:46:34:905649",
+    "history":[{
+      "eventTime":"2023-10-08T23:46:34.905649Z",
       "eventName":"Task Created",
       "involvedUser":"760e7421-48f8-4b80-852b-06f94f852d3f"
     }]
   },{
     "taskID":"374472be-18b3-4786-98c4-99ed1525a6a0",
-    "taskName":"Second Task",
+    "name":"Second Task",
     "description":"Finish the game",
-    "dateTime":"2023-10-08,T25:36:40:865649",
-    "color":"green",
+    "time":"2023-10-09T01:36:40.865649Z",
+    "bgColor":"#0000FF",
+    "fgColor":"#FF0000",
     "assignedUsers":["dc2e88d7-8953-48fa-b388-797bb3289be6"],
-    "toDoList":[{
+    "todos":[{
         "toDoID":"81c9e869-6d46-4d93-b458-ec4b840a1e8d",
-        "toDo":"check all methods",
-        "isCompleted":false
+        "name":"check all methods",
+        "isCompleted":false,
+        "assignedUser":"dc2e88d7-8953-48fa-b388-797bb3289be6"
       }],
     "comments":[{
         "commentID":"3039415b-4ef0-4700-9ad6-61854af14fc1",
-        "commentList":[],
+        "replies":[],
         "commentData":"last comment",
-        "commentDate":"2023-10-08,T26:59:40:895649",
-        "author":"dc2e88d7-8953-48fa-b388-797bb3289be6"
+        "time":"2023-10-09T02:59:40.895649Z",
+        "author":"dc2e88d7-8953-48fa-b388-797bb3289be6",
+        "commentBackEdge":"3039415b-4ef0-4700-9ad6-61854af14fc1"
       }],
-    "demarkationList":["ToDo", "In_Progress", "Completed"],
-    "taskElements":{
-      "ToDo":["81c9e869-6d46-4d93-b458-ec4b840a1e8d"],
-      "In_Progress":[],
-      "Completed":[]
-    },
-    "priority":1,
     "isCompleted":false,
-    "TaskHistory":[{
-      "eventTime":"2023-10-08,T25:36:40:865649",
+    "history":[{
+      "eventTime":"2023-10-09T02:59:40.895649Z",
       "eventName":"Task Created",
       "involvedUser":"dc2e88d7-8953-48fa-b388-797bb3289be6"
     }]

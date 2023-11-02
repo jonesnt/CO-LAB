@@ -51,6 +51,7 @@ public class Project {
         this.assignedUsers = assignedUsers;
         this.tasks = tasks;
         this.columnList = columnList;
+        this.columns = new HashMap<String, Queue<Task>>();
 
         for (String specificColumn : columnList) {
             Queue<Task> tempQueue = new LinkedList<Task>();
@@ -68,7 +69,7 @@ public class Project {
         this.name = name;
         this.description = description;
         this.time = ZonedDateTime.now();
-        this.columns = new HashMap<>();
+        this.columns = new HashMap<String, Queue<Task>>();
         this.assignedUsers = null;
         this.tasks = null;
         this.columnList = null;
