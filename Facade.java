@@ -464,6 +464,10 @@ public class Facade {
   public ArrayList<Comment> getCommentList() {
     return currentCommentList;
   }
+
+  public ArrayList<User> getuserList() {
+    return uM.getUserList();
+  }
 // exit function
   private void save() {
     //  overwrite masterlist

@@ -48,6 +48,19 @@ public class TUI {
     }
     System.out.println("You chose " + f.getCurrentProject().getName() );
 
+    
+
+
+
+    
+    
+    
+    
+    //  add new comment
+    f.changeCurrentTask(f.getTaskList().indexOf(newTask));
+    Comment newComment = new Comment("Avoid civilians Jeff!", f.getCurrentUser().getUserID(), null);
+    f.addComment(newComment);
+
     /* 
     Facade f = Facade.getInstance();
     boolean yes = f.logInUser("sMcNug", "password");
