@@ -234,6 +234,9 @@ public class Project {
         else
             return false;
     }
+    public String getName(){
+        return name;
+    }
 
     // sees if the project = another project
     public boolean equals(Project projectAttempt) {
