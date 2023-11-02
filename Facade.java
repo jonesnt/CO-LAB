@@ -417,6 +417,9 @@ public class Facade {
   }
 //  getters
 
+  public User getCurrentUser() {
+    return currentUser;
+  }
   public Project getCurrentProject() {
     return currentProject;
   }

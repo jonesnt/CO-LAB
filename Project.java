@@ -229,7 +229,7 @@ public class Project {
         Queue<Task> tempQueue = null;
         while (!tempColumns.isEmpty()) {
             for (String specificString : columnList) {
-                if (tempColumns.get(specificString) != null) {
+                if (!(tempColumns.get(specificString).isEmpty())) {
                     tasks.add(tempColumns.get(specificString).remove());
                     if (tempColumns.get(specificString).isEmpty())
                         tempColumns.remove(specificString);
