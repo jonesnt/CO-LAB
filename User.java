@@ -28,6 +28,15 @@ public class User {
         setPassword(password);
     }
 
+    public User(UUID userID, String username, String password,
+            String lastName, String firstName) {
+        userID = userID;
+        username = username;
+        password = password;
+        firstName = firstName;
+        lastName = lastName;
+    }
+
     /**
      * This method gets the user's first name
      * @return String representing the user's first name
