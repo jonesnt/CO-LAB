@@ -44,13 +44,13 @@ public class Project {
     public Project(UUID projectID, String name, String description,
             ZonedDateTime time, ArrayList<UUID> assignedUsers,
             ArrayList<Task> tasks, ArrayList<String> columnList) {
-        projectID = projectID;
-        name = name;
-        description = description;
-        time = time;
-        assignedUsers = assignedUsers;
-        tasks = tasks;
-        columnList = columnList;
+        this.projectID = projectID;
+        this.name = name;
+        this.description = description;
+        this.time = time;
+        this.assignedUsers = assignedUsers;
+        this.tasks = tasks;
+        this.columnList = columnList;
 
         for (String specificColumn : columnList) {
             Queue<Task> tempQueue = new LinkedList<Task>();
@@ -65,9 +65,10 @@ public class Project {
 
     public Project(String name, String description) {
         projectID = UUID.randomUUID();
-        name = name;
-        description = description;
+        this.name = name;
+        this.description = description;
         time = ZonedDateTime.now();
+        columns = new HashMap<>();
         assignedUsers = null;
         tasks = null;
         columnList = null;

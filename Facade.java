@@ -52,6 +52,10 @@ public class Facade {
     dW = DataWriter.getInstance();
     //  There used to be a getUsers() datareader function here but I removed it.
     //  It should be implemented in UserManager
+    currentProjectList = new ArrayList<Project>();
+    currentTaskList = new ArrayList<Task>();
+    currentToDoList = new ArrayList<ToDo>();
+    currentCommentList = new ArrayList<Comment>();
   }
 
   public static Facade getInstance() {
@@ -92,7 +96,7 @@ public class Facade {
     //  If a 0 is put in, it will CLEAR and make the currentProject NULL!!
     //  CHECK THIS IN THE UI!
     //  check the number
-    if (projNum < 0 || projNum > (currentProjectList.size() + 1))
+    if (projNum < 0 || currentProjectList == null || projNum > (currentProjectList.size() + 1))
       return false;
     // clear the items below (waterfall method)
     currentTaskList = null;
@@ -113,7 +117,7 @@ public class Facade {
     //  If a 0 is put in, it will CLEAR and make the currentTask NULL!!
     //  CHECK THIS IN THE UI!
     //  check the number
-    if (taskNum < 0 || taskNum > (currentTaskList.size() + 1))
+    if (currentTaskList == null || taskNum < 0 || taskNum > (currentTaskList.size() + 1))
       return false;
     // clear items below (waterfall)
     currentToDoList = null;
@@ -175,10 +179,12 @@ public class Facade {
       //  exists
     if (newProject == null)
       return false;
-    for (Project proj : currentProjectList) {
-      //  getname() doesn't exist? what
-      if (proj.getName().equals(newProject.getName()))
-        return false;
+    if(currentProjectList != null) {
+      for (Project proj : currentProjectList) {
+        //  getname() doesn't exist? what
+        if (proj.getName().equals(newProject.getName()))
+          return false;
+      }
     }
     //  add it to the list
     currentProjectList.add(newProject);
@@ -410,6 +416,23 @@ public class Facade {
     //  TODO
   }
 //  getters
+
+  public Project getCurrentProject() {
+    return currentProject;
+  }
+
+  public Task getCurrentTask() {
+    return currentTask;
+  }
+
+  public ToDo getCurrenToDo() {
+    return currentToDo;
+  }
+
+  public Comment getCurrentComment() {
+    return currentComment;
+  }
+
   public ArrayList<Project> getProjectList() {
     return currentProjectList;
   }
