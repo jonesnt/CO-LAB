@@ -50,7 +50,7 @@ public class DataWriter extends DataConstants {
      */
     public static void saveProjects() {
         Facade facade = Facade.getInstance(); // Updated to use Facade instead of ProjectManager
-        ArrayList<Project> projects = facade.getProjectList();
+        ArrayList<Project> projects = facade.getMasterList();
 
         JSONArray jsonProjects = new JSONArray();
 
@@ -152,7 +152,7 @@ public class DataWriter extends DataConstants {
         projectDetails.put(PROJECT_ID, project.getUUID().toString());
         projectDetails.put(PROJECT_NAME, project.getName());
         projectDetails.put(PROJECT_DESCRIPTION, project.getDescription());
-        projectDetails.put(PROJECT_DATE_TIME, project.getTime());
+        projectDetails.put(PROJECT_DATE_TIME, project.getTime().toString());
 
         JSONArray columnListJSON = new JSONArray();
         JSONObject columnsJSON = new JSONObject();

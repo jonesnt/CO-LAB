@@ -20,6 +20,7 @@ public class Facade {
   private User currentUser;
   private UUID currentUserID;
 
+  private ArrayList<Project> masterProjectList;
   private ArrayList<Project> currentProjectList;
   private Project currentProject;
   
@@ -56,6 +57,7 @@ public class Facade {
     currentTaskList = new ArrayList<Task>();
     currentToDoList = new ArrayList<ToDo>();
     currentCommentList = new ArrayList<Comment>();
+    masterProjectList = dR.getProjects();
   }
 
   public static Facade getInstance() {
@@ -190,6 +192,7 @@ public class Facade {
     }
     //  add it to the list
     currentProjectList.add(newProject);
+    masterProjectList.add(newProject);
     return true;
   }
 
@@ -424,7 +427,9 @@ public class Facade {
     //  TODO
   }
 //  getters
-
+  public ArrayList<Project> getMasterList() {
+    return masterProjectList;
+  }
   public User getCurrentUser() {
     return currentUser;
   }
@@ -461,10 +466,16 @@ public class Facade {
   }
 // exit function
   private void save() {
-    //  Write each project to file
+    //  overwrite masterlist
     for (Project project : currentProjectList) {
-      dW.saveProject(project);
+      for (int i = 0; i < masterProjectList.size(); ++i) {
+        if (masterProjectList.get(i).getUUID().equals(project.getUUID())) {
+          masterProjectList.remove(i);
+          masterProjectList.add(i, project);
+        }
+      }
     }
+    dW.saveProjects();
   }
   //  helper function to remove 1
   private int sub(int remove) {

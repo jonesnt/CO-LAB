@@ -76,15 +76,16 @@ public class DataReader extends DataConstants {
 
                 JSONArray taskUUIDsJSON = (JSONArray) projectJSON.get(PROJECT_TASKS);
                 ArrayList<Task> tasks = new ArrayList<>();
-                for (Object taskUUIDObj : taskUUIDsJSON) {
-                    String taskUUIDStr = (String) taskUUIDObj;
-                    UUID taskUUID = UUID.fromString(taskUUIDStr);
-                    Task task = getTaskByUUID(taskUUID);
-                    if (task != null) {
-                        tasks.add(task);
+                if (taskUUIDsJSON != null) {
+                    for (Object taskUUIDObj : taskUUIDsJSON) {
+                        String taskUUIDStr = (String) taskUUIDObj;
+                        UUID taskUUID = UUID.fromString(taskUUIDStr);
+                        Task task = getTaskByUUID(taskUUID);
+                        if (task != null) {
+                            tasks.add(task);
+                        }
                     }
                 }
-
                 ArrayList<String> columnList = (ArrayList<String>) projectJSON.get(PROJECT_COLUMN_LIST);
                 JSONObject projectColumnsJSON = (JSONObject) projectJSON.get(PROJECT_COLUMNS);
                 HashMap<String, ArrayList<UUID>> columns = new HashMap<>();
@@ -295,8 +296,10 @@ public class DataReader extends DataConstants {
      */
     private static ArrayList<UUID> convertToUUIDList(JSONArray array) {
         ArrayList<UUID> uuidList = new ArrayList<>();
-        for (Object obj : array) {
-            uuidList.add(UUID.fromString((String) obj));
+        if (array != null) {
+            for (Object obj : array) {
+                uuidList.add(UUID.fromString((String) obj));
+            }
         }
         return uuidList;
     }

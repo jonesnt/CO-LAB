@@ -73,9 +73,9 @@ public class Project {
         this.description = description;
         this.time = ZonedDateTime.now();
         this.columns = new HashMap<String, Queue<Task>>();
-        this.assignedUsers = null;
-        this.tasks = null;
-        this.columnList = null;
+        this.assignedUsers = new ArrayList<UUID>();
+        this.tasks = new ArrayList<Task>();
+        this.columnList = new ArrayList<String>();
     }
 
     // adds column within project for the tasks to be catergorized
