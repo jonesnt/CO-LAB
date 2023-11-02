@@ -46,4 +46,8 @@ public class TaskEvent {
         }
         return "deleted user";
     }
+
+    public ZonedDateTime getEventTime() {
+        return eventTime;
+    }
 }

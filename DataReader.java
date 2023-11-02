@@ -27,8 +27,8 @@ public class DataReader extends DataConstants {
      *
      * @return An ArrayList of User objects, or null if an exception occurs.
      */
-    public static ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<User>();
+    public static ArrayList<UUID> getUsers() {
+        ArrayList<UUID> users = new ArrayList<User>();
 
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
