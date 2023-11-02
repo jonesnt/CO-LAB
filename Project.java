@@ -53,14 +53,17 @@ public class Project {
         this.columnList = columnList;
         this.columns = new HashMap<String, Queue<Task>>();
 
-        for (String specificColumn : columnList) {
-            Queue<Task> tempQueue = new LinkedList<Task>();
-            columns.put(description, tempQueue);
-        }
+        if(columnList != null) {
 
-        for (int i = 0; i < tasks.size(); ++i) {
-            Queue tempQueue = columns.get(tasks.get(i).getColumnTag());
-            tempQueue.add(tasks.get(i));
+            for (String specificColumn : columnList) {
+                Queue<Task> tempQueue = new LinkedList<Task>();
+                columns.put(specificColumn, tempQueue);
+            }
+
+            for (int i = 0; i < tasks.size(); ++i) {
+                String specificColumn = tasks.get(i).getColumnTag();
+                columns.get(specificColumn).add(tasks.get(i));
+            }
         }
     }
 
