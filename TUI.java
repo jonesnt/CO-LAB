@@ -36,5 +36,6 @@ public class TUI {
     yes = f.changeCurrentComment(0);
     System.out.println(yes);
     System.out.println(f.getCurrentComment().getCommentData());
+    f.logOutUser();
   }
 }

@@ -82,12 +82,14 @@ public class Facade {
   }
 
   public void logOutUser() {
+    //  SAVE
+    save();
     //  clear everything 
     currentUser = null;
     currentProjectList = null;
     changeCurrentProject(0);
-    //  exit system
-    exit();
+    
+    
   }
 
 //  change functions
@@ -458,7 +460,7 @@ public class Facade {
     return currentCommentList;
   }
 // exit function
-  private void exit() {
+  private void save() {
     //  Write each project to file
     for (Project project : currentProjectList) {
       dW.saveProject(project);
