@@ -96,8 +96,29 @@ public class TaskTest {
     }
 
     @Test
-    public void testRemoveTopLevelComment() {
-        
+    public void testRemoveTopLevelCommentBound() {
+        task.addComment(new Comment("asdf", user.getUserID(), null));
+        assertFalse(task.removeTopLevelComment(task.getComments().size() + 1, user.getUserID()));
+        assertFalse(task.removeTopLevelComment(-1, user.getUserID()));
     }
+
+    @Test
+    public void testUnassignUser() {
+        task.assignUser(user.getUserID(), user);
+        assertTrue(task.unassignUser(user.getUserID(), user));
+        assertTrue(task.getAssignedUsers().isEmpty());
+        task.assignUser(user.getUserID(), user);
+        User newUser = new User("user2", "user", "2", "lsdfjlsdfk");
+        task.assignUser(newUser.getUserID(), user);
+        assertTrue(task.unassignUser(user.getUserID(), user));
+        assertEquals(task.getAssignedUsers().get(0), newUser.getUserID());
+    }
+
+    @Test
+    public void testAddEvent() {
+        task.changeCompletionStatus(user);
+        assertTrue(task.getHistory().size() == 0);
+    }
+
 
 }
