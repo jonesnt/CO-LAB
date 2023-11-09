@@ -117,7 +117,7 @@ public class TaskTest {
     @Test
     public void testAddEvent() {
         task.changeCompletionStatus(user);
-        assertTrue(task.getHistory().size() == 0);
+        assertTrue(task.getHistory().size() > 0);
     }
 
 
