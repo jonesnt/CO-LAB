@@ -17,15 +17,16 @@ import org.junit.jupiter.api.Test;
 
 public class DataReaderTest {
   private ArrayList<User> users;
-  users.add(new User("aMadden", "Atticus", "Madden", "1234"));
-  users.add(new User("jBlum", "Jeff", "Goldblum", "password"));
-  users.add(new User("aFinch", "Atticus", "Finch", "asdf"));
   private ArrayList<Project> projects;
 	private ArrayList<Task> tasks;
   private ArrayList<ToDo> todos;
 
 	@BeforeEach
 	public void setup() {
+    users = new ArrayList<User>();
+    projects = new ArrayList<Project>();
+    tasks = new ArrayList<Task>();
+    todos = new ArrayList<ToDo>();
     //  these users exist in the JSON file
     users.add(new User("aMadden", "Atticus", "Madden", "1234"));
     users.add(new User("jBlum", "Jeff", "Goldblum", "password"));
@@ -74,12 +75,16 @@ public class DataReaderTest {
     ArrayList<Task> tasksReceived = DataReader.getTasks();
     assertEquals(tasks, tasksReceived);
   }
+
   //  remove GetProjectsByUser, don't need it
   //  remove GetTaskByProject, don't need it
   //  remove getToDosByTask, don't need it
   //  remove getCommentsByTask, don't need it
-  //  remove getUserBy UUID
+  //  remove getUserByUUID
   //  remove getProjectByUUID
   //  remove getTaskByUUID
-
+  //  remove getUserUUIDByUsername
+  //  remove getProjectUUIDByName
+  //  remove getTaskUUIDByName
+  //  remove getToDoUUIDByName
 }
