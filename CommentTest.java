@@ -17,6 +17,7 @@ public class CommentTest {
   private ArrayList<User> users;
   Comment comment;
   static String commentData = "Comment Data";
+  static String replyData = "Reply Data";
   User author;
 
   @BeforeEach
@@ -34,13 +35,52 @@ public class CommentTest {
 
   @Test
   void testEditComment() {
-    comment.editComment("Edited Comment");
-    assertEquals("Edited Comment", comment.getCommentData());
+    boolean result = comment.editComment("Edited Comment");
+    assertTrue(result);
   }
 
   @Test
   void testNullEditComment() {
     boolean result = comment.editComment(null);
+    assertFalse(result);
+  }
+
+  @Test
+  void testAddReply() {
+    boolean result = comment.addReply(replyData, author.getUserID());
+    assertTrue(result);
+  }
+
+  @Test
+  void testAddNullReply() {
+    boolean result = comment.addReply(null, null);
+    assertFalse(result);
+  }
+
+  @Test
+  void testEquals() {
+    Comment temp = comment;
+    boolean result = comment.equals(temp);
+    assertTrue(result);
+  }
+
+  @Test
+  void testNotEquals() {
+    Comment temp = new Comment("Fake", author.getUserID(), null);
+    boolean result = comment.equals(temp);
+    assertFalse(result);
+  }
+
+  @Test
+  void testRemoveReply() {
+    comment.addReply(replyData, author.getUserID());
+    boolean result = comment.removeReply(0, author.getUserID());
+    assertTrue(result);
+  }
+
+  @Test
+  void testRemoveNullReply() {
+    boolean result = comment.removeReply(10, null);
     assertFalse(result);
   }
 }
