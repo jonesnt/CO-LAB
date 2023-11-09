@@ -156,21 +156,23 @@ public class DataWriter extends DataConstants {
 
         JSONArray columnListJSON = new JSONArray();
         JSONObject columnsJSON = new JSONObject();
-        for (String column : project.getColumnList()) {
-            // Add column name to columnList JSON Array
-            columnListJSON.add(column);
+        // for (String column : project.getColumnList()) {
+        // // Add column name to columnList JSON Array
+        // columnListJSON.add(column);
 
-            // Create a JSON Array for the tasks in the current column
-            JSONArray tasksJSON = new JSONArray();
-            List<Task> tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
-            if (tasksInColumn != null) {
-                for (Task task : tasksInColumn) {
-                    tasksJSON.add(task.getID().toString());
-                }
-            }
-            // Add the tasks JSON Array to the corresponding column in columns JSON Object
-            columnsJSON.put(column, tasksJSON);
-        }
+        // // Create a JSON Array for the tasks in the current column
+        // JSONArray tasksJSON = new JSONArray();
+        // List<Task> tasksInColumn = project.getColumn(column); // need to add a
+        // getColumns to project, maybe
+        // if (tasksInColumn != null) {
+        // for (Task task : tasksInColumn) {
+        // tasksJSON.add(task.getID().toString());
+        // }
+        // }
+        // // Add the tasks JSON Array to the corresponding column in columns JSON
+        // Object
+        // columnsJSON.put(column, tasksJSON);
+        // }
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
         projectDetails.put(PROJECT_COLUMNS, columnsJSON);
 
