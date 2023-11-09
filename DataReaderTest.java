@@ -49,7 +49,7 @@ public class DataReaderTest {
       tasks.add(toAdd);
 
     }
-    DataWriter.saveProjects();
+    // DataWriter.saveProjects();
 
 	}
 	
@@ -58,6 +58,10 @@ public class DataReaderTest {
 
 	}
 
+  @Test
+  void testRead() {
+    DataReader.getProjects();
+  }
 	@Test
 	void testGetUsers() {
     ArrayList<User> usersReceived = DataReader.getUsers();
