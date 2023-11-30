@@ -29,7 +29,7 @@ public class User {
     }
 
     public User(UUID userID, String username,
-            String lastName, String firstName, String password) {
+            String firstName, String lastName, String password) {
         this.userID = userID;
         this.username = username;
         this.password = password;
