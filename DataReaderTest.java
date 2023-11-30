@@ -64,7 +64,24 @@ public class DataReaderTest {
   }
 	@Test
 	void testGetUsers() {
+
+    // Load the users from the JSON file
     ArrayList<User> usersReceived = DataReader.getUsers();
+
+    // Print the data from the JSON file
+    System.out.println("Data from JSON file:");
+    for (User user : usersReceived) {
+        System.out.println("User: " + user.getUsername() + ", " + user.getFirstName() + ", " + user.getLastName() + ", " + user.getUserID());
+    }
+
+    // Print the data from the 'users' list
+    System.out.println("Data from 'users' list:");
+    for (User user : users) {
+        System.out.println("User: " + user.getUsername() + ", " + user.getFirstName() + ", " + user.getLastName() + ", " + user.getUserID());
+    }
+
+    // Check if the sizes of the lists match first
+    assertEquals(users.size(), usersReceived.size());
     assertEquals(users, usersReceived);
 	}
 
