@@ -103,6 +103,8 @@ public class Task {
   }
 
   public boolean addComment(Comment newComment) {
+    if(newComment == null)
+      return false;
     comments.add(newComment);
     return true;
   }
