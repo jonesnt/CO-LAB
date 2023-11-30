@@ -77,14 +77,16 @@ public class Task {
   }
   
   public boolean editTask(String newName, String newDescription, User currentUser) {
-    if(newName == null || newDescription == null)
+    if(newName == null && newDescription == null)
       return false;
-    if(newName != null)
+    if(newName != null) {
       name = newName;
-    if(newDescription != null)
+      addEvent(currentUser, "changed task name to \"" + newName + "\"");
+    }
+    if(newDescription != null) {
       description = newDescription;
-    addEvent(currentUser, "changed task name to \"" + newName + 
-    "\" and task description to \"" + newDescription + "\"");
+      addEvent(currentUser, "changed task description to \"" + newDescription + "\"");
+    }
     return true;
   }
 
