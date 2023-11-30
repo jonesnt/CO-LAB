@@ -1,1 +1,42 @@
-[{"columns":{},"name":"Electric Missiles","description":"The Electric Missiles Project","columnList":[],"time":"2023-10-08T20:35:36.877649Z","projectID":"a1b4cb90-5431-4ca5-a570-5d568e82d0be"},{"columns":{},"name":"Soap Free Washers","description":"The Soap Free Washers Project","columnList":[],"time":"2023-10-08T20:37:38.844649Z","projectID":"6f1341d0-33e0-4385-9bf3-c72554b884c3"},{"columns":{},"name":"Air Computers","description":"The Air Computers Projects","columnList":[],"time":"2023-10-08T20:37:38.844649Z","projectID":"e77a2573-1624-42c4-b069-e535539a81ca"}]
+[
+  {
+      "projectID":"a1b4cb90-5431-4ca5-a570-5d568e82d0be",
+      "name":"Electric Missiles",
+      "description":"The Electric Missiles Project",
+      "time":"2023-10-08T20:35:36.877649Z",
+      "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
+      "tasks":["9251dd95-6b92-4f9a-8dd0-b96e168edff6", "257d99e0-1ad2-43bc-8165-11ab5eb6e2d9"],
+      "columnList":["ToDo", "Doing", "Completed"],
+      "columns":{
+          "ToDo":["9251dd95-6b92-4f9a-8dd0-b96e168edff6", "257d99e0-1ad2-43bc-8165-11ab5eb6e2d9"],
+          "In_Progress":[],
+          "Completed":[]
+      }
+  },{
+      "projectID":"6f1341d0-33e0-4385-9bf3-c72554b884c3",
+      "name":"Soap Free Washers",
+      "description":"The Soap Free Washers Project",
+      "time":"2023-10-08T20:37:38.844649Z",
+      "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
+      "tasks":[],
+      "columnList":["ToDo", "Doing", "Completed"],
+      "columns":{
+          "ToDo":[],
+          "In_Progress":[],
+          "Completed":[]
+      }
+  },{
+      "projectID":"e77a2573-1624-42c4-b069-e535539a81ca",
+      "name":"Air Computers",
+      "description":"The Air Computers Projects",
+      "time":"2023-10-08T20:37:38.844649Z",
+      "assignedUsers":["28b8af0e-624f-4fb0-ac94-b2422727b25b"],
+      "tasks":[],
+      "columnList":["ToDo", "Doing", "Completed"],
+      "columns":{
+          "ToDo":[],
+          "In_Progress":[],
+          "Completed":[]
+      }
+  }
+]
