@@ -145,71 +145,6 @@ public class DataReader extends DataConstants {
         return null;
     }
 
-
-
-
-
-
-    // Gets the projects assigned to a user
-    public static ArrayList<Project> getProjectsByUser(User user) {
-        ArrayList<Project> projectsForUser = new ArrayList<>();
-        ArrayList<Project> allProjects = getProjects(); // Get all projects
-        UUID userUUID = user.getUserID(); // Get the user's UUID
-
-        if (allProjects != null) {
-            for (Project project : allProjects) {
-                if (project.getAssignedUsers().contains(userUUID)) {
-                    projectsForUser.add(project);
-                }
-            }
-        }
-        return projectsForUser;
-    }
-
-    // Gets the tasks asscoiated with a specifc project
-    public static ArrayList<Task> getTasksByProject(Project project) {
-        ArrayList<Task> tasks = project.getTasks();
-        return tasks;
-    }
-
-    // Gets the todos associated with a specific task
-    public static ArrayList<ToDo> getToDosByTask(Task task) {
-        return task.getTodo(); // add ArrayList<ToDo> getToDos() to Task
-    }
-
-    // Gets the comments associated with a specific task
-    public static ArrayList<Comment> getCommentsByTask(Task task) {
-        return task.getComments(); // add ArrayList<Comment> getComments to task
-    }
-
-    public static User getUserByUUID(String uuid) {
-        ArrayList<User> users = DataReader.getUsers();
-
-        if (users != null) {
-            for (User user : users) {
-                if (user.getUserID().toString().equals(uuid)) {
-                    return user;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public static Project getProjectByUUID(String uuid) {
-        ArrayList<Project> projects = getProjects();
-
-        if (projects != null) {
-            for (Project project : projects) {
-                if (project.getUUID().toString().equals(uuid)) {
-                    return project;
-                }
-            }
-        }
-
-        return null;
-    }
-
     public static Task getTaskByUUID(UUID taskUUID) {
         ArrayList<Task> allTasks = getTasks();
         if (allTasks != null) {
@@ -221,12 +156,6 @@ public class DataReader extends DataConstants {
         }
         return null;
     }
-
-
-
-
-
-
 
     /**
      * Converts a JSONArray of ToDo items into an ArrayList of ToDo objects.
@@ -304,79 +233,4 @@ public class DataReader extends DataConstants {
         return uuidList;
     }
 
-    /**
-     * Retrieves the UUID of a user based on the given username.
-     * 
-     * @param username The username of the user to be searched for.
-     * @return The UUID associated with the username if found, otherwise null.
-     */
-    public static UUID getUserUUIDByUsername(String username) {
-        ArrayList<User> users = getUsers();
-        if (users != null) {
-            for (User user : users) {
-                if (user.getUsername().equals(username)) {
-                    return user.getUserID();
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Retrieves the UUID of a project based on the given project name.
-     * 
-     * @param projectName The name of the project to be searched for.
-     * @return The UUID associated with the project name if found, otherwise null.
-     */
-    public static UUID getProjectUUIDByName(String projectName) {
-        ArrayList<Project> projects = getProjects();
-        if (projects != null) {
-            for (Project project : projects) {
-                if (project.getName().equals(projectName)) {
-                    return project.getUUID();
-                }
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Retrieves the UUID of a task based on the given task name.
-     * 
-     * @param taskName The name of the task to be searched for.
-     * @return The UUID associated with the task name if found, otherwise null.
-     */
-    public static UUID getTaskUUIDByName(String taskName) {
-        ArrayList<Task> tasks = getTasks();
-        if (tasks != null) {
-            for (Task task : tasks) {
-                if (task.getName().equals(taskName)) {
-                    return task.getID();
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Retrieves the UUID of a ToDo item based on the given ToDo name.
-     * 
-     * @param todoName The name of the ToDo to be searched for.
-     * @return The UUID associated with the ToDo name if found, otherwise null.
-     */
-    public static UUID getToDoUUIDByName(String todoName) {
-        ArrayList<Task> tasks = getTasks();
-        if (tasks != null) {
-            for (Task task : tasks) {
-                ArrayList<ToDo> todos = task.getTodo(); // add getToDos to Task class
-                for (ToDo todo : todos) {
-                    if (todo.getName().equals(todoName)) {
-                        return todo.getID();
-                    }
-                }
-            }
-        }
-        return null;
-    }
 }
