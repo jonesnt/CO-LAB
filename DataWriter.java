@@ -48,13 +48,16 @@ public class DataWriter extends DataConstants {
     /**
      * Converts a list of projects to a JSONArray and saves it to a file.
      */
-    public static void saveProjects() {
-        Facade facade = Facade.getInstance(); // Updated to use Facade instead of ProjectManager
-        ArrayList<Project> projects = facade.getMasterList();
+    public static void saveProjects(ArrayList<Project> projects) {
+        // DEBUG for the sake of testing
+        // Facade facade = Facade.getInstance(); // Updated to use Facade instead of ProjectManager
+        // ArrayList<Project> projects = facade.getMasterList();
 
         JSONArray jsonProjects = new JSONArray();
 
         for (Project project : projects) {
+            // DEBUG
+            //  System.out.println("Writer 2 UUID ->" + project.getUUID());
             jsonProjects.add(getProjectJSON(project));
         }
 
@@ -72,6 +75,8 @@ public class DataWriter extends DataConstants {
      * @param project the Project object to save or overwrite
      */
     public static void saveProject(Project project) {
+        // DEBUG
+        //  System.out.println("Writer UUID ->" + project.getUUID());
         // Get the Facade instance which manages the projects
         Facade facade = Facade.getInstance();
 
@@ -100,15 +105,15 @@ public class DataWriter extends DataConstants {
         }
 
         // Save the updated list of projects
-        saveProjects();
+        // saveProjects();
     }
 
     /**
      * Converts a list of tasks to a JSONArray and saves it to a file.
      */
-    public static void saveTasks() {
-        Facade facade = Facade.getInstance(); // Use the Facade to get the instance
-        ArrayList<Task> taskList = facade.getTaskList();
+    public static void saveTasks(ArrayList<Task> taskList) {
+        // Facade facade = Facade.getInstance(); // Use the Facade to get the instance
+        // ArrayList<Task> taskList = facade.getTaskList();
 
         JSONArray jsonTasks = new JSONArray();
 
@@ -220,7 +225,7 @@ public class DataWriter extends DataConstants {
             obj.put(TODO_ID, toDo.getID().toString());
             obj.put(TODO_NAME, toDo.getName());
             obj.put(TODO_COMPLETION, toDo.getCompletion());
-            obj.put(TODO_ASSIGNED_USER, toDo.getAssignedUser());
+            obj.put(TODO_ASSIGNED_USER, toDo.getAssignedUser().toString());
             toDoArray.add(obj);
         }
         return toDoArray;
@@ -271,9 +276,9 @@ public class DataWriter extends DataConstants {
         JSONArray taskHistArray = new JSONArray();
         for (TaskEvent taskHistory : taskHistories) {
             JSONObject obj = new JSONObject();
-            obj.put(TASK_EVENT_TIME, taskHistory.getEventTime());
+            obj.put(TASK_EVENT_TIME, (taskHistory.getEventTime().toString()));
             obj.put(TASK_EVENT_NAME, taskHistory.getEventName());
-            obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().toString());
+            obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().getUserID().toString());
             taskHistArray.add(obj);
         }
         return taskHistArray;
