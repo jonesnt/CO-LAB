@@ -11,7 +11,7 @@ import java.util.UUID;
 
 class DataWriterTest {
     private ArrayList<User> userList = new ArrayList<>();
-    private ArrayList<Project> projects = new ArrayList<>();
+    private ArrayList<Project> projectsList = new ArrayList<>();
     private ArrayList<Task> taskList = new ArrayList<>();
     private DataWriter dataWriter;
     private DataReader dataReader;
@@ -25,16 +25,16 @@ class DataWriterTest {
             userList = new ArrayList<>();
         }
         // userList.clear();
-        if (projects == null) {
-            projects = new ArrayList<>();
+        if (projectsList == null) {
+            projectsList = new ArrayList<>();
         }
-        projects.clear();
+        projectsList.clear();
         if (taskList == null) {
             taskList = new ArrayList<>();
         }
         // taskList.clear();
         DataWriter.saveUsers(userList);
-        // DataWriter.saveProject();
+        DataWriter.saveProjects(projectsList);
     }
 
     @AfterEach
@@ -42,13 +42,13 @@ class DataWriterTest {
         if (userList == null) {
             userList = new ArrayList<>();
         }
-        userList.clear();
-        if (projects == null) {
-            projects = new ArrayList<>();
+       // userList.clear();
+        if (projectsList == null) {
+            projectsList = new ArrayList<>();
         }
-        // projects.clear();
+       // projects.clear();
         DataWriter.saveUsers(userList);
-        DataWriter.saveProjects();
+        DataWriter.saveProjects(projectsList);
     }
 
     @Test
@@ -128,20 +128,17 @@ class DataWriterTest {
 
     @Test
     void testWritingZeroProjects() {
-        projects = DataReader.getProjects() != null ? DataReader.getProjects() : new ArrayList<>();
-        assertEquals(0, projects.size());
+        projectsList = DataReader.getProjects() != null ? DataReader.getProjects() : new ArrayList<>();
+        assertEquals(0, projectsList.size());
     }
 
     @Test
     void testWritingOneProject() {
-        ArrayList<UUID> emptyAssignedUsers = new ArrayList<>();
-        ArrayList<Task> emptyTasksList = new ArrayList<>();
-        ArrayList<String> emptyColumnList = new ArrayList<>();
-        Project newProject = new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
-                emptyAssignedUsers, emptyTasksList, emptyColumnList);
-        projects.add(newProject);
-        DataWriter.saveProject(newProject);
-        assertEquals("TestProject", DataReader.getProjects().get(0).getName());
+        Project newProject = new Project("TestProject", "tester project");
+        projectsList.add(newProject);
+        DataWriter.saveProjects(projectsList);
+        ArrayList<Project> loadedProjects = DataReader.getProjects();
+        assertEquals("TestProject", loadedProjects.get(0).getName());
     }
 
     @Test
@@ -149,13 +146,13 @@ class DataWriterTest {
         ArrayList<UUID> emptyAssignedUsers = new ArrayList<>();
         ArrayList<Task> emptyTasksList = new ArrayList<>();
         ArrayList<String> emptyColumnList = new ArrayList<>();
-        projects.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
+        projectsList.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
                 emptyAssignedUsers, emptyTasksList, emptyColumnList));
-        projects.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
+        projectsList.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
                 emptyAssignedUsers, emptyTasksList, emptyColumnList));
-        projects.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
+        projectsList.add(new Project(UUID.randomUUID(), "TestProject", "tester project", ZonedDateTime.now(),
                 emptyAssignedUsers, emptyTasksList, emptyColumnList));
-        DataWriter.saveProjects();
+        DataWriter.saveProjects(projectsList);
         assertEquals(3, DataReader.getProjects().size());
     }
 
@@ -170,7 +167,7 @@ class DataWriterTest {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
         Task newTask = new Task("Task1", "task 1", "ToDo", newUser);
         taskList.add(newTask);
-        DataWriter.saveTasks();
+        DataWriter.saveTasks(taskList);
         assertEquals("Task1", DataReader.getTasks().get(0).getName());
     }
 
@@ -179,7 +176,7 @@ class DataWriterTest {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
         taskList.add(new Task("Task1", "task 1", "ToDo", newUser));
         taskList.add(new Task("Task1", "task 1", "ToDo", newUser));
-        DataWriter.saveTasks();
+        DataWriter.saveTasks(taskList);
         assertEquals(2, DataReader.getProjects().size());
     }
 }
