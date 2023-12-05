@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class facadeTest{
 
-    Facade f =  Facade.getInstance();
+    Manager f =  Manager.getInstance();
     ArrayList<Project> projectList = f.getProjectList();
 
     @BeforeEach

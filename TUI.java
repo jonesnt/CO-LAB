@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class TUI {
   public static void main(String[] args) {
-    Facade f = Facade.getInstance();
+    Manager f = Manager.getInstance();
     Scanner in = new Scanner(System.in);
     Boolean login =false;
     while (!login){

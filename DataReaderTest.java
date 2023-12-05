@@ -25,7 +25,7 @@ public class DataReaderTest {
 	public void setup() {
     //  DEBUG
     // System.out.println("START");
-    Facade.getInstance();
+    Manager.getInstance();
     users = new ArrayList<User>();
     projects = new ArrayList<Project>();
     tasks = new ArrayList<Task>();
