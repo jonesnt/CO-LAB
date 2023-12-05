@@ -163,7 +163,7 @@ class DataWriterTest {
     @Test
     void testWritingOneTask() {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
-        Task newTask = new Task("Task4", "task 1", "ToDo", newUser);
+        Task newTask = new Task("Task1", "task 1", "ToDo", newUser);
         taskList.add(newTask);
         DataWriter.saveTasks(taskList);
         ArrayList<Task> loadedtasks = DataReader.getTasks();
@@ -174,7 +174,7 @@ class DataWriterTest {
     void testWritingMultipleTask() {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
         taskList.add(new Task("Task1", "task 1", "ToDo", newUser));
-        taskList.add(new Task("Task2", "task 1", "ToDo", newUser));
+        taskList.add(new Task("Task2", "task 2", "ToDo", newUser));
         DataWriter.saveTasks(taskList);
         assertEquals(2, DataReader.getTasks().size());
     }

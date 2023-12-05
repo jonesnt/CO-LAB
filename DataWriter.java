@@ -71,9 +71,6 @@ public class DataWriter extends DataConstants {
      * Converts a list of tasks to a JSONArray and saves it to a file.
      */
     public static void saveTasks(ArrayList<Task> taskList) {
-        // Facade facade = Facade.getInstance(); // Use the Facade to get the instance
-        // ArrayList<Task> taskList = facade.getTaskList();
-
         JSONArray jsonTasks = new JSONArray();
 
         for (Task task : taskList) {
