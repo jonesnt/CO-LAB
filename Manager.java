@@ -10,13 +10,13 @@ import java.util.UUID;
  * a single place to interact withall funcionality of the system.
  * This is a revision or the original class, to increase functionality and talk
  */
-public class Facade {
+public class Manager {
 
   private DataWriter dW;
   private DataReader dR;
   private UserManager uM;
 
-  private static Facade facade;
+  private static Manager facade;
   private User currentUser;
   private UUID currentUserID;
 
@@ -37,7 +37,7 @@ public class Facade {
   //  It's better to ask for forgiveness than permission
 
   //  singleton design
-  private Facade() {
+  private Manager() {
     //  What needs to be in here?
     //  Waterfall method - This function makes it stream down to make 
     //  everything else null,
@@ -60,9 +60,9 @@ public class Facade {
     masterProjectList = dR.getProjects();
   }
 
-  public static Facade getInstance() {
+  public static Manager getInstance() {
     if (facade == null) {
-      facade = new Facade();
+      facade = new Manager();
     }
     return facade;
   }
@@ -79,8 +79,21 @@ public class Facade {
     currentUserID = currentUser.getUserID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
-    currentProjectList = dR.getProjectsByUser(currentUser);
+    currentProjectList = getProjectsByUser(masterProjectList);
     return true;
+  }
+
+  //  helper function for above
+  private ArrayList<Project> getProjectsByUser(ArrayList<Project> p) {
+    ArrayList<Project> currentProjects = new ArrayList<Project>();
+    for (Project project : p) {
+      for (UUID uuid : project.getAssignedUsers()) {
+        if (currentUser.getUserID().equals(uuid))
+          currentProjects.add(project);
+      }
+    }
+
+    return currentProjects;
   }
 
   public void logOutUser() {
@@ -494,7 +507,7 @@ public class Facade {
         }
       }
     }
-    dW.saveProjects();
+    dW.saveProjects(masterProjectList);
   }
   //  helper function to remove 1
   private int sub(int remove) {
