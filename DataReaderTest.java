@@ -50,8 +50,6 @@ public class DataReaderTest {
       //TODO: test columns and test comments
       todo.assignUser(users.get(0).getUserID());
       toAdd.addToDo(todo, users.get(0));
-      //  DEBUG
-      System.out.println(todo.getAssignedUser());
       project.addTask(toAdd, "testing");
       
       tasks.add(toAdd);
