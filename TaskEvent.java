@@ -10,7 +10,7 @@ public class TaskEvent {
     private ZonedDateTime eventTime;
     private String eventName;
     //  CHANGE THIS TO A TYPE USER!!!!
-    private UUID relatedUser;
+    private User relatedUser;
     private UserManager instance;
 
     /**
@@ -23,11 +23,11 @@ public class TaskEvent {
         this.eventTime = ZonedDateTime.now();
         this.eventName = eventName;
         //  CHANGE THIS TO A TYPE USER!!!!
-        this.relatedUser = involvedUser.getUserID();
+        this.relatedUser = involvedUser;
     }
 
     //  CHANGE THE PARAMETER TO TYPE USER!!!
-    public TaskEvent(ZonedDateTime eventTime, String eventName, UUID involvedUser) {
+    public TaskEvent(ZonedDateTime eventTime, String eventName, User involvedUser) {
         this.eventTime = eventTime;
         this.eventName = eventName;
         //  CHANGE THIS TO A TYPE USER!!!
@@ -50,9 +50,8 @@ public class TaskEvent {
      */
     public User getInvolvedUser() {
         instance = UserManager.getInstance();
-        User currentUser = instance.findUser(relatedUser);
-        if(currentUser != null) {
-            return currentUser;
+        if(relatedUser != null) {
+            return relatedUser;
         }
 
         return new User("none", "deleted", "user", "");
