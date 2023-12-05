@@ -79,8 +79,21 @@ public class Facade {
     currentUserID = currentUser.getUserID();
     //  invisible else function, they have access, get them their projects
     //  this function is actively being implemented by rene
-    currentProjectList = dR.getProjectsByUser(currentUser);
+    currentProjectList = getProjectsByUser(masterProjectList);
     return true;
+  }
+
+  //  helper function for above
+  private ArrayList<Project> getProjectsByUser(ArrayList<Project> p) {
+    ArrayList<Project> currentProjects = new ArrayList<Project>();
+    for (Project project : p) {
+      for (UUID uuid : project.getAssignedUsers()) {
+        if (currentUser.getUserID().equals(uuid))
+          currentProjects.add(project);
+      }
+    }
+
+    return currentProjects;
   }
 
   public void logOutUser() {
@@ -494,7 +507,7 @@ public class Facade {
         }
       }
     }
-    dW.saveProjects();
+    dW.saveProjects(masterProjectList);
   }
   //  helper function to remove 1
   private int sub(int remove) {
