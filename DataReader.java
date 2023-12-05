@@ -93,8 +93,6 @@ public class DataReader extends DataConstants {
                     columns.put(columnName, convertToUUIDList((JSONArray) projectColumnsJSON.get(columnName)));
                 }
                 Project toAdd = new Project(projectID, name, description, time, assignedUsers, tasks, columnList);
-                //  DEBUG
-                //  System.out.println("Reader UUID -> " + toAdd.getUUID());
                 projects.add(toAdd);
             }
 
@@ -114,13 +112,9 @@ public class DataReader extends DataConstants {
      */
     public static ArrayList<Task> getTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
-        //  DEBUG
-        System.out.println("START");
         try {
             FileReader reader = new FileReader(TASK_FILE_NAME);
             JSONArray tasksJSON = (JSONArray) new JSONParser().parse(reader);
-            //debug
-            System.out.println("TRY");
             for (Object aTasksJSON : tasksJSON) {
                 JSONObject taskJSON = (JSONObject) aTasksJSON;
                 UUID taskID = UUID.fromString((String) taskJSON.get(TASK_ID));
@@ -134,8 +128,6 @@ public class DataReader extends DataConstants {
                 ArrayList<ToDo> todos = getToDos((JSONArray) taskJSON.get(TASK_TODOS));
                 ArrayList<Comment> comments = getComments((JSONArray) taskJSON.get(TASK_COMMENTS));
                 LinkedList<TaskEvent> history = getHistory((JSONArray) taskJSON.get(TASK_HISTORY));
-                //  DEBUG
-                System.out.println("ADDING");
                 tasks.add(new Task(taskID, name, description, history, todos, comments,
                         assignedUsers, isCompleted, columnTag));
             }
