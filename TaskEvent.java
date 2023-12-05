@@ -44,13 +44,15 @@ public class TaskEvent {
      * @return String representing the first and last name
      * of the user involved with the event
      */
-    public String getInvolvedUser() {
+    public User getInvolvedUser() {
+        instance = UserManager.getInstance();
         User currentUser = instance.findUser(relatedUser);
         if(currentUser != null) {
-            return currentUser.getFirstName() + " " +
-            currentUser.getLastName();
+            return currentUser;
         }
-        return "deleted user";
+
+        return new User("none", "deleted", "user", "");
+        
     }
 
     public ZonedDateTime getEventTime() {

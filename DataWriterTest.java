@@ -13,14 +13,9 @@ class DataWriterTest {
     private ArrayList<User> userList = new ArrayList<>();
     private ArrayList<Project> projectsList = new ArrayList<>();
     private ArrayList<Task> taskList = new ArrayList<>();
-    private DataWriter dataWriter;
-    private DataReader dataReader;
 
     @BeforeEach
     public void setup() {
-        dataWriter = DataWriter.getInstance();
-        // dataReader = DataReader.getInstance();
-
         if (userList == null) {
             userList = new ArrayList<>();
         }
@@ -28,13 +23,14 @@ class DataWriterTest {
         if (projectsList == null) {
             projectsList = new ArrayList<>();
         }
-        projectsList.clear();
+      //  projectsList.clear();
         if (taskList == null) {
             taskList = new ArrayList<>();
         }
-        // taskList.clear();
+        taskList.clear();
         DataWriter.saveUsers(userList);
         DataWriter.saveProjects(projectsList);
+        DataWriter.saveTasks(taskList);
     }
 
     @AfterEach
@@ -47,8 +43,10 @@ class DataWriterTest {
             projectsList = new ArrayList<>();
         }
        // projects.clear();
+        //taskList.clear();
         DataWriter.saveUsers(userList);
         DataWriter.saveProjects(projectsList);
+        DataWriter.saveTasks(taskList);
     }
 
     @Test
@@ -165,18 +163,19 @@ class DataWriterTest {
     @Test
     void testWritingOneTask() {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
-        Task newTask = new Task("Task1", "task 1", "ToDo", newUser);
+        Task newTask = new Task("Task4", "task 1", "ToDo", newUser);
         taskList.add(newTask);
         DataWriter.saveTasks(taskList);
-        assertEquals("Task1", DataReader.getTasks().get(0).getName());
+        ArrayList<Task> loadedtasks = DataReader.getTasks();
+        assertEquals("Task1", loadedtasks.get(0).getName());
     }
 
     @Test
     void testWritingMultipleTask() {
         User newUser = new User(UUID.randomUUID(), "jdoe", "John", "Doe", "password123");
         taskList.add(new Task("Task1", "task 1", "ToDo", newUser));
-        taskList.add(new Task("Task1", "task 1", "ToDo", newUser));
+        taskList.add(new Task("Task2", "task 1", "ToDo", newUser));
         DataWriter.saveTasks(taskList);
-        assertEquals(2, DataReader.getProjects().size());
+        assertEquals(2, DataReader.getTasks().size());
     }
 }
