@@ -233,7 +233,7 @@ public class DataWriter extends DataConstants {
             JSONObject obj = new JSONObject();
             obj.put(TASK_EVENT_TIME, taskHistory.getEventTime().toString());
             obj.put(TASK_EVENT_NAME, taskHistory.getEventName());
-            obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().toString());
+            obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().getUserID().toString());
             taskHistArray.add(obj);
         }
         return taskHistArray;
