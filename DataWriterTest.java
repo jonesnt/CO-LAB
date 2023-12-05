@@ -167,7 +167,7 @@ class DataWriterTest {
         taskList.add(newTask);
         DataWriter.saveTasks(taskList);
         ArrayList<Task> loadedtasks = DataReader.getTasks();
-        assertEquals("Task1", loadedtasks.get(0).getName());
+        assertEquals(taskList.get(0).getID(), loadedtasks.get(0).getID());
     }
 
     @Test
