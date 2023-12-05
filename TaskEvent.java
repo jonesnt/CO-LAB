@@ -9,6 +9,7 @@ import java.util.UUID;
 public class TaskEvent {
     private ZonedDateTime eventTime;
     private String eventName;
+    //  CHANGE THIS TO A TYPE USER!!!!
     private UUID relatedUser;
     private UserManager instance;
 
@@ -21,12 +22,15 @@ public class TaskEvent {
     public TaskEvent(String eventName, User involvedUser) {
         this.eventTime = ZonedDateTime.now();
         this.eventName = eventName;
+        //  CHANGE THIS TO A TYPE USER!!!!
         this.relatedUser = involvedUser.getUserID();
     }
 
+    //  CHANGE THE PARAMETER TO TYPE USER!!!
     public TaskEvent(ZonedDateTime eventTime, String eventName, UUID involvedUser) {
         this.eventTime = eventTime;
         this.eventName = eventName;
+        //  CHANGE THIS TO A TYPE USER!!!
         this.relatedUser = involvedUser;
     }
 
