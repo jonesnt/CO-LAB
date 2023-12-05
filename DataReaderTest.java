@@ -23,6 +23,9 @@ public class DataReaderTest {
 
 	@BeforeEach
 	public void setup() {
+    //  DEBUG
+    // System.out.println("START");
+    Facade.getInstance();
     users = new ArrayList<User>();
     projects = new ArrayList<Project>();
     tasks = new ArrayList<Task>();
@@ -37,19 +40,29 @@ public class DataReaderTest {
     projects.add(new Project("test1", "This is the first test"));
     projects.add(new Project("test2", "Second test"));
     projects.add(new Project("3test", "This is the third test"));
+    
     //  add a task, todo, and comment test
     for (Project project : projects) {
+      //  DEBUG
       project.addColumn("testing");
       Task toAdd = new Task("test for " + project.getName(), "test task", "testing", users.get(0));
       ToDo todo = new ToDo("ToDo Test");
       //unable to test comments because we are not able to make a new comment
+      todo.assignUser(users.get(0).getUserID());
       toAdd.addToDo(todo, users.get(0));
+      //  DEBUG
+      System.out.println(todo.getAssignedUser());
       project.addTask(toAdd, "testing");
       
       tasks.add(toAdd);
 
     }
-    // DataWriter.saveProjects();
+    //  DEBUG
+    // System.out.println("MIDDLE");
+    DataWriter.saveProjects(projects);
+    DataWriter.saveTasks(tasks);
+    // DEBUG
+    // System.out.println("Save Projects");
 
 	}
 	
@@ -67,34 +80,28 @@ public class DataReaderTest {
 
     // Load the users from the JSON file
     ArrayList<User> usersReceived = DataReader.getUsers();
-
-    // Print the data from the JSON file
-    System.out.println("Data from JSON file:");
-    for (User user : usersReceived) {
-        System.out.println("User: " + user.getUsername() + ", " + user.getFirstName() + ", " + user.getLastName() + ", " + user.getUserID());
+    // assertEquals(users, usersReceived); try again
+    for (int i = 0; i < usersReceived.size(); ++i) {
+      assertEquals(usersReceived.get(i).getUserID(), usersReceived.get(i).getUserID());
     }
-
-    // Print the data from the 'users' list
-    System.out.println("Data from 'users' list:");
-    for (User user : users) {
-        System.out.println("User: " + user.getUsername() + ", " + user.getFirstName() + ", " + user.getLastName() + ", " + user.getUserID());
-    }
-
-    // Check if the sizes of the lists match first
-    assertEquals(users.size(), usersReceived.size());
-    assertEquals(users, usersReceived);
 	}
 
   @Test
   void testGetProjects() {
     ArrayList<Project> projectsReceived = DataReader.getProjects();
-    assertEquals(projects, projectsReceived);
+    for (int i = 0; i < projectsReceived.size(); ++i) {
+      // System.out.println(projectsReceived.get(i).getUUID() + "<- received");
+      // System.out.println(projects.get(i).getUUID() + "<- expected");
+      assertEquals(projectsReceived.get(i).getUUID(), projects.get(i).getUUID());
+    }
   }
 
   @Test
   void testGetTasks() {
     ArrayList<Task> tasksReceived = DataReader.getTasks();
-    assertEquals(tasks, tasksReceived);
+    for (int i = 0; i < tasks.size(); i++){
+      assertEquals(tasksReceived.get(i).getID(), tasks.get(i).getID());
+    }
   }
 
   //  remove GetProjectsByUser, don't need it

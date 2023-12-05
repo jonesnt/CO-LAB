@@ -180,7 +180,7 @@ public class DataWriter extends DataConstants {
             obj.put(TODO_ID, toDo.getID().toString());
             obj.put(TODO_NAME, toDo.getName());
             obj.put(TODO_COMPLETION, toDo.getCompletion());
-            obj.put(TODO_ASSIGNED_USER, toDo.getAssignedUser());
+            obj.put(TODO_ASSIGNED_USER, toDo.getAssignedUser().toString());
             toDoArray.add(obj);
         }
         return toDoArray;
@@ -231,7 +231,7 @@ public class DataWriter extends DataConstants {
         JSONArray taskHistArray = new JSONArray();
         for (TaskEvent taskHistory : taskHistories) {
             JSONObject obj = new JSONObject();
-            obj.put(TASK_EVENT_TIME, taskHistory.getEventTime().toString());
+            obj.put(TASK_EVENT_TIME, taskHistory.getEventTime());
             obj.put(TASK_EVENT_NAME, taskHistory.getEventName());
             obj.put(TASK_EVENT_INVOLVED_USER, taskHistory.getInvolvedUser().getUserID().toString());
             taskHistArray.add(obj);

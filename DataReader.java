@@ -215,10 +215,28 @@ public class DataReader extends DataConstants {
             JSONObject taskHistoryJSON = (JSONObject) aTaskHistory;
             ZonedDateTime eventTime = ZonedDateTime.parse((String) taskHistoryJSON.get(TASK_EVENT_TIME));
             String eventName = (String) taskHistoryJSON.get(TASK_EVENT_NAME);
-            UUID involvedUser = UUID.fromString((String) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
+            UUID involvedUserID = UUID.fromString((String) taskHistoryJSON.get(TASK_EVENT_INVOLVED_USER));
+            User involvedUser = getUserFromUUID(involvedUserID);
             taskHistoriesList.add(new TaskEvent(eventTime, eventName, involvedUser));
         }
         return taskHistoriesList;
+    }
+
+    /**
+     * Finds a User based on a UUID. If no User matches the UUID, return nuull.
+     * 
+     * @param id The UUID we have
+     * @return the User that has it, or no user at all
+     */
+    private static User getUserFromUUID(UUID id) {
+        ArrayList<User> users = getUsers();
+        for (User user : users) {
+            if (user.getUserID().equals(id)) {
+                return user;
+            }
+        }
+        //  Make sure there is a null pointer check!
+        return null;
     }
 
     /**
