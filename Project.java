@@ -80,39 +80,34 @@ public class Project {
 
     // adds column within project for the tasks to be catergorized
     public boolean addColumn(String columnName) {
-
         if (!columnList.contains(columnName)){
-        columnList.add(columnName);
-        Queue<Task> tempList = new LinkedList<Task>();
-        columns.put(columnName, tempList);
-        return true;
-        }else return false;
+            columnList.add(columnName);
+            Queue<Task> tempList = new LinkedList<Task>();
+            columns.put(columnName, tempList);
+            return true;
+        }
+        return false;
     }
 
     // ads task to "columns" HashMap with column as the key and Task as the value
     // does not need to create task (I hope)
     public boolean addTask(Task newTask, String columnChoice) {
-        // return
-        // columns.putIfAbsent(columnList[columnList],ArrayList<Task>().add(newTask));//
-
-        if (!tasks.contains(newTask) && columnList.contains(columnChoice)) {
+        if (!iterateTasks(tasks, newTask.getName()) && columnList.contains(columnChoice)) {
             columns.get(columnChoice).add(newTask);
             return true;
-        } else
-            return false;
-
+        }
+        return false;
     }
 
     // removes column
     public boolean removeColumn(int columnChoice) {
-
-        String tempColumn = columnList.get(columnChoice);
-        if(columnList.contains(tempColumn)){
-            columns.remove(tempColumn);
+        if(columnChoice >= 0 && columnChoice < columnList.size()) {
+            String deleteKey = columnList.get(columnChoice);
             columnList.remove(columnChoice);
+            columns.remove(deleteKey);
             return true;
-        }else return false;
-        
+        }
+        return false;
     }
 
     // removes task from task array list
@@ -159,40 +154,18 @@ public class Project {
     // moves task to different column
     public boolean changeColumn(Task changeTask, int columnChoice) {
         //make cure it's within bounds
-        if (columnChoice > columnList.size() ||columnChoice < 0) {
+        if (columnChoice > columnList.size() || columnChoice < 0) {
             return false;
         }
         //if task and column exitst 
         if(tasks.contains(changeTask) && columnList.contains(columnList.get(columnChoice))){
-     /* 
-        // find old column 
-        HashMap<String, Queue<Task>> tempColumns = columns;
-        String oldColumn;
-        while (!tempColumns.isEmpty()) {
-            for (String specificString : columnList) 
-                if (tempColumns.get(specificString).contains(changeTask)) // ***may need to adjust parentheses
-                    oldColumn = specificString;
-        } 
-        */
-        //remove old task
-        //addd task to column
         
         Task tempTask  = changeTask;
         removeTask(changeTask);
         addTask(tempTask, columnList.get(columnChoice));
         return true;
-        }else return false;
-        /* 
-        if (columns.containsvalue(Arraylist.get(changeTask))) {
-            // delete the other one
-            removeTask(changeTask);
-            // add task to column
-            addTask(changeTask, columnChoice);
-            return true;
-        } else
-            return false;
-
-            */
+        }
+        return false;
     }
 
     // eddits atributes of the project
@@ -281,6 +254,14 @@ public class Project {
             return true;
         else
             return false;
+    }
+
+    public boolean iterateTasks(ArrayList<Task> tasks, String name) {
+        for(Task specTask : tasks) {
+            if (specTask.equals(name))
+                return false;
+        }
+        return true;
     }
 
 }
