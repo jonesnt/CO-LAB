@@ -1,0 +1,13 @@
+.root{
+    -fx-font-size:16pt;
+    -fx-font-family:"Helvetica Neue";
+    -fx-background-color:blue;
+}
+
+
+.rounded {
+    -fx-border-radius: 25px;
+    -fx-border-style: solid;
+    -fx-background-radius: 25px;
+    -fx-border-width: 2px;
+}
