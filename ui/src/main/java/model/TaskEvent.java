@@ -1,3 +1,4 @@
+package model;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 

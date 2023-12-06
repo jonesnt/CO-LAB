@@ -1,4 +1,5 @@
-import java.awt.Color;
+package model;
+//import java.awt.Color;
 import java.io.FileReader;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;

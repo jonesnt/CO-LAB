@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,8 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import java.net.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="1054.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="997.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.homeController">
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0">
          <children>
@@ -19,7 +21,10 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Button layoutX="509.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout" />
+                  <Button layoutX="509.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </Pane>
          </children>
@@ -32,17 +37,23 @@
                <children>
                   <Text layoutX="129.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Tasks" />
                   <ListView layoutX="13.0" layoutY="31.0" prefHeight="296.0" prefWidth="253.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button layoutX="202.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+">
+                  <Button layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </Pane>
-            <Button layoutX="420.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
+            <Button layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>

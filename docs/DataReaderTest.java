@@ -1,4 +1,4 @@
-
+package model;
 /**
  * @author hadleya
  * Designed to test the DataReader

@@ -1,4 +1,4 @@
-
+package model;
 // by Dillion Norris
 
 import java.time.ZoneId;

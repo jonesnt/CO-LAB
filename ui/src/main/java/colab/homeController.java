@@ -9,4 +9,12 @@ public class homeController {
     private void logOut() throws IOException {
         App.setRoot("login");
     }
+    @FXML
+    private void addProject() throws IOException {
+        
+    }
+    @FXML
+    private void addTask() throws IOException {
+    }
+    
 }

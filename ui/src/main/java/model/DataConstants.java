@@ -1,3 +1,4 @@
+package model;
 public abstract class DataConstants {
     // USER JSON Constants
     protected static final String USER_FILE_NAME = "./jsons/User.json";

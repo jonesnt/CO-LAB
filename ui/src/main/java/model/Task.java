@@ -1,8 +1,9 @@
+package model;
 import java.util.UUID;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.awt.Color;
+//import java.awt.Color;
 
 /**
  * @author jonesnt
@@ -16,8 +17,8 @@ public class Task {
   private ArrayList<Comment> comments;
   private ArrayList<UUID> assignedUsers;
   private boolean isCompleted;
-  private Color bgColor;
-  private Color fgColor;
+  //private Color bgColor;
+  //private Color fgColor;
   private String columnTag;
 
   public Task(String name, String description, String columnTag, User currentUser) {
@@ -29,8 +30,8 @@ public class Task {
     this.comments = new ArrayList<Comment>();
     this.assignedUsers = new ArrayList<UUID>();
     this.isCompleted = false;
-    this.bgColor = null;
-    this.fgColor = null;
+    //this.bgColor = null;
+    //this.fgColor = null;
     this.columnTag = columnTag;
     addEvent(currentUser, "created this task.");
   }
@@ -96,11 +97,11 @@ public class Task {
   }
 
   // TODO: FIGURE OUT APPROPRIATE ERROR CHECKING
-  public boolean changeColor(Color bgColor, Color fgColor) {
-    bgColor = bgColor;
-    fgColor = fgColor;
-    return true;
-  }
+  //public boolean changeColor(Color bgColor, Color fgColor) {
+  //  bgColor = bgColor;
+  //  fgColor = fgColor;
+  //  return true;
+  //}
 
   public boolean addComment(Comment newComment) {
     if(newComment == null)

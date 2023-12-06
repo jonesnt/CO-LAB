@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import java.net.*?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.projectController">
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0">
          <children>
@@ -20,7 +20,7 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Button layoutX="768.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout" />
+                  <Button layoutX="768.0" layoutY="6.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout" />
                </children>
             </Pane>
          </children>
@@ -35,7 +35,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <Button layoutX="294.0" layoutY="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <Button layoutX="294.0" layoutY="6.0" mnemonicParsing="false" onAction="#addToDo" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -51,7 +51,7 @@
                      </font>
                   </Text>
                   <ListView layoutX="27.0" layoutY="55.0" prefHeight="180.0" prefWidth="336.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button layoutX="298.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <Button layoutX="298.0" layoutY="16.0" mnemonicParsing="false" onAction="#addComment" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -71,12 +71,12 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <Button layoutX="157.0" layoutY="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="&lt;">
+            <Button layoutX="157.0" layoutY="32.0" mnemonicParsing="false" onAction="#toHome" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="&lt;">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
+            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onAction="#editTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
          </children>
       </AnchorPane>
    </children>

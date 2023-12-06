@@ -1,3 +1,4 @@
+package model;
 public class Facade {
     public static Facade facade;
     public static Facade getInstance()  {
