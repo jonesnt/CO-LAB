@@ -49,8 +49,6 @@ public class DataWriter extends DataConstants {
      * Converts a list of projects to a JSONArray and saves it to a file.
      */
     public static void saveProjects(ArrayList<Project> projectsList) {
-        // Facade facade = Facade.getInstance(); // Updated to use Facade instead of ProjectManager
-        // ArrayList<Project> projects = facade.getMasterList();
 
         JSONArray jsonProjects = new JSONArray();
 
@@ -65,7 +63,6 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
-    
 
     /**
      * Converts a list of tasks to a JSONArray and saves it to a file.
@@ -117,22 +114,25 @@ public class DataWriter extends DataConstants {
 
         JSONArray columnListJSON = new JSONArray();
         JSONObject columnsJSON = new JSONObject();
-        // for (String column : project.getColumnList()) {
-        // // Add column name to columnList JSON Array
-        // columnListJSON.add(column);
+        for (String column : project.getColumnList()) {
+            System.out.println("Processing column: " + column); // Debugging statement
+            // Add column name to columnList JSON Array
+            columnListJSON.add(column);
 
-        // // Create a JSON Array for the tasks in the current column
-        // JSONArray tasksJSON = new JSONArray();
-        // List<Task> tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
-        // if (tasksInColumn != null) {
-        // for (Task task : tasksInColumn) {
-        // tasksJSON.add(task.getID().toString());
-        // }
-        // }
-        // // Add the tasks JSON Array to the corresponding column in columns JSON
-        // Object
-        // columnsJSON.put(column, tasksJSON);
-        // }
+            // Create a JSON Array for the tasks in the current column
+            JSONArray tasksJSON = new JSONArray();
+            Task[] tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
+            if (tasksInColumn != null) {
+                for (Task task : tasksInColumn) {
+                    System.out.println("Adding task to " + column + ": " + task.getID().toString()); // Debugging statement
+                    tasksJSON.add(task.getID().toString());
+                }
+            }
+            // Add the tasks JSON Array to the corresponding column in columns JSON
+            columnsJSON.put(column, tasksJSON);
+        }
+        System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
+
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
         projectDetails.put(PROJECT_COLUMNS, columnsJSON);
 
@@ -163,6 +163,7 @@ public class DataWriter extends DataConstants {
         taskDetails.put(TASK_COMMENTS, getCommentsJSON(task.getComments()));
         taskDetails.put(TASK_COMPLETION_STATUS, task.isCompleted());
         taskDetails.put(TASK_HISTORY, getTaskHistoriesJSON(task.getHistory()));
+        taskDetails.put(TASK_COLUMN_TAG, task.getColumnTag());
 
         return taskDetails;
     }

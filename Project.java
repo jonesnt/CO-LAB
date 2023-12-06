@@ -92,7 +92,10 @@ public class Project {
     // ads task to "columns" HashMap with column as the key and Task as the value
     // does not need to create task (I hope)
     public boolean addTask(Task newTask, String columnChoice) {
-        if (!iterateTasks(tasks, newTask.getName()) && columnList.contains(columnChoice)) {
+        if (columnList.contains(columnChoice)) {
+            if (!iterateTasks(tasks, newTask.getName())) {
+                return false;
+            }
             columns.get(columnChoice).add(newTask);
             return true;
         }
@@ -257,9 +260,10 @@ public class Project {
     }
 
     public boolean iterateTasks(ArrayList<Task> tasks, String name) {
-        for(Task specTask : tasks) {
-            if (specTask.equals(name))
+        for (Task specTask : tasks) {
+            if (specTask.equals(name)) {
                 return false;
+            }
         }
         return true;
     }
