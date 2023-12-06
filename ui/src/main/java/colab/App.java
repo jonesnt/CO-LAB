@@ -14,7 +14,7 @@ import model.Manager;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * @author Dillion Norris
  */
 public class App extends Application {
 
@@ -28,14 +28,17 @@ public class App extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-                Manager.getInstance().logOutUser();
+                //Manager.getInstance().logOutUser();
                 Platform.exit();
                 System.exit(0);
             }
         });
     }
 
-    static void setRoot(String fxml) throws IOException {
+    
+
+
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

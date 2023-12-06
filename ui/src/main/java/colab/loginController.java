@@ -1,3 +1,6 @@
+
+// @author Dillion Norris
+
 package colab;
 
 import java.io.IOException;
@@ -12,7 +15,7 @@ public class loginController {
 
 
 
-        
+
         App.setRoot("home");
     }
 
