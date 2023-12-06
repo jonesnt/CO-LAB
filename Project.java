@@ -233,10 +233,17 @@ public class Project {
         if (columnName == null || !columns.containsKey(columnName)) {
             return null;
         }
-        ArrayList<Task> result;
-        Queue<Task> queue  = columns.get(columnName);
-        Task[] array = queue.toArray(new Task[queue.size()]);
-        return array;
+        //  i have to do this workaround becuase for SOME reason the toArray makes
+        //  an Object?????? why
+        Queue<Task> tasks = columns.get(columnName);
+        Task[] toCopy = tasks.toArray(new Task[tasks.size()]);
+        Task[] result = new Task[toCopy.length];
+        for (int i = 0; i < result.length; ++i) {
+            // result[i] = (Task)toCopy[i];
+            //  DEBUG
+            System.out.println(toCopy[i].getName());
+        }
+        return result;
     }
 
     public boolean iterate(Task attempt) {

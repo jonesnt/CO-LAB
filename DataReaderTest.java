@@ -56,16 +56,16 @@ public class DataReaderTest {
 
     }
     //  test columns
-    // Project p = projects.get(0);
-    // p.addColumn("second column");
-    // Task add = new Task("Second Column", " ", "second column", users.get(0));
-    // p.addTask(add, "second column");
-    // Task add2 = new Task("column 1 task 2", " ", "testing", users.get(0));
-    // Task add3 = new Task("2nd col 2nd task", "", "second column", users.get(0));
-    // Task add4 = new Task("2nd col 3rd task", " ", "second column", users.get(0));
-    // p.addTask(add2, "testing");
-    // p.addTask(add3, "second column");
-    // p.addTask(add4, "second column");
+    Project p = projects.get(0);
+    p.addColumn("second column");
+    Task add = new Task("Second Column", " ", "second column", users.get(0));
+    p.addTask(add, "second column");
+    Task add2 = new Task("column 1 task 2", " ", "testing", users.get(0));
+    Task add3 = new Task("2nd col 2nd task", "", "second column", users.get(0));
+    Task add4 = new Task("2nd col 3rd task", " ", "second column", users.get(0));
+    p.addTask(add2, "testing");
+    p.addTask(add3, "second column");
+    p.addTask(add4, "second column");
     /*
     laid out like this:
     testing | second columns
@@ -143,8 +143,21 @@ public class DataReaderTest {
     ArrayList<Project> ps = DataReader.getProjects();
     ArrayList<Task> trueTs = projects.get(0).getTasks();
     ArrayList<Task> rTs = ps.get(0).getTasks();
+    assertEquals(trueTs.size(), 5);
     for (int i = 0; i < rTs.size(); ++i) {
       assertEquals(trueTs.get(i).getID(), rTs.get(i).getID());
+    }
+    Task[] firstCol = projects.get(0).getColumn("testing");
+    Task[] firstRCol = ps.get(0).getColumn("testing");
+    for (int i = 0; i < firstRCol.length; ++i) {
+      assertEquals(firstCol[i].getID(), firstRCol[i].getID());
+    }
+    Task[] secCol = projects.get(0).getColumn("second column");
+    Task[] secRCol = ps.get(0).getColumn("second column");
+    assertEquals(3, secCol.length);
+    assertEquals(3, secRCol.length);
+    for (int i = 0; i < secRCol.length; ++i) {
+      assertEquals(secCol[i].getID(), secRCol[i].getID());
     }
   }
 

@@ -115,7 +115,7 @@ public class DataWriter extends DataConstants {
         JSONArray columnListJSON = new JSONArray();
         JSONObject columnsJSON = new JSONObject();
         for (String column : project.getColumnList()) {
-            System.out.println("Processing column: " + column); // Debugging statement
+            // System.out.println("Processing column: " + column); // Debugging statement
             // Add column name to columnList JSON Array
             columnListJSON.add(column);
 
@@ -124,14 +124,14 @@ public class DataWriter extends DataConstants {
             Task[] tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
             if (tasksInColumn != null) {
                 for (Task task : tasksInColumn) {
-                    System.out.println("Adding task to " + column + ": " + task.getID().toString()); // Debugging statement
+                    // System.out.println("Adding task to " + column + ": " + task.getID().toString()); // Debugging statement
                     tasksJSON.add(task.getID().toString());
                 }
             }
             // Add the tasks JSON Array to the corresponding column in columns JSON
             columnsJSON.put(column, tasksJSON);
         }
-        System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
+        // System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
 
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
         projectDetails.put(PROJECT_COLUMNS, columnsJSON);
