@@ -26,9 +26,9 @@ public class loginController implements Initializable {
 
     @FXML
     private void loginUser(MouseEvent event) throws IOException {
-
         // get user and pass
         String username = loginUsername.getText();
+        System.out.println(username);
         String password = loginPassword.getText();
         // validate login
         Manager m = Manager.getInstance();

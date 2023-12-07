@@ -15,8 +15,8 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="602.0" style="-fx-background-color: #6c6c6c; -fx-border-radius: 50px; -fx-border-style: solid; -fx-background-radius: 50px; -fx-border-width: 2px;">
          <children>
-            <TextField id="loginUsername" alignment="CENTER" layoutX="227.0" layoutY="152.0" promptText="Username" />
-            <TextField id="loginPassword" alignment="CENTER" layoutX="227.0" layoutY="192.0" promptText="Password" />
+            <TextField fx:id="loginUsername" alignment="CENTER" layoutX="227.0" layoutY="152.0" promptText="Username" />
+            <TextField fx:id="loginPassword" alignment="CENTER" layoutX="227.0" layoutY="192.0" promptText="Password" />
             <Button id="loginButton" contentDisplay="CENTER" layoutX="243.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#loginUser" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #75f9fd;" text="Login" />
             <Text id="appName" fill="WHITE" layoutX="215.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Co/Lab" textAlignment="CENTER">
                <font>
