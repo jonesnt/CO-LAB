@@ -20,7 +20,7 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Button id="logoutButton" layoutX="509.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout">
+                  <Button id="logoutButton" layoutX="509.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -36,7 +36,7 @@
                <children>
                   <Text layoutX="129.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Tasks" />
                   <ListView layoutX="13.0" layoutY="31.0" prefHeight="296.0" prefWidth="253.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button id="addTaskButton" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+" visible="false">
+                  <Button id="addTaskButton" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </Pane>
-            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
+            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                <font>
                   <Font size="14.0" />
                </font>

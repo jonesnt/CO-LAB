@@ -22,7 +22,7 @@
                   <Font name="Calibri" size="39.0" />
                </font>
             </Text>
-            <Button id="signUpButton" contentDisplay="CENTER" layoutX="243.0" layoutY="292.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #75f9fd;" text="Sign Up" />
+            <Button id="signUpButton" contentDisplay="CENTER" layoutX="243.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #75f9fd;" text="Sign Up" />
             <Text id="loginFail" fill="RED" layoutX="247.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Unsuccsessfull" visible="false" />
             <TextField id="fName" alignment="CENTER" layoutX="227.0" layoutY="73.0" promptText="First Name" />
             <TextField id="lName" alignment="CENTER" layoutX="227.0" layoutY="115.0" promptText=" Last Name" />
