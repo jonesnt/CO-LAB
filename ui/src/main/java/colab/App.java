@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.Facade;
 
 //import model.Manager;
 
@@ -29,6 +30,7 @@ public class App extends Application {
             @Override
             public void handle(WindowEvent t) {
                 //Manager.getInstance().logOutUser();
+                Facade.getInstance().logOutUser();
                 Platform.exit();
                 System.exit(0);
             }

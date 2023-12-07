@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
 import model.*;
 
@@ -38,17 +39,17 @@ public class homeController implements Initializable {
     }
 
     @FXML
-    private void logOut(ActionEvent event) throws IOException {
-        Manager.getInstance().logOutUser();
+    private void logOut(MouseEvent event) throws IOException {
+        Facade.getInstance().logOutUser();
         App.setRoot("login");
     }
 
     @FXML
     private void addProject() throws IOException {
 
-        Manager m = Manager.getInstance();
+        Facade f = Facade.getInstance();
         Project newProject = new Project("New Project", "Add a Description.");
-        m.addProject(newProject);
+        f.addProject(newProject);
 
         // add project to the list
 

@@ -115,23 +115,39 @@ public class DataWriter extends DataConstants {
 
         JSONArray columnListJSON = new JSONArray();
         JSONObject columnsJSON = new JSONObject();
-        for (String column : project.getColumnList()) {
-            // System.out.println("Processing column: " + column); // Debugging statement
-            // Add column name to columnList JSON Array
-            columnListJSON.add(column);
+        // for (String column : project.getColumnList()) {
+        //     System.out.println("Processing column: " + column + " in " + project.getName()); // Debugging statement
+        //     // Add column name to columnList JSON Array
+        //     columnListJSON.add(column);
 
-            // Create a JSON Array for the tasks in the current column
+        //     // Create a JSON Array for the tasks in the current column
+        //     JSONArray tasksJSON = new JSONArray();
+        //     Task[] tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
+        //     if (tasksInColumn != null) {
+        //         for (Task task : tasksInColumn) {
+        //             // System.out.println("Adding task to " + column + ": " + task.getID().toString()); // Debugging statement
+        //             tasksJSON.add(task.getID().toString());
+        //         }
+        //     }
+        //     // Add the tasks JSON Array to the corresponding column in columns JSON
+        //     columnsJSON.put(column, tasksJSON);
+        // }
+        //  attempt 2
+        ArrayList<Task> allTasks = project.getTasks();
+        ArrayList<String> cols = project.getColumnList();
+        //  add each string
+        for (String col : cols) {
+            columnListJSON.add(col);
             JSONArray tasksJSON = new JSONArray();
-            Task[] tasksInColumn = project.getColumn(column); // need to add a getColumns to project, maybe
-            if (tasksInColumn != null) {
-                for (Task task : tasksInColumn) {
-                    // System.out.println("Adding task to " + column + ": " + task.getID().toString()); // Debugging statement
+            for (Task task : allTasks) {
+                if (task.getColumnTag().equals(col)) {
                     tasksJSON.add(task.getID().toString());
                 }
             }
-            // Add the tasks JSON Array to the corresponding column in columns JSON
-            columnsJSON.put(column, tasksJSON);
+            columnsJSON.put(col, tasksJSON);
         }
+
+
         // System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
 
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
