@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import model.Manager;
+//import model.Manager;
 
 import java.io.IOException;
 

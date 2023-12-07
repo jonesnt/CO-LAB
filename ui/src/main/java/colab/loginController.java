@@ -4,54 +4,57 @@
 package colab;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.Initializable;
+//import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
 import model.*;
 
-public class loginController {
+public class loginController implements Initializable {
 
-     
-    private Manager m ;
-    
     @FXML
     private TextField loginUsername;
-    @FXML 
+    
+    @FXML
     private TextField loginPassword;
-    @FXML 
+    @FXML
     private Text loginFail;
-
-
-
-
 
     @FXML
     private void loginUser(MouseEvent event) throws IOException {
-        
-        //get user and pass
-        
 
+        // get user and pass
         String username = loginUsername.getText();
         String password = loginPassword.getText();
-// validate login
-        if (m.logInUser(username, password)){
+        // validate login
+        Manager m = Manager.getInstance();
+
+        if (m.logInUser(username, password)) {
             // login successful
-         // set rooot home
-         App.setRoot("home");
-        }else {
-            //  login failed
-            //make loginFail visable 
+            // set rooot home
+            System.out.println("login successful");
+            App.setRoot("home");
+        } else {
+            // login failed
+            // make loginFail visable
+            System.out.println("login BAD");
             loginFail.setVisible(true);
         }
     }
 
-
-    @FXML 
+    @FXML
     private void signUpUser(MouseEvent event) throws IOException {
-
-        //CHANGE TO SIGNUP.FXML
+        // CHANGE TO SIGNUP.FXML
         App.setRoot("signup");
     }
-    
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
 }

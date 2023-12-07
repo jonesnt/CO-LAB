@@ -37,7 +37,7 @@ public class Manager {
   //  It's better to ask for forgiveness than permission
 
   //  singleton design
-  private Manager() {
+  public Manager() {
     //  What needs to be in here?
     //  Waterfall method - This function makes it stream down to make 
     //  everything else null,

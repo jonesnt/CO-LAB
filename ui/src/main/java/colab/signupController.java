@@ -4,15 +4,18 @@
 
 package colab;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URL;
+//import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.*;
 
-public class signupController {
+public class signupController implements Initializable{
 
     @FXML 
     private TextField fName;
@@ -61,6 +64,11 @@ public class signupController {
 
 
         
+
+    }
+
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
     }
 
