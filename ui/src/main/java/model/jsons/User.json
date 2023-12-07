@@ -1,1 +1,21 @@
-[{"firstName":"Atticus","lastName":"Madden","password":"1234","userID":"05e7f716-a546-4b25-9e77-2fcaf46ff069","username":"aMadden"},{"firstName":"Jeff","lastName":"Goldblum","password":"password","userID":"7d02bb9d-3148-41e5-af18-cdd255b2d008","username":"jBlum"},{"firstName":"Atticus","lastName":"Finch","password":"asdf","userID":"ad1ca350-ab85-41b2-b71e-5e8ed3bfbcb4","username":"aFinch"}]
+[
+  {
+      "userID":"28b8af0e-624f-4fb0-ac94-b2422727b25b",
+      "username":"aMadden",
+      "password":"1234",
+      "firstName":"Atticus",
+      "lastName":"Madden"
+  },{
+      "userID":"760e7421-48f8-4b80-852b-06f94f852d3f",
+      "username":"jBlum",
+      "password":"password",
+      "firstName":"Jeff",
+      "lastName":"Goldblum"
+  },{
+      "userID":"dc2e88d7-8953-48fa-b388-797bb3289be6",
+      "username":"aFinch",
+      "password":"asdf",
+      "firstName":"Atticus",
+      "lastName":"Finch"
+  }
+]

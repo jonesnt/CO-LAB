@@ -24,11 +24,11 @@ public class homeController implements Initializable {
     @FXML
     private ListView<String> taskList;
 
-    private Manager man;
+    private Facade fac;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        man = Manager.getInstance();
+        fac = Facade.getInstance();
         try {
             loadProjects();
         } catch (IOException e) {
@@ -59,9 +59,9 @@ public class homeController implements Initializable {
 
         
         // get project from selection
-        man = Manager.getInstance();
+        fac = Facade.getInstance();
         int selectedProject = projectList.getSelectionModel().getSelectedIndex();
-        man.changeCurrentProject(selectedProject);
+        fac.changeCurrentProject(selectedProject);
 
         // populate tasks to the task list
         loadTasks();
@@ -77,11 +77,10 @@ public class homeController implements Initializable {
 
     }
 
-    // gets names of projects and loades it itno the FX project list
+    // gets names of projects and loads it itno the FX project list
     private void loadProjects() throws IOException {
         ObservableList<String> projectList = FXCollections.observableArrayList();
-
-        ArrayList<Project> projects = man.getProjectList();
+        ArrayList<Project> projects = fac.getProjectList();
         for (Project project : projects) {
             projectList.add(project.getName());
         }
@@ -91,7 +90,7 @@ public class homeController implements Initializable {
     private void loadTasks() throws IOException {
         ObservableList<String> taskList = FXCollections.observableArrayList();
 
-        ArrayList<Task> tasks = man.getTaskList();
+        ArrayList<Task> tasks = fac.getTaskList();
         for (Task task : tasks) {
             taskList.add(task.getName());
         }
