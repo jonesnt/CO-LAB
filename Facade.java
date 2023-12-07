@@ -2,19 +2,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Facade {
-
   public static Facade facade;
   public Manager manager;
+
+  public Facade() {
+    manager = Manager.getInstance();
+  }
 
   public static Facade getInstance() {
     if (facade == null) {
       facade = new Facade();
     }
     return facade;
-  }
-
-  public Facade() {
-    this.manager = manager.getInstance();
   }
 
   public boolean logInUser(String user, String pass) {
@@ -113,8 +112,8 @@ public class Facade {
     return manager.assignTaskUser(UserID);
   }
 
-  public boolean unassignTaskUser(UUID UseID) {
-    return manager.unassignTaskUser(UseID);
+  public boolean unassignTaskUser(UUID UserID) {
+    return manager.unassignTaskUser(UserID);
   }
 
   public void render() {
