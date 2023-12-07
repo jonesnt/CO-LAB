@@ -49,7 +49,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <ListView layoutX="27.0" layoutY="55.0" prefHeight="180.0" prefWidth="336.0" style="-fx-background-color: #6c6c6c;" />
+                  <ListView id="commentList" layoutX="27.0" layoutY="55.0" prefHeight="180.0" prefWidth="336.0" style="-fx-background-color: #6c6c6c;" />
                   <Button layoutX="298.0" layoutY="16.0" mnemonicParsing="false" onAction="#addComment" onMouseClicked="#addComment" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
@@ -75,7 +75,7 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onAction="#editTask" onMouseClicked="#editTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
+            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onAction="#editTask" onMouseClicked="#toEditTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
          </children>
       </AnchorPane>
    </children>

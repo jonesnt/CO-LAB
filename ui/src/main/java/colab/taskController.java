@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import model.Comment;
 import model.Manager;
 import model.ToDo;
+import model.User;
 import model.UserManager;
 public class taskController implements Initializable {
     
@@ -35,10 +36,20 @@ private Manager man;
     private Text tPriority;
     @FXML
     private Text tHistory;
+    
     @FXML
     private ListView<String> todoList;
     @FXML
     private ListView<String> commentList;
+    @FXML
+    private TextField usernameAdd;
+    @FXML 
+    private Text error ;
+    @FXML 
+    private TextField descBox;
+    @FXML 
+    private TextField pBox;
+    
 
 
 
@@ -48,6 +59,7 @@ private Manager man;
        ArrayList<UUID> uuidList = man.getCurrentTask().getAssignedUsers();
        UserManager um  = UserManager.getInstance();
        String users = " ";
+       
 
        for (UUID uuid : uuidList) {
         String userName = um.getUserName(uuid);
@@ -58,7 +70,9 @@ private Manager man;
        tName.setText(man.getCurrentTask().getName());
        // update task desc
        tDesc.setText(man.getCurrentTask().getDescription());
-       
+       //task priority
+       tPriority.setText(man.getCurrentTask().getColumnTag().toString());
+
        
         //load todos
             ObservableList<String> todoList = FXCollections.observableArrayList();
@@ -84,8 +98,9 @@ private Manager man;
     }
 
     @FXML
-    private void editTask(MouseEvent event) throws IOException {
+    private void toEditTask(MouseEvent event) throws IOException {
         App.setRoot("editTask");
+
     }
 
     @FXML
@@ -103,6 +118,41 @@ private Manager man;
         man.logOutUser();
         App.setRoot("login");
     }
-    
-    
+
+
+    @FXML
+    private void addUser (MouseEvent event) throws IOException {
+        String username = usernameAdd.getText();
+        UserManager um  = UserManager.getInstance();
+        ArrayList<User> userList = um.getUserList();
+        User currentUser = man.getCurrentUser();
+        boolean userFound = false;
+        for(User user: userList){
+            if (user.getUsername().equals(username)) {
+                man.getCurrentTask().assignUser(user.getUserID(), currentUser);
+                userFound = true;
+                return;
+            }
+        }
+         error.setVisible(!userFound);
+    }
+
+    @FXML 
+    private void editTask (MouseEvent event) throws IOException {
+
+        
+    // get description
+        String desc = tDesc.getText();
+    // get priority
+        String priority  = tPriority.getText();
+    // chnage if different 
+        if (!descBox.equals(null))
+        tDesc.setText(descBox.getText());
+
+        if (!pBox.equals(null))
+        tPriority.setText(pBox.getText());
+    //apply to task 
+        man.getCurrentTask().editTask(man.getCurrentTask().getName(), descBox.getText(), man.getCurrentUser());
+
+    }
 }

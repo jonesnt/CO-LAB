@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import java.net.*?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="997.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.homeController">
    <children>
@@ -21,7 +20,7 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Button layoutX="509.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout">
+                  <Button id="logoutButton" layoutX="509.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="logout">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -31,13 +30,13 @@
       </AnchorPane>
       <AnchorPane prefHeight="303.0" prefWidth="600.0">
          <children>
-            <ListView layoutX="212.0" layoutY="14.0" prefHeight="336.0" prefWidth="281.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css" />
+            <ListView id="projectList" fx:id="projectList" layoutX="212.0" layoutY="14.0" onMouseClicked="#selectProject" prefHeight="336.0" prefWidth="281.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css" />
             <Text layoutX="332.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Projects" />
             <Pane layoutX="526.0" layoutY="14.0" prefHeight="336.0" prefWidth="281.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
                   <Text layoutX="129.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Tasks" />
                   <ListView layoutX="13.0" layoutY="31.0" prefHeight="296.0" prefWidth="253.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+">
+                  <Button id="addTaskButton" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -47,7 +46,7 @@
                   </Button>
                </children>
             </Pane>
-            <Button layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
+            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                <font>
                   <Font size="14.0" />
                </font>
