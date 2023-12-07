@@ -1,7 +1,7 @@
 package model;
 public abstract class DataConstants {
     // USER JSON Constants
-    protected static final String USER_FILE_NAME = "./jsons/User.json";
+    protected static final String USER_FILE_NAME = "ui/src/main/java/model/jsons/User.json";
     protected static final String USER_ID = "userID";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_PASSWORD = "password";
@@ -9,7 +9,7 @@ public abstract class DataConstants {
     protected static final String USER_LAST_NAME = "lastName";
 
     // PROJECT JSON Constants
-    protected static final String PROJECT_FILE_NAME = "./jsons/Project.json";
+    protected static final String PROJECT_FILE_NAME = "ui/src/main/java/model/jsons/Project.json";
     protected static final String PROJECT_ID = "projectID";
     protected static final String PROJECT_NAME = "name";
     protected static final String PROJECT_DESCRIPTION = "description";
@@ -20,7 +20,7 @@ public abstract class DataConstants {
     protected static final String PROJECT_COLUMNS = "columns";
 
     // TASK JSON Constants
-    protected static final String TASK_FILE_NAME = "./jsons/Task.json";
+    protected static final String TASK_FILE_NAME = "ui/src/main/java/model/jsons/Task.json";
     protected static final String TASK_ID = "taskID";
     protected static final String TASK_NAME = "name";
     protected static final String TASK_DESCRIPTION = "description";
