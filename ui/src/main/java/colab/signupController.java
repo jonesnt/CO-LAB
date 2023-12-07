@@ -49,8 +49,6 @@ public class signupController {
         }
 
         //  see if username is already in the db
-
-        
         User copy  = m.findUser(username);
 
         if (copy == null){

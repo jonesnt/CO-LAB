@@ -47,10 +47,11 @@ public class loginController {
     }
 
 
-    @FXML void signUpUser(MouseEvent event) {
+    @FXML 
+    private void signUpUser(MouseEvent event) throws IOException {
 
         //CHANGE TO SIGNUP.FXML
-        App.setRoot('signup');
+        App.setRoot("signup");
     }
     
 }
