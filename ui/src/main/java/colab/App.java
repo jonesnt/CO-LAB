@@ -50,6 +50,10 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         URL location = App.class.getResource(fxml + ".fxml");
+        /*  This is incredibly unstable for some reason (at least on my 
+            machine). When opening it, it takes a few tries to actually get
+            it working. This is the same with Portia's program in my experience
+        */ 
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         return fxmlLoader.load();
     }
