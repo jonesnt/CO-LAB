@@ -80,13 +80,11 @@ public class homeController implements Initializable {
 
     // gets names of projects and loads it itno the FX project list
     private void loadProjects() throws IOException {
-        ObservableList<String> project_List = FXCollections.observableArrayList();
+        ObservableList<String> projectList = FXCollections.observableArrayList();
         ArrayList<Project> projects = fac.getProjectList();
         for (Project project : projects) {
-            System.out.println(project.getName());
-            project_List.add(project.getName());
+            projectList.add(project.getName());
         }
-        projectList.setItems(project_List);
     }
 
     // populates tasklist from current project

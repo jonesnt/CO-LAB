@@ -146,14 +146,10 @@ public class DataWriter extends DataConstants {
             }
             columnsJSON.put(col, tasksJSON);
         }
-        JSONArray userJSONS = new JSONArray();
-        ArrayList<UUID> projectUsers = project.getAssignedUsers();
-        for (UUID id : projectUsers) {
-            userJSONS.add(id.toString());   
-        }
-        projectDetails.put(PROJECT_ASSIGNED_USERS, userJSONS);
+
 
         // System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
+
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
         projectDetails.put(PROJECT_COLUMNS, columnsJSON);
 

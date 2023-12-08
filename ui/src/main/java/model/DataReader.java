@@ -74,9 +74,6 @@ public class DataReader extends DataConstants {
                 String description = (String) projectJSON.get(PROJECT_DESCRIPTION);
                 ZonedDateTime time = ZonedDateTime.parse((String) projectJSON.get(PROJECT_DATE_TIME));
                 ArrayList<UUID> assignedUsers = convertToUUIDList((JSONArray) projectJSON.get(PROJECT_ASSIGNED_USERS));
-                // Object test = projectJSON.get(PROJECT_ASSIGNED_USERS);
-                // JSONArray test = (JSONArray) projectJSON.get(PROJECT_ASSIGNED_USERS);
-                // convertToUUIDList((JSONArray) projectJSON.get(PROJECT_ASSIGNED_USERS));
 
                 JSONArray taskUUIDsJSON = (JSONArray) projectJSON.get(PROJECT_TASKS);
                 ArrayList<Task> tasks = new ArrayList<>();
