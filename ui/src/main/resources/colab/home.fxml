@@ -32,7 +32,7 @@
          <children>
             <Pane layoutX="173.0" layoutY="25.0" prefHeight="382.0" prefWidth="671.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <ListView id="projectList" fx:id="projectList" layoutX="43.0" layoutY="54.0" onMouseClicked="#selectProject" prefHeight="292.0" prefWidth="586.0" style="-fx-background-color: #6c6c6c;" stylesheets="@style.css" />
+                  <ListView id="projectList" fx:id="projectList" fixedCellSize="1.0" layoutX="43.0" layoutY="54.0" onMouseClicked="#selectProject" prefHeight="292.0" prefWidth="586.0" style="-fx-background-color: #6c6c6c;" stylesheets="@style.css" />
                   <Text layoutX="312.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Projects" />
                   <Button id="addProjectButton" layoutX="578.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                      <font>

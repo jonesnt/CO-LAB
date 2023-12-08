@@ -8,15 +8,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="550.0" prefWidth="958.0" spacing="20.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.loginController">
+<VBox alignment="CENTER" prefHeight="550.0" prefWidth="958.0" spacing="20.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.loginController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="602.0" style="-fx-background-color: #6c6c6c; -fx-border-radius: 50px; -fx-border-style: solid; -fx-background-radius: 50px; -fx-border-width: 2px;">
          <children>
-            <TextField fx:id="loginUsername" alignment="CENTER" layoutX="227.0" layoutY="152.0" promptText="Username" />
-            <TextField fx:id="loginPassword" alignment="CENTER" layoutX="227.0" layoutY="192.0" promptText="Password" />
+            <TextField fx:id="loginUsername" alignment="CENTER" layoutX="227.0" layoutY="152.0" promptText="Username" style="-fx-background-color: #4f4f4f;" />
+            <TextField fx:id="loginPassword" alignment="CENTER" layoutX="227.0" layoutY="192.0" promptText="Password" style="-fx-background-color: #4f4f4f;" />
             <Button id="loginButton" contentDisplay="CENTER" layoutX="243.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#loginUser" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #75f9fd;" text="Login" />
             <Text id="appName" fill="WHITE" layoutX="215.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Co/Lab" textAlignment="CENTER">
                <font>
