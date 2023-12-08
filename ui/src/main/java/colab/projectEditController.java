@@ -31,4 +31,18 @@ public class projectEditController implements Initializable {
     //  TODO
   }
   
+  @FXML
+  private void logOut(MouseEvent event) throws IOException {
+    //  TODO
+  }
+
+  @FXML
+  private void editDesc(MouseEvent event) throws IOException {
+    //  TODO
+  }
+
+  @FXML
+  private void toProject(MouseEvent even) throws IOException {
+    //  TODO
+  }
 }
