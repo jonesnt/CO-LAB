@@ -10,9 +10,12 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.Facade;
 
+import java.io.File;
+
 //import model.Manager;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -49,17 +52,20 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        URL location = App.class.getResource(fxml + ".fxml");
+        // URL location = App.class.getResource(fxml + ".fxml");
         /*  This is incredibly unstable for some reason (at least on my 
             machine). When opening it, it takes a few tries to actually get
             it working. This is the same with Portia's program in my experience
         */ 
+        URL location = new File("ui/src/main/resources/colab/"+ fxml + ".fxml").toURI().toURL();
+        //  here's an updated version, idk if it works on windows however
         FXMLLoader fxmlLoader = new FXMLLoader(location);
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
         launch();
+        System.exit(0);
     }
 
 }
