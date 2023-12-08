@@ -50,8 +50,19 @@ public class projectController implements Initializable {
     }
 
     result += "Description:\n" + cProject.getDescription() + "\n";
-    
+
     return result;
   }
 
+
+
+  @FXML
+  private void editProject(MouseEvent event) throws IOException {
+    //  TODO
+ }
+
+  @FXML
+  private void addTask(MouseEvent event) throws IOException {
+    //  TODO
+  }
 }
