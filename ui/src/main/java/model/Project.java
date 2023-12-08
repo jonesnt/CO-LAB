@@ -18,7 +18,8 @@ public class Project {
     private ArrayList<UUID> assignedUsers;
     private ArrayList<Task> tasks; // isnt this suppoed to be a UUID?
     private ArrayList<String> columnList;
-    private HashMap<String, Queue<Task>> columns;// the array list may need a instance variable??
+    // private HashMap<String, Queue<Task>> columns;// the array list may need a instance variable??
+    private HashMap<String, ArrayList<Task>> columns;
 
     /*
      * // constructor for project
@@ -51,15 +52,27 @@ public class Project {
         this.assignedUsers = assignedUsers;
         this.tasks = tasks;
         this.columnList = columnList;
-        this.columns = new HashMap<String, Queue<Task>>();
+        // this.columns = new HashMap<String, Queue<Task>>();
+        this.columns = new HashMap<>();
         for (Task t : tasks) {
             System.out.println(t.getID().toString());
         }
-        if(columnList != null) {
+        // if(columnList != null) {
 
+        //     for (String specificColumn : columnList) {
+        //         // Queue<Task> tempQueue = new LinkedList<Task>();
+        //         columns.put(specificColumn, tempQueue);
+        //     }
+
+        //     for (int i = 0; i < tasks.size(); ++i) {
+        //         String specificColumn = tasks.get(i).getColumnTag();
+        //         columns.get(specificColumn).add(tasks.get(i));
+        //     }
+        // }
+        if(columnList != null) {
             for (String specificColumn : columnList) {
-                Queue<Task> tempQueue = new LinkedList<Task>();
-                columns.put(specificColumn, tempQueue);
+                ArrayList<Task> list = new ArrayList<>();
+                columns.put(specificColumn, list);
             }
 
             for (int i = 0; i < tasks.size(); ++i) {
@@ -74,7 +87,8 @@ public class Project {
         this.name = name;
         this.description = description;
         this.time = ZonedDateTime.now();
-        this.columns = new HashMap<String, Queue<Task>>();
+        // this.columns = new HashMap<String, Queue<Task>>();
+        this.columns = new HashMap<>();
         this.assignedUsers = new ArrayList<UUID>();
         this.tasks = new ArrayList<Task>();
         this.columnList = new ArrayList<String>();
@@ -84,7 +98,8 @@ public class Project {
     public boolean addColumn(String columnName) {
         if (!columnList.contains(columnName)){
             columnList.add(columnName);
-            Queue<Task> tempList = new LinkedList<Task>();
+            // Queue<Task> tempList = new LinkedList<Task>();
+            ArrayList<Task> tempList = new ArrayList<>();
             columns.put(columnName, tempList);
             return true;
         }
@@ -118,11 +133,11 @@ public class Project {
     // removes task from task array list
     public boolean removeTask(Task removeTask) {
 
-        HashMap<String, Queue<Task>> tempColumns = columns;
+        // HashMap<String, Queue<Task>> tempColumns = columns;
         if (tasks.contains(removeTask)) {
             for (String key : columnList) {
-                if (tempColumns.get(key).contains(removeTask)) {
-                    tempColumns.get(key).remove(removeTask);
+                if (columns.get(key).contains(removeTask)) {
+                    columns.get(key).remove(removeTask);
                     tasks.remove(removeTask);
                     return true;
                 }
@@ -202,12 +217,13 @@ public class Project {
     public ArrayList<UUID> getAssignedUsers() {
         return assignedUsers;
     }
- 
+ /*
     public ArrayList<Task> getTasks() {
+        //  for the love of god why are we using queues
         if (columns.isEmpty())
             return null;
         tasks = new ArrayList<Task>();
-        HashMap<String, Queue<Task>> tempColumns = (HashMap<String, Queue<Task>>) columns.clone();
+        HashMap<String, Queue<Task>> tempColumns = ;
         Queue<Task> tempQueue = null;
         ArrayList<String> tempList = new ArrayList<String>();
         for(String specificString : columnList)
@@ -225,7 +241,17 @@ public class Project {
 
         return tasks;
     }
-
+*/
+    public ArrayList<Task> getTasks() {
+        if (columns.isEmpty())
+            return null;
+        tasks = new ArrayList<>();
+        for (String s : columnList) {
+            for (Task t : columns.get(s))
+                tasks.add(t);
+        }
+        return tasks;
+    }
     public ArrayList<String> getColumnList() {
         return columnList;
     }
@@ -237,7 +263,8 @@ public class Project {
         }
         //  i have to do this workaround becuase for SOME reason the toArray makes
         //  an Object?????? why
-        Queue<Task> tasks = columns.get(columnName);
+        // Queue<Task> tasks = columns.get(columnName);
+        ArrayList<Task> tasks = columns.get(columnName);
         Task[] toCopy = tasks.toArray(new Task[tasks.size()]);
         Task[] result = new Task[toCopy.length];
         for (int i = 0; i < result.length; ++i) {
