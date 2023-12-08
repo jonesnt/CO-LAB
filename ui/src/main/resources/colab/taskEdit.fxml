@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.taskController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.taskController">
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0">
          <children>
             <Pane layoutX="103.0" layoutY="13.0" prefHeight="39.0" prefWidth="839.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text layoutX="27.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Co/Lab" wrappingWidth="79.13671875">
+                  <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Co/Lab" wrappingWidth="146.13671875">
                      <font>
                         <Font size="25.0" />
                      </font>

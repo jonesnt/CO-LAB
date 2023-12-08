@@ -45,14 +45,14 @@ public class homeController implements Initializable {
     }
 
     @FXML
-    private void addProject() throws IOException {
-
+    private void addProject(MouseEvent event) throws IOException {
+        // System.out.println("debug");
         Facade f = Facade.getInstance();
         Project newProject = new Project("New Project", "Add a Description.");
         f.addProject(newProject);
 
         // add project to the list
-
+        loadProjects();
     }
 
     @FXML

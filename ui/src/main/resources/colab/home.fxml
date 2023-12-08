@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </Pane>
-            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
+            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                <font>
                   <Font size="14.0" />
                </font>

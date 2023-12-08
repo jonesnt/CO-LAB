@@ -27,9 +27,9 @@
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="1070.0">
          <children>
             <ListView layoutX="120.0" layoutY="14.0" prefHeight="455.0" prefWidth="361.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css" />
-            <Pane layoutX="512.0" layoutY="14.0" prefHeight="187.0" prefWidth="382.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
+            <Pane layoutX="512.0" layoutY="14.0" prefHeight="455.0" prefWidth="382.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text layoutX="160.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ToDos">
+                  <Text layoutX="160.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -39,33 +39,15 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
-                  <ListView id="todoList" layoutX="35.0" layoutY="45.0" prefHeight="133.0" prefWidth="318.0" style="-fx-background-color: #6c6c6c;" />
-               </children>
-            </Pane>
-            <Pane layoutX="512.0" layoutY="216.0" prefHeight="253.0" prefWidth="382.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
-               <children>
-                  <Text layoutX="138.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Text>
-                  <ListView id="commentList" layoutX="27.0" layoutY="55.0" prefHeight="180.0" prefWidth="336.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button layoutX="298.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#addComment" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Button>
+                  <ListView id="todoList" layoutX="35.0" layoutY="45.0" prefHeight="367.0" prefWidth="318.0" style="-fx-background-color: #6c6c6c;" />
                </children>
             </Pane>
             <Pane layoutX="167.0" layoutY="74.0" prefHeight="345.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text id="tAssign" layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Assigned to:" />
-                  <Text id="tDesc" layoutX="25.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Description:" />
-                  <Text id="tPriority" layoutX="25.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Priority:" />
-                  <Text id="tHistory" layoutX="25.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="History:" />
+                  <Text id="pInfo" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" wrappingWidth="218.13671875" />
                </children>
             </Pane>
-            <Text id="tName" layoutX="238.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskName">
+            <Text id="pName" layoutX="238.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProjectName">
                <font>
                   <Font size="22.0" />
                </font>

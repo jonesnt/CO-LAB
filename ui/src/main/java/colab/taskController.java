@@ -24,7 +24,7 @@ import model.User;
 import model.UserManager;
 public class taskController implements Initializable {
     
-private Manager man;
+    private Manager man;
 
     @FXML
     private Text tName;

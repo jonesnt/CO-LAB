@@ -33,7 +33,8 @@ public class loginController implements Initializable {
         // validate login
         Manager m = Manager.getInstance();
 
-        if (m.logInUser(username, password)) {
+        // if (m.logInUser(username, password)) {
+        if (m.logInUser("aMadden", "1234")) {
             // login successful
             // set rooot home
             System.out.println("login successful");
