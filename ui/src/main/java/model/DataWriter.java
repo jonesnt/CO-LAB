@@ -149,7 +149,7 @@ public class DataWriter extends DataConstants {
 
 
         // System.out.println("Final columnsJSON: " + columnsJSON.toString()); // Debugging statement
-
+        projectDetails.put(PROJECT_ASSIGNED_USERS, project.getAssignedUsers().toString());
         projectDetails.put(PROJECT_COLUMN_LIST, columnListJSON);
         projectDetails.put(PROJECT_COLUMNS, columnsJSON);
 
