@@ -30,7 +30,12 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fac = Facade.getInstance();
-            loadProjects();        
+        try {
+            loadProjects();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -51,7 +56,7 @@ public class homeController implements Initializable {
     }
 
     @FXML
-    private void selectProject(){
+    private void selectProject() throws IOException {
 
         
         // get project from selection
@@ -74,12 +79,14 @@ public class homeController implements Initializable {
     }
 
     // gets names of projects and loads it itno the FX project list
-    private void loadProjects()  {
-        ObservableList<String> projectList = FXCollections.observableArrayList();
+    private void loadProjects() throws IOException {
+        ObservableList<String> project_List = FXCollections.observableArrayList();
         ArrayList<Project> projects = fac.getProjectList();
         for (Project project : projects) {
-            projectList.add(project.getName());
+            System.out.println(project.getName());
+            project_List.add(project.getName());
         }
+        projectList.setItems(project_List);
     }
 
     // populates tasklist from current project
