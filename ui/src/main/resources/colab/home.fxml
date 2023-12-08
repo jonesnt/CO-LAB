@@ -30,13 +30,11 @@
       </AnchorPane>
       <AnchorPane prefHeight="303.0" prefWidth="600.0">
          <children>
-            <ListView id="projectList" fx:id="projectList" layoutX="212.0" layoutY="14.0" onMouseClicked="#selectProject" prefHeight="336.0" prefWidth="281.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css" />
-            <Text layoutX="332.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Projects" />
-            <Pane layoutX="526.0" layoutY="14.0" prefHeight="336.0" prefWidth="281.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
+            <Pane layoutX="173.0" layoutY="25.0" prefHeight="382.0" prefWidth="671.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text layoutX="129.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Tasks" />
-                  <ListView layoutX="13.0" layoutY="31.0" prefHeight="296.0" prefWidth="253.0" style="-fx-background-color: #6c6c6c;" />
-                  <Button id="addTaskButton" layoutX="202.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #75f9fd;" styleClass="rounded" text="+" visible="false">
+                  <ListView id="projectList" fx:id="projectList" layoutX="43.0" layoutY="54.0" onMouseClicked="#selectProject" prefHeight="292.0" prefWidth="586.0" style="-fx-background-color: #6c6c6c;" stylesheets="@style.css" />
+                  <Text layoutX="312.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Projects" />
+                  <Button id="addProjectButton" layoutX="578.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -46,14 +44,6 @@
                   </Button>
                </children>
             </Pane>
-            <Button id="addProjectButton" layoutX="420.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#addProject" style="-fx-background-color: #75f9fd;" styleClass="rounded" stylesheets="@style.css" text="+">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </AnchorPane>
    </children>
