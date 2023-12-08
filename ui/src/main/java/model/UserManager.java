@@ -165,7 +165,7 @@ public class UserManager {
 
     public User findUser(UUID userID) {
         for(User specUser : userList) {
-            if(specUser.getUserID() == userID)
+            if(specUser.getUserID().equals(userID))
             return specUser;
         }
         return null;

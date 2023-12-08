@@ -56,21 +56,16 @@ public class homeController implements Initializable {
     }
 
     @FXML
-    private void selectProject() throws IOException {
+    private void selectProject(MouseEvent event) throws IOException {
 
         
         // get project from selection
         fac = Facade.getInstance();
         int selectedProject = projectList.getSelectionModel().getSelectedIndex();
+        selectedProject++;
+        System.out.println(selectedProject);
         fac.changeCurrentProject(selectedProject);
-
-        // populate tasks to the task list
-        loadTasks();
-        // make add task button visable
-        addTaskButton.setVisible(true);
-
-        // change color of current project
-        //will do later
+        App.setRoot("project");
     }
 
     @FXML

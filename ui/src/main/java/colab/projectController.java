@@ -65,4 +65,16 @@ public class projectController implements Initializable {
   private void addTask(MouseEvent event) throws IOException {
     //  TODO
   }
+
+  
+  @FXML
+  private void toHome(MouseEvent event) throws IOException {
+    App.setRoot("home");
+  }
+
+  @FXML
+  private void logOut(MouseEvent event) throws IOException {
+      Facade.getInstance().logOutUser();
+      App.setRoot("login");
+  }
 }
