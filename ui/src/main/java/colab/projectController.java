@@ -58,7 +58,7 @@ public class projectController implements Initializable {
 
   @FXML
   private void editProject(MouseEvent event) throws IOException {
-    //  TODO
+    App.setRoot("projectEdit");
  }
 
   @FXML
