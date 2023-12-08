@@ -30,7 +30,11 @@ public class App extends Application {
             @Override
             public void handle(WindowEvent t) {
                 //Manager.getInstance().logOutUser();
-                Facade.getInstance().logOutUser();
+                try {
+                    Facade.getInstance().logOutUser();
+                } catch (Exception e){
+                    //  do nothing
+                }
                 Platform.exit();
                 System.exit(0);
             }
