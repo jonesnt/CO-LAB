@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.taskController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1071.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.projectController">
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0">
          <children>
@@ -29,7 +29,7 @@
             <ListView layoutX="120.0" layoutY="14.0" prefHeight="455.0" prefWidth="361.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css" />
             <Pane layoutX="512.0" layoutY="14.0" prefHeight="455.0" prefWidth="382.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text layoutX="160.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
+                  <Text layoutX="160.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Tasks">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -44,10 +44,10 @@
             </Pane>
             <Pane layoutX="167.0" layoutY="74.0" prefHeight="345.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text id="pInfo" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" wrappingWidth="218.13671875" />
+                  <Text id="pInfo" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Placeholder" wrappingWidth="218.13671875" />
                </children>
             </Pane>
-            <Text id="pName" layoutX="238.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProjectName">
+            <Text id="pName" layoutX="233.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="ProjectName">
                <font>
                   <Font size="22.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#toEditTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
+            <Button id="editProject" layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#toEditTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
          </children>
       </AnchorPane>
    </children>
