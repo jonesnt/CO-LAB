@@ -13,6 +13,7 @@ import model.Facade;
 //import model.Manager;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * @author Dillion Norris
@@ -29,7 +30,6 @@ public class App extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-                //Manager.getInstance().logOutUser();
                 try {
                     Facade.getInstance().logOutUser();
                 } catch (Exception e){
@@ -49,7 +49,8 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        URL location = App.class.getResource(fxml + ".fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
         return fxmlLoader.load();
     }
 
