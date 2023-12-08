@@ -52,7 +52,9 @@ public class Project {
         this.tasks = tasks;
         this.columnList = columnList;
         this.columns = new HashMap<String, Queue<Task>>();
-
+        for (Task t : tasks) {
+            System.out.println(t.getID().toString());
+        }
         if(columnList != null) {
 
             for (String specificColumn : columnList) {
@@ -200,12 +202,12 @@ public class Project {
     public ArrayList<UUID> getAssignedUsers() {
         return assignedUsers;
     }
-
+ 
     public ArrayList<Task> getTasks() {
         if (columns.isEmpty())
             return null;
         tasks = new ArrayList<Task>();
-        HashMap<String, Queue<Task>> tempColumns = columns;
+        HashMap<String, Queue<Task>> tempColumns = (HashMap<String, Queue<Task>>) columns.clone();
         Queue<Task> tempQueue = null;
         ArrayList<String> tempList = new ArrayList<String>();
         for(String specificString : columnList)
@@ -213,11 +215,11 @@ public class Project {
         
         while(!tempList.isEmpty()) {
             for(String specificColumn : tempList) {
-                if(columns.get(specificColumn).isEmpty()) {
+                if(tempColumns.get(specificColumn).isEmpty()) {
                     tempList.remove(specificColumn);
                     break;
                 }
-                tasks.add(columns.get(specificColumn).remove());
+                tasks.add(tempColumns.get(specificColumn).remove());
             }
         }
 

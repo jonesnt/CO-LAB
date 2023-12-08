@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
@@ -19,7 +23,10 @@ public class projectController implements Initializable {
   private Text pName;
   @FXML
   private Text pInfo;
-
+  @FXML
+  private ComboBox<String> filter;
+  @FXML
+  private ListView<String> taskList;
 
 
 
@@ -35,6 +42,19 @@ public class projectController implements Initializable {
     pName.setText(cProject.getName());
 
     pInfo.setText(getPInfo());
+
+    //  debug test for the combobox
+    ObservableList<String> filters = FXCollections.observableArrayList();
+    ArrayList<String> columns = man.getColumnList();
+    filters.add("Yours");
+    filter.getItems();
+    for (String col : columns) {
+      filters.add(col);
+      // filter.getItems().add(col);
+    }
+    filter.setItems(filters);
+    //  default:
+    setTasks("Yours");
 
   }
 
@@ -54,6 +74,36 @@ public class projectController implements Initializable {
     return result;
   }
 
+    private void setTasks(String colName) {
+      //  collect tasks
+      ArrayList<String> cNames = man.getColumnList();
+      ArrayList<Task> tasks = man.getTaskList();
+      ArrayList<Task> result = new ArrayList<Task>();
+      UUID auid = man.getCurrentUser().getUserID();
+      //  first check if it's name is valid
+      if (!cNames.contains(colName) || !colName.equals("Yours"))
+        return;
+      //  return yours specifically
+      if (colName.equals("Yours")) {
+          for (Task t : tasks) {
+            ArrayList<UUID> ids = t.getAssignedUsers();
+            for (UUID id : ids) 
+              if (id.equals(auid))
+                result.add(t);
+          }
+      } else {
+        for (Task t : tasks) {
+          if (t.getColumnTag().equals(colName))
+            result.add(t);
+        }
+      }
+      ObservableList<String> tasks_List = FXCollections.observableArrayList();
+      for (Task t : result) {
+        System.out.println(t.getName());
+        tasks_List.add(t.getName());
+      }
+      taskList.setItems(tasks_List);
+    }
 
 
   @FXML

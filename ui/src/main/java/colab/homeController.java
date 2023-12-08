@@ -78,8 +78,10 @@ public class homeController implements Initializable {
         ObservableList<String> project_List = FXCollections.observableArrayList();
         ArrayList<Project> projects = fac.getProjectList();
         for (Project project : projects) {
-            System.out.println(project.getName());
             project_List.add(project.getName());
+            ArrayList<Task> tasks = project.getTasks();
+            for (Task task : tasks)
+                System.out.println(task.getName());
         }
         projectList.setItems(project_List);
     }

@@ -5,6 +5,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -74,24 +75,20 @@ public class DataReader extends DataConstants {
                 String description = (String) projectJSON.get(PROJECT_DESCRIPTION);
                 ZonedDateTime time = ZonedDateTime.parse((String) projectJSON.get(PROJECT_DATE_TIME));
                 ArrayList<UUID> assignedUsers = convertToUUIDList((JSONArray) projectJSON.get(PROJECT_ASSIGNED_USERS));
+                //  get task UUIDs
 
-                JSONArray taskUUIDsJSON = (JSONArray) projectJSON.get(PROJECT_TASKS);
-                ArrayList<Task> tasks = new ArrayList<>();
-                if (taskUUIDsJSON != null) {
-                    for (Object taskUUIDObj : taskUUIDsJSON) {
-                        String taskUUIDStr = (String) taskUUIDObj;
-                        UUID taskUUID = UUID.fromString(taskUUIDStr);
-                        Task task = getTaskByUUID(taskUUID);
-                        if (task != null) {
-                            tasks.add(task);
-                        }
-                    }
-                }
                 ArrayList<String> columnList = (ArrayList<String>) projectJSON.get(PROJECT_COLUMN_LIST);
                 JSONObject projectColumnsJSON = (JSONObject) projectJSON.get(PROJECT_COLUMNS);
                 HashMap<String, ArrayList<UUID>> columns = new HashMap<>();
                 for (String columnName : columnList) {
                     columns.put(columnName, convertToUUIDList((JSONArray) projectColumnsJSON.get(columnName)));
+                }
+                ArrayList<Task> tasks = new ArrayList<Task>();
+                for (String col : columnList) {
+                    ArrayList<UUID> tuids = columns.get(col);
+                    for (UUID id : tuids) {
+                        tasks.add(getTaskByUUID(id));
+                    }
                 }
                 Project toAdd = new Project(projectID, name, description, time, assignedUsers, tasks, columnList);
                 projects.add(toAdd);
