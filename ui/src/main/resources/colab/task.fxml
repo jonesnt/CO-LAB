@@ -66,14 +66,23 @@
             </Pane>
             <Pane layoutX="396.0" layoutY="191.0" prefHeight="183.0" prefWidth="319.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text id="todos" fx:id="pName11" layoutX="103.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Comments">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Text>
-                  <ListView id="commentList" fx:id="taskList1" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
+                  <Text fx:id="tAssign" layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Assigned to:" />
+                  <Text fx:id="tDesc" layoutX="25.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Description:" />
+                  <Text fx:id="tPriority" layoutX="25.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="Priority:" />
+                  <Text fx:id="tHistory" layoutX="25.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF;" text="History:" />
                </children>
             </Pane>
+            <Text fx:id="tName" layoutX="238.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskName">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Button fx:id="toHome" layoutX="157.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="&lt;">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="261.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#toEditTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
          </children>
       </AnchorPane>
    </children>
