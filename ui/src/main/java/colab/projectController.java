@@ -136,4 +136,17 @@ public class projectController implements Initializable {
       Facade.getInstance().logOutUser();
       App.setRoot("login");
   }
+
+@FXML
+
+private void selectTask(MouseEvent event) throws IOException {
+  
+
+  int selectedTask = taskList.getSelectionModel().getSelectedIndex();
+  selectedTask++;
+Facade.getInstance().changeCurrentTask(selectedTask);
+  App.setRoot("task");
+
+}
+
 }
