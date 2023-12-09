@@ -69,19 +69,20 @@
                      </font>
                   </Button>
                   <Text id="Desc" layoutX="125.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Description" />
-                  <TextField fx:id="descAddBox" layoutX="54.0" layoutY="227.0" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #4f4f4f;" />
-                  <Button id="addDescButton" layoutX="225.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#editDesc" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <TextField id="descBox" fx:id="descBox" layoutX="54.0" layoutY="227.0" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #4f4f4f;" />
+                  <Button id="DescButton" layoutX="225.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#editDesc" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
                   <Text id="addU" layoutX="118.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Project Name" />
-                  <TextField id="pNameBox" fx:id="usernameAddBox1" layoutX="54.0" layoutY="73.0" promptText="Username" style="-fx-background-color: #4f4f4f;" />
-                  <Button id="pNameButton" layoutX="225.0" layoutY="71.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <TextField id="pNameBox" fx:id="projectNameBox" layoutX="54.0" layoutY="73.0" promptText="Project Name" style="-fx-background-color: #4f4f4f;" />
+                  <Button id="pNameButton" layoutX="225.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#editName" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
+                  <Text id="errorUser" fx:id="errorUser" fill="RED" layoutX="75.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No name found!" visible="false" />
                </children>
             </Pane>
          </children>

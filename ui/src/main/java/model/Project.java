@@ -117,6 +117,16 @@ public class Project {
         return false;
     }
 
+    //  adds user
+    public boolean addUser(User user) {
+        for (UUID u : assignedUsers) {
+            if (u.equals(user.getUserID()))
+                return false;
+        }
+        assignedUsers.add(user.getUserID());
+        return true;
+    }
+
     // ads task to "columns" HashMap with column as the key and Task as the value
     // does not need to create task (I hope)
     public boolean addTask(Task newTask, String columnChoice) {
@@ -202,9 +212,9 @@ public class Project {
     // eddits atributes of the project
     public boolean editProject(String newName, String newDescription) {
         if( newName == null)
-        newName = name;
+            newName = name;
         if (newDescription == null)
-        newDescription = description;
+            newDescription = description;
 
         name = newName;
         description = newDescription;

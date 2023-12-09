@@ -21,20 +21,36 @@ public class projectEditController implements Initializable {
   @FXML
   private Text pInfo;
 
+  @FXML
+  private TextField descBox;
+
+  @FXML
+  private TextField projectNameBox;
+
+  @FXML
+  private TextField usernameAddBox;
+
+  @FXML
+  private Text errorUser;
+
   private Project cProject;
   private Manager man;
   @Override
   public void initialize(URL url, ResourceBundle rb){
     man = Manager.getInstance();
-    
+
     cProject = man.getCurrentProject();
 
-    pName.setText(cProject.getName());
+    getPName();
 
-    pInfo.setText(getPInfo());
+    getPInfo();
   }
 
-  private String getPInfo() {
+  private void getPName() {
+    pName.setText(cProject.getName());
+  }
+  
+  private void getPInfo() {
     String result;
     
     result = "Assigned Users:\n";
@@ -46,31 +62,50 @@ public class projectEditController implements Initializable {
 
     result += "Description:\n" + cProject.getDescription() + "\n";
 
-    return result;
+    pInfo.setText(result);
   }
 
   @FXML
   private void addUser(MouseEvent event) throws IOException {
     //  TODO
+    String name = usernameAddBox.getText();
+    if (name == null) {
+      errorUser.setVisible(true);
+      return;
+    }
+    User user = UserManager.getInstance().findUser(name);
+    if (user == null) {
+      errorUser.setVisible(true);
+      return;
+    }
+    man.getCurrentProject().addUser(user);
+    getPInfo();
   }
 
   @FXML
-  private void editProject(MouseEvent event) throws IOException {
-    //  TODO
+  private void editName(MouseEvent event) throws IOException {
+    String name = projectNameBox.getText();
+    if (name != null)
+      man.getCurrentProject().editProject(name, null);
+    getPName();
   }
   
   @FXML
   private void logOut(MouseEvent event) throws IOException {
-    //  TODO
+      Facade.getInstance().logOutUser();
+      App.setRoot("login");
   }
 
   @FXML
   private void editDesc(MouseEvent event) throws IOException {
-    //  TODO
+    String desc = descBox.getText();
+    if (desc != null)
+      man.getCurrentProject().editProject(null, desc);
+    getPInfo();
   }
 
   @FXML
   private void toProject(MouseEvent even) throws IOException {
-    //  TODO
+    App.setRoot("project");
   }
 }
