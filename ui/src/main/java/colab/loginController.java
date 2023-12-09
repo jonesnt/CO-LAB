@@ -28,7 +28,6 @@ public class loginController implements Initializable {
     private void loginUser(MouseEvent event) throws IOException {
         // get user and pass
         String username = loginUsername.getText();
-        System.out.println(username);
         String password = loginPassword.getText();
         // validate login
         Manager m = Manager.getInstance();
@@ -37,12 +36,10 @@ public class loginController implements Initializable {
         if (m.logInUser("aMadden", "1234")) {
             // login successful
             // set rooot home
-            System.out.println("login successful");
             App.setRoot("home");
         } else {
             // login failed
             // make loginFail visable
-            System.out.println("login BAD");
             loginFail.setVisible(true);
         }
     }

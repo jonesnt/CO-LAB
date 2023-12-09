@@ -121,7 +121,15 @@ public class DataReader extends DataConstants {
                 // Color bgColor = Color.decode((String) taskJSON.get(TASK_BG_COLOR));
                 // Color fgColor = Color.decode((String) taskJSON.get(TASK_FG_COLOR));
                 String columnTag = (String) taskJSON.get(TASK_COLUMN_TAG);
-                ArrayList<UUID> assignedUsers = (ArrayList<UUID>) taskJSON.get(PROJECT_ASSIGNED_USERS);
+                //  PROBLEM CODE
+                // ArrayList<UUID> assignedUsers = (ArrayList<UUID>) taskJSON.get(PROJECT_ASSIGNED_USERS);
+                JSONArray userJSONs = (JSONArray) taskJSON.get(PROJECT_ASSIGNED_USERS);
+                Object[] ids = userJSONs.toArray();
+                ArrayList<UUID> assignedUsers = new ArrayList<>();
+                for (Object id : ids) {
+                    assignedUsers.add(UUID.fromString(id.toString()));
+                }
+                //  PROBLEM CODE
                 boolean isCompleted = (boolean) taskJSON.get(TASK_COMPLETION_STATUS);
                 ArrayList<ToDo> todos = getToDos((JSONArray) taskJSON.get(TASK_TODOS));
                 ArrayList<Comment> comments = getComments((JSONArray) taskJSON.get(TASK_COMMENTS));

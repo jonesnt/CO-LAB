@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -56,6 +57,10 @@ public class projectController implements Initializable {
     //  default:
     setTasks("Yours");
 
+        // Set up a ChangeListener for ComboBox selection changes
+        filter.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+          setTasks(newValue);
+      });
   }
 
 
@@ -81,7 +86,7 @@ public class projectController implements Initializable {
       ArrayList<Task> result = new ArrayList<Task>();
       UUID auid = man.getCurrentUser().getUserID();
       //  first check if it's name is valid
-      if (!cNames.contains(colName) || !colName.equals("Yours"))
+      if (!cNames.contains(colName) && !colName.equals("Yours"))
         return;
       //  return yours specifically
       if (colName.equals("Yours")) {

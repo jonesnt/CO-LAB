@@ -54,9 +54,7 @@ public class Project {
         this.columnList = columnList;
         // this.columns = new HashMap<String, Queue<Task>>();
         this.columns = new HashMap<>();
-        for (Task t : tasks) {
-            System.out.println(t.getID().toString());
-        }
+
         // if(columnList != null) {
 
         //     for (String specificColumn : columnList) {
@@ -247,8 +245,10 @@ public class Project {
             return null;
         tasks = new ArrayList<>();
         for (String s : columnList) {
-            for (Task t : columns.get(s))
+            for (Task t : columns.get(s)) {
+                t.getAssignedUsers();
                 tasks.add(t);
+            }
         }
         return tasks;
     }
@@ -269,8 +269,6 @@ public class Project {
         Task[] result = new Task[toCopy.length];
         for (int i = 0; i < result.length; ++i) {
             // result[i] = (Task)toCopy[i];
-            //  DEBUG
-            System.out.println(toCopy[i].getName());
         }
         return result;
     }

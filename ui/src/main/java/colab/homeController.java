@@ -46,7 +46,6 @@ public class homeController implements Initializable {
 
     @FXML
     private void addProject(MouseEvent event) throws IOException {
-        // System.out.println("debug");
         Facade f = Facade.getInstance();
         Project newProject = new Project("New Project", "Add a Description.");
         f.addProject(newProject);
@@ -63,7 +62,6 @@ public class homeController implements Initializable {
         fac = Facade.getInstance();
         int selectedProject = projectList.getSelectionModel().getSelectedIndex();
         selectedProject++;
-        System.out.println(selectedProject);
         fac.changeCurrentProject(selectedProject);
         App.setRoot("project");
     }
@@ -80,8 +78,6 @@ public class homeController implements Initializable {
         for (Project project : projects) {
             project_List.add(project.getName());
             ArrayList<Task> tasks = project.getTasks();
-            for (Task task : tasks)
-                System.out.println(task.getName());
         }
         projectList.setItems(project_List);
     }
