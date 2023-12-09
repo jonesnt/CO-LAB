@@ -92,6 +92,19 @@ public class Project {
         this.columnList = new ArrayList<String>();
     }
 
+    //  overload time babey 
+    public Project(String name, String description, User user) {
+        this.projectID = UUID.randomUUID();
+        this.name = name;
+        this.description = description;
+        this.time = ZonedDateTime.now();
+        // this.columns = new HashMap<String, Queue<Task>>();
+        this.columns = new HashMap<>();
+        this.assignedUsers = new ArrayList<UUID>();
+        assignedUsers.add(user.getUserID());
+        this.tasks = new ArrayList<Task>();
+        this.columnList = new ArrayList<String>();
+    }
     // adds column within project for the tasks to be catergorized
     public boolean addColumn(String columnName) {
         if (!columnList.contains(columnName)){

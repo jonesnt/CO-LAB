@@ -15,6 +15,11 @@ import javafx.scene.text.Text;
 import model.*;
 
 public class projectEditController implements Initializable {
+  @FXML
+  private Text pName;
+
+  @FXML
+  private Text pInfo;
 
   private Project cProject;
   private Manager man;
@@ -24,6 +29,11 @@ public class projectEditController implements Initializable {
 
     pName.setText(cProject.getName());
 
+    pInfo.setText(getPInfoSafe());
+  }
+
+  private String getPInfoSafe() {
+    
   }
 
   @FXML

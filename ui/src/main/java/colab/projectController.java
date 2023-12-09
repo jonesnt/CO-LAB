@@ -55,7 +55,11 @@ public class projectController implements Initializable {
     }
     filter.setItems(filters);
     //  default:
-    setTasks("Yours");
+    try {
+      setTasks("Yours");
+    } catch (Exception e) {
+      //  no tasks womp womp
+    }
 
         // Set up a ChangeListener for ComboBox selection changes
         filter.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {

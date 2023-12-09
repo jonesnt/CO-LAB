@@ -47,7 +47,7 @@ public class homeController implements Initializable {
     @FXML
     private void addProject(MouseEvent event) throws IOException {
         Facade f = Facade.getInstance();
-        Project newProject = new Project("New Project", "Add a Description.");
+        Project newProject = new Project("New Project", "Add a Description.", fac.getCurrentUser());
         f.addProject(newProject);
 
         // add project to the list
