@@ -60,12 +60,12 @@
             </Pane>
             <Pane layoutX="396.0" prefHeight="183.0" prefWidth="319.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
                <children>
-                  <Text id="todos" fx:id="pName1" layoutX="127.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="ToDos">
+                  <Text id="todos" layoutX="127.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="ToDos">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <ListView id="todoList" fx:id="taskList" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
+                  <ListView  fx:id="todoList" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
                </children>
             </Pane>
             <Pane layoutX="396.0" layoutY="199.0" prefHeight="183.0" prefWidth="319.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
@@ -75,7 +75,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <ListView id="commentList" fx:id="taskList1" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
+                  <ListView fx:id="commentList" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
                </children>
             </Pane>
          </children>

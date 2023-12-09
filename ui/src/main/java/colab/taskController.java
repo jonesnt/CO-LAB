@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Comment;
+import model.Facade;
 import model.Manager;
 import model.ToDo;
 import model.User;
@@ -55,8 +56,11 @@ public class taskController implements Initializable {
 
  @Override
     public void initialize(URL url, ResourceBundle rb) {
-       man =  Manager.getInstance();
-       ArrayList<UUID> uuidList = man.getCurrentTask().getAssignedUsers();
+       
+        Facade f = Facade.getInstance();
+    man = Manager.getInstance();
+
+       ArrayList<UUID> uuidList = f.getCurrentTask().getAssignedUsers();
        UserManager um  = UserManager.getInstance();
        String users = " ";
        
@@ -75,20 +79,22 @@ public class taskController implements Initializable {
 
        
         //load todos
-            ObservableList<String> todoList = FXCollections.observableArrayList();
+            ObservableList<String> todo_List = FXCollections.observableArrayList();
     
-            ArrayList<ToDo> todos = man.getCurrentTask().getTodo();
+            ArrayList<ToDo> todos = man.getToDoList();
             for (ToDo todo : todos) {
-                todoList.add(todo.getName());
+
+                todo_List.add(todo.getName());
             }
-        
+            todoList.setItems(todo_List);
         //load comments
-             ObservableList<String> commentList = FXCollections.observableArrayList();
+             ObservableList<String> comment_List = FXCollections.observableArrayList();
     
-            ArrayList<Comment> comments = man.getCurrentTask().getComments();
+            ArrayList<Comment> comments = man.getCommentList();
             for (Comment comment : comments) {
-                commentList.add(comment.getCommentData());
+                comment_List.add(comment.getCommentData());
             }
+            commentList.setItems(comment_List);
     }
 
 
