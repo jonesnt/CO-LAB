@@ -193,7 +193,13 @@ public class DataReader extends DataConstants {
             ArrayList<Comment> replies = ((ArrayList<Comment>) commentJSON.get(COMMENT_REPLIES));
             String commentData = (String) commentJSON.get(COMMENT_DATA);
             ZonedDateTime time = ZonedDateTime.parse((String) commentJSON.get(COMMENT_TIME));
-            UUID commentBackEdge = UUID.fromString((String) commentJSON.get(COMMENT_BACK_EDGE));
+            
+            UUID commentBackEdge;
+            try {
+                commentBackEdge = UUID.fromString((String) commentJSON.get(COMMENT_BACK_EDGE));
+            } catch (Exception e) {
+                commentBackEdge = null;
+            }
             UUID author = UUID.fromString((String) commentJSON.get(COMMENT_AUTHOR));
             commentsList.add(new Comment(commentID, commentData, author, replies, time, commentBackEdge));
         }

@@ -122,7 +122,11 @@ public class projectController implements Initializable {
 
   @FXML
   private void addTask(MouseEvent event) throws IOException {
-    //  TODO
+    // String colT = man.getColumnList().get(0);
+    // Task newTask = new Task("New Task", " ", colT, man.getCurrentUser());
+    // cProject.addTask(newTask, colT);
+    // man.changeCurrentTask(cProject.getTasks().size());
+    App.setRoot("taskEdit");
   }
 
   
