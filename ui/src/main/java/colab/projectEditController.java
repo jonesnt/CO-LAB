@@ -16,9 +16,14 @@ import model.*;
 
 public class projectEditController implements Initializable {
 
+  private Project cProject;
+  private Manager man;
   @Override
-  public void initialize(URL url, ResourceBundle rb) {
-    
+  public void initialize(URL url, ResourceBundle rb){
+    cProject = man.getCurrentProject();
+
+    pName.setText(cProject.getName());
+
   }
 
   @FXML
