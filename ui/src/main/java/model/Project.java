@@ -131,13 +131,10 @@ public class Project {
     // does not need to create task (I hope)
     public boolean addTask(Task newTask, String columnChoice) {
         if (columnList.contains(columnChoice)) {
-            // if (!iterateTasks(tasks, newTask.getName())) {
-            //     return false;
-            // }
-            if (!tasks.contains(newTask))
-                tasks.add(newTask);
-            if (!columns.get(columnChoice).contains(newTask))
-                columns.get(columnChoice).add(newTask);
+            if (!iterateTasks(tasks, newTask.getName())) {
+                return false;
+            }
+            columns.get(columnChoice).add(newTask);
             return true;
         }
         return false;
