@@ -65,17 +65,7 @@ public class taskController implements Initializable {
        String users = " ";
        
 
-       for (UUID uuid : uuidList) {
-        String userName = um.getUserName(uuid);
-          users =  users + " "+ userName +"\n";
-       }
-        tAssign.setText("Assigned to: "+users );
-        // update task name
-       tName.setText(man.getCurrentTask().getName());
-       // update task desc
-       tDesc.setText(man.getCurrentTask().getDescription());
-       //task priority
-       tPriority.setText(man.getCurrentTask().getColumnTag().toString());
+       setTDesc();
 
        
         //load todos
@@ -97,10 +87,27 @@ public class taskController implements Initializable {
             commentList.setItems(comment_List);
     }
 
+    private void setTDesc() {
+        String result = "";
+        result += "Assigned Users:\n";
+        for (UUID u : man.getCurrentTask().getAssignedUsers()) {
+            User user = UserManager.getInstance().findUser(u);
+            if (user != null) {
+                result += user.getFirstName() + " " + user.getLastName() + "\n";
+            }
+        }
+        result += "Description:\n";
+        String desc = man.getCurrentTask().getDescription();
+        if (desc != null)
+            result += desc + "\n";
+        result += "Column Tag:\n";
+        result += man.getCurrentTask().getColumnTag();
+        tDesc.setText(result);
+    }
 
     @FXML
     private void toHome(MouseEvent event) throws IOException {
-        App.setRoot("home");
+        App.setRoot("project");
     }
 
     @FXML

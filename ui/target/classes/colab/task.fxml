@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.taskController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #4f4f4f;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="colab.taskController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -49,10 +49,7 @@
                   </Button>
                   <Pane layoutX="36.0" layoutY="53.0" prefHeight="276.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css">
                      <children>
-                        <Text fx:id="tDesc" layoutX="14.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="tDesc" wrappingWidth="218.13671875" />
-                        <Text fx:id="tAssign" fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tAssign" />
-                        <Text fx:id="tPriority" fill="WHITE" layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tPriority" />
-                        <Text fx:id="tHistory" fill="WHITE" layoutX="14.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tHistory" />
+                        <Text fx:id="tDesc" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="tDesc" wrappingWidth="218.13671875" />
                      </children>
                   </Pane>
                   <Button layoutX="139.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#toEditTask" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #75f9fd;" text="Edit" />
@@ -65,7 +62,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <ListView  fx:id="todoList" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
+                  <ListView fx:id="todoList" layoutX="36.0" layoutY="46.0" prefHeight="119.0" prefWidth="247.0" style="-fx-background-color: #333333;" styleClass="rounded" stylesheets="@style.css" />
                </children>
             </Pane>
             <Pane layoutX="396.0" layoutY="199.0" prefHeight="183.0" prefWidth="319.0" style="-fx-background-color: #6c6c6c;" styleClass="rounded" stylesheets="@style.css">
