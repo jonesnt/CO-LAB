@@ -52,11 +52,15 @@ public class DataWriter extends DataConstants {
     public static void saveProjects(ArrayList<Project> projectsList) {
 
         JSONArray jsonProjects = new JSONArray();
-
+        ArrayList<Task> allTasks = new ArrayList<>();
         for (Project project : projectsList) {
             jsonProjects.add(getProjectJSON(project));
+            for (Task t : project.getTasks()) {
+                System.out.println(t.getName());
+                allTasks.add(t);
+            }
         }
-
+        saveTasks(allTasks);
         try (FileWriter file = new FileWriter(PROJECT_FILE_NAME)) {
             file.write(jsonProjects.toJSONString());
             file.flush();
@@ -228,7 +232,7 @@ public class DataWriter extends DataConstants {
                 // Assuming replies don't have further nested replies
                 // If they do, you might need recursively call getCommentsJSON or similar
                 replyObj.put(COMMENT_DATA, reply.getCommentData());
-                replyObj.put(COMMENT_TIME, reply.getTime());
+                replyObj.put(COMMENT_TIME, reply.getTime().toString());
                 replyObj.put(COMMENT_AUTHOR, reply.getAuthor().toString());
                 repliesArray.add(replyObj);
             }
@@ -236,7 +240,7 @@ public class DataWriter extends DataConstants {
             obj.put(COMMENT_REPLIES, repliesArray);
             obj.put(COMMENT_REPLIES, repliesArray);
             obj.put(COMMENT_DATA, comment.getCommentData());
-            obj.put(COMMENT_TIME, comment.getTime());
+            obj.put(COMMENT_TIME, comment.getTime().toString());
             obj.put(COMMENT_AUTHOR, comment.getAuthor().toString());
             commentArray.add(obj);
         }
