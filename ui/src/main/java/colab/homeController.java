@@ -25,6 +25,8 @@ public class homeController implements Initializable {
     @FXML
     private ListView<String> taskList;
 
+    //  this is the actual projects, not representations
+    private ArrayList<Project> projects;
     private Facade fac;
 
     @Override
@@ -52,6 +54,9 @@ public class homeController implements Initializable {
 
         // add project to the list
         loadProjects();
+        //  automatically go into edit mode
+        f.changeCurrentProject(projects.size());
+        App.setRoot("projectEdit");
     }
 
     @FXML
@@ -74,7 +79,7 @@ public class homeController implements Initializable {
     // gets names of projects and loads it itno the FX project list
     private void loadProjects() throws IOException {
         ObservableList<String> project_List = FXCollections.observableArrayList();
-        ArrayList<Project> projects = fac.getProjectList();
+        projects = fac.getProjectList();
         for (Project project : projects) {
             project_List.add(project.getName());
             ArrayList<Task> tasks = project.getTasks();

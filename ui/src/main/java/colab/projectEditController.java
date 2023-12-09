@@ -25,15 +25,28 @@ public class projectEditController implements Initializable {
   private Manager man;
   @Override
   public void initialize(URL url, ResourceBundle rb){
+    man = Manager.getInstance();
+    
     cProject = man.getCurrentProject();
 
     pName.setText(cProject.getName());
 
-    pInfo.setText(getPInfoSafe());
+    pInfo.setText(getPInfo());
   }
 
-  private String getPInfoSafe() {
+  private String getPInfo() {
+    String result;
     
+    result = "Assigned Users:\n";
+    ArrayList<UUID> auid = cProject.getAssignedUsers();
+    for (UUID id : auid) {
+      User u = UserManager.getInstance().findUser(id);
+      result += u.getFirstName() + " " + u.getLastName() + "\n";
+    }
+
+    result += "Description:\n" + cProject.getDescription() + "\n";
+
+    return result;
   }
 
   @FXML

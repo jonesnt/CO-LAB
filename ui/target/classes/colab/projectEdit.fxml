@@ -61,16 +61,23 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <Text id="addU" layoutX="131.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Add User" />
-                  <TextField fx:id="usernameAddBox" layoutX="54.0" layoutY="81.0" promptText="Username" style="-fx-background-color: #4f4f4f;" />
-                  <Button id="addUserButton" layoutX="225.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <Text id="addU" layoutX="131.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Add User" />
+                  <TextField fx:id="usernameAddBox" layoutX="54.0" layoutY="151.0" promptText="Username" style="-fx-background-color: #4f4f4f;" />
+                  <Button id="addUserButton" layoutX="225.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
-                  <Text id="Desc" layoutX="125.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Description" />
-                  <TextField fx:id="descAddBox" layoutX="54.0" layoutY="157.0" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #4f4f4f;" />
-                  <Button id="addDescButton" layoutX="225.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#editDesc" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                  <Text id="Desc" layoutX="125.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Description" />
+                  <TextField fx:id="descAddBox" layoutX="54.0" layoutY="227.0" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #4f4f4f;" />
+                  <Button id="addDescButton" layoutX="225.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#editDesc" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Text id="addU" layoutX="118.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff;" text="Project Name" />
+                  <TextField id="pNameBox" fx:id="usernameAddBox1" layoutX="54.0" layoutY="73.0" promptText="Username" style="-fx-background-color: #4f4f4f;" />
+                  <Button id="pNameButton" layoutX="225.0" layoutY="71.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: #75f9fd;" text="+">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
