@@ -60,10 +60,7 @@ public class taskController implements Initializable {
         Facade f = Facade.getInstance();
     man = Manager.getInstance();
 
-       ArrayList<UUID> uuidList = f.getCurrentTask().getAssignedUsers();
-       UserManager um  = UserManager.getInstance();
-       String users = " ";
-       
+       tName.setText(man.getCurrentTask().getName());
 
        setTDesc();
 
